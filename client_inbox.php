@@ -4,6 +4,8 @@ include('config/dbconfig2.php');
 include('functions.php');
 session_start();
 
+$username = $_SESSION['username'];
+
 $id = $_SESSION['id'];
 
 
@@ -179,10 +181,9 @@ $id = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+              
               </a>
               <!-- Dropdown - Alerts -->
           
@@ -220,6 +221,46 @@ $id = $_SESSION['id'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+
+        <!-- Inbox come here -->
+
+
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Sender</th>
+                      <th>Message</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From chat where receiver='$username'");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                      echo 
+                         '<tr>
+                    <td>'.$row["date"].'</td>
+                    <td>'.$row["sender"].'</td>
+                    <td>'.$row["message"].'</td>
+                                                                                                
+                      </tr>'   ;
+                        }?>
+
+                 </tbody>
+                </table>
+              </div>
+            </div>
+          
+        <!-- End of inbox-->
          
 
 

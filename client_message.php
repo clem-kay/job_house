@@ -94,7 +94,7 @@ $id = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance Profile
+       Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->

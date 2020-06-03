@@ -68,7 +68,7 @@ $username = $_SESSION['username'];
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
-            <a class="collapse-item" href="freelancer_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
