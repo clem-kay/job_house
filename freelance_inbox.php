@@ -1,22 +1,15 @@
 <?php
+session_start();
+
 
 include('config/dbconfig2.php');
 include('functions.php');
-session_start();
 
-$id = $_SESSION['id'];
-
-
-  $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$id' ");
-    if($query){
-       $num_of_user = mysqli_num_rows($query);
-        if($num_of_user> 0 ){
-            //user exist so go ahead and activate account
-            $user_row = mysqli_fetch_array($query);
-        }
-    }
-
+$username = $_SESSION['username']
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,9 +67,8 @@ $id = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Message</h6>
-            <a class="collapse-item" href="client_message.php">Compose Message</a>
-            <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
@@ -85,7 +77,7 @@ $id = $_SESSION['id'];
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>Post Job</span>
+          <span>View Jobs</span>
         </a>
       </li>
 
@@ -99,19 +91,34 @@ $id = $_SESSION['id'];
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="">Edit Profile</a>
+            <a class="collapse-item" href="#">Edit Profile</a>
           </div>
         </div>
       </li>
 
+ <hr class="sidebar-divider d-none d-md-block">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Portfolio</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            
+            <a class="collapse-item" href="view_portfolio.php">View Portfolio</a>
+            <a class="collapse-item" href="#">Edit Portfolio</a>
+          </div>
+        </div>
+      </li>
      
      
     
@@ -139,7 +146,7 @@ $id = $_SESSION['id'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i style="color: #207b41; border-color: #207b41;" class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -147,7 +154,7 @@ $id = $_SESSION['id'];
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
+                <button name="save" style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -193,7 +200,7 @@ $id = $_SESSION['id'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                 <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
@@ -220,13 +227,48 @@ $id = $_SESSION['id'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-         
+
+<div class="container">
+
+        <!-- Inbox come here -->
 
 
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Sender</th>
+                      <th>Message</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From chat where receiver='$username'");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                      echo 
+                         '<tr>
+                    <td>'.$row["date"].'</td>
+                    <td>'.$row["sender"].'</td>
+                    <td>'.$row["message"].'</td>
+                                                                                                
+                      </tr>'   ;
+                        }?>
+
+                 </tbody>
+                </table>
+              </div>
+            </div>
           
-        
-
-           
+        <!-- End of inbox-->
         </div>
         <!-- /.container-fluid -->
 
@@ -237,7 +279,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Amalitech Freelance</span>
           </div>
         </div>
       </footer>
@@ -267,7 +309,7 @@ $id = $_SESSION['id'];
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
         </div>
       </div>
     </div>

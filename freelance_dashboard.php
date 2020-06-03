@@ -4,6 +4,7 @@ session_start();
    
 include('config/dbconfig2.php');
 include('functions.php');
+$username = $_SESSION['username'];
 
 ?>
 
@@ -66,8 +67,7 @@ include('functions.php');
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Buttons</h6>
-            <a class="collapse-item" href="compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
             <a class="collapse-item" href="freelancer_inbox.php">Inbox</a>
           </div>
         </div>
@@ -185,14 +185,11 @@ include('functions.php');
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+                <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
               </a>
-              <!-- Dropdown - Alerts -->
-          
+              
             </li>
-
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->

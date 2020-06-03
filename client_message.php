@@ -221,6 +221,48 @@ $id = $_SESSION['id'];
         <div class="container-fluid">
 
          
+          <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class=" col big-box">
+            <div class=" p-5">
+              <div class="text-center">
+                <?php  $login_query = "select username from useraccount where usertype='client' " ?>
+                <h1 class="h4 text-gray-900 mb-4">Send Your Message</h1>
+
+              </div>
+              <form class="user" method="post">
+                <?php include('controllers/sendMessage.php')?>
+                <div class="form-group">
+                  <select class="form-control" name="receiver">
+                  <?php
+                        $sql = mysqli_query($con, "SELECT username From useraccount where usertype='freelancer'");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                        echo "<option value='". $row['username'] ."'>" .$row['username'] ."</option>" ;}?>
+                 </select>
+                  </div>
+                
+                
+                <div class="form-group">
+                 <textarea class="form-control" name="message" placeholder="Enter your message"> </textarea>
+                </div>
+
+               
+                <div>
+                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
+                </div>
+
+                
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
           

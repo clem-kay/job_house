@@ -115,8 +115,8 @@ include('functions.php');
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="">View Portfolio</a>
-            <a class="collapse-item" href="">Edit Portfolio</a>
+            <a class="collapse-item" href="view_portfolio.php">View Portfolio</a>
+            <a class="collapse-item" href="#">Edit Portfolio</a>
           </div>
         </div>
       </li>

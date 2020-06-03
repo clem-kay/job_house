@@ -1,11 +1,17 @@
 <?php
-if(isset($_POST['send-message'])){
+if(isset($_POST['send'])){
     //get message text and sanitize
-    $message_body = checkValues($_POST['message']);
-    $receiver_id = checkValues($_POST['receiver']);
+	
+	$sender = $_SESSION['username'];
+	$receiver = $_POST['receiver'];
+	$message = $_POST['message'];
 
     //save chat into db
 
-    $save_chat_query = mysqli_query($con,"INSERT INTO message(sender_id,receiver_id,text)VALUES('$user_id','$receiver_id','$message_body')");
+    $save_message = mysqli_query($con,"INSERT INTO chat(sender,receiver,message)VALUES('$sender','$receiver','$message')");
+
+    if($save_message){
+    		echo "message sent";
+    }
 
 }
