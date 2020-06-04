@@ -57,7 +57,7 @@ $id = $_SESSION['id'];
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -111,6 +111,14 @@ $id = $_SESSION['id'];
           </div>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-comments"></i>
+          <span>Rate Feelancer</span>
+        </a>
+      </li>
+
 
      
      
