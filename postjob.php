@@ -1,15 +1,10 @@
 <?php
-session_start();
-
 
 include('config/dbconfig2.php');
 include('functions.php');
+session_start();
 
-$username = $_SESSION['username']
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,8 +44,8 @@ $username = $_SESSION['username']
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+      <li class="nav-item ">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -67,17 +62,18 @@ $username = $_SESSION['username']
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
-            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <h6 class="collapse-header">Message</h6>
+            <a class="collapse-item" href="client_message.php">Compose Message</a>
+            <a class="collapse-item" href="client_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>View Jobs</span>
+          <span>Post Job</span>
         </a>
       </li>
 
@@ -86,43 +82,32 @@ $username = $_SESSION['username']
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance Profile
+        Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="#">Edit Profile</a>
+            <a class="collapse-item" href="">Edit Profile</a>
           </div>
         </div>
       </li>
-
- <hr class="sidebar-divider d-none d-md-block">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Portfolio</span>
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-comments"></i>
+          <span>Rate Feelancer</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item" href="view_portfolio.php">View Portfolio</a>
-            <a class="collapse-item" href="#">Edit Portfolio</a>
-          </div>
-        </div>
       </li>
-     
-     
-    
-     
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -146,7 +131,7 @@ $username = $_SESSION['username']
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;" class="fa fa-bars"></i>
+            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -154,7 +139,7 @@ $username = $_SESSION['username']
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button name="save" style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
+                <button style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -187,9 +172,9 @@ $username = $_SESSION['username']
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+                <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+               
               </a>
               <!-- Dropdown - Alerts -->
           
@@ -201,8 +186,7 @@ $username = $_SESSION['username']
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -228,48 +212,75 @@ $username = $_SESSION['username']
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+         <div class="container">
 
-<div class="container">
+    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class=" col big-box">
+            <div class=" p-5">
+              <div class="text-center">
+               
+                <h1 class="h4 text-gray-900 mb-4">Post Your job</h1>
 
-        <!-- Inbox come here -->
-
-
-
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Sender</th>
-                      <th>Message</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <?php
-                        $sql = mysqli_query($con, "SELECT * From chat where receiver='$username'");
+              </div>
+              <form class="user" action="" method="post">
+              	 <?php  include('controllers/postJob.php') ?>
+                <div class="form-group">
+                	<div class="form-group">
+                		<input type="text" name="jobtitle" class="form-control" placeholder="Job Title">
+                  	</div>
+                  	<div class="form-group">
+                  		<select name="category" class="form-control" placeholder="Select job type">
+                  			<option>Job Category</option>
+                  			<?php
+                        $sql = mysqli_query($con, "SELECT * From category");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                      echo 
-                         '<tr>
-                    <td>'.$row["date"].'</td>
-                    <td>'.$row["sender"].'</td>
-                    <td>'.$row["message"].'</td>
-                                                                                                
-                      </tr>'   ;
-                        }?>
+                        echo "<option value='". $row['category_name'] ."'>" .$row['category_name'] ."</option>" ;}?>
+                  		</select>
+                  	</div>
 
-                 </tbody>
-                </table>
-              </div>
+
+ 				<div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                   <select name="jobtype" class="form-control" placeholder="Select job type">
+                  			<option>Long Term</option>
+                  			<option>Short Term</option>
+                  		</select>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" name="budget" class="form-control"  placeholder="Budget">
+                  </div>
+                </div>
+
+      
+                
+                <div class="form-group">
+                 <textarea class="form-control" name="jobdescription" placeholder="Enter job description" required="required"> </textarea>
+                </div>
+
+               
+                <div>
+                  <input style=" float:right;background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="postjob" value="Post Job"/>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
           
-        <!-- End of inbox-->
+        
+
+           
         </div>
         <!-- /.container-fluid -->
 
@@ -280,7 +291,7 @@ $username = $_SESSION['username']
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>Copyright &copy; Your Website 2019</span>
           </div>
         </div>
       </footer>
@@ -310,7 +321,7 @@ $username = $_SESSION['username']
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>

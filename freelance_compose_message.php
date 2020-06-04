@@ -67,7 +67,7 @@ include('functions.php');
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
             <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
           </div>
         </div>
@@ -246,6 +246,7 @@ include('functions.php');
                 <?php include('controllers/sendMessage.php')?>
                 <div class="form-group">
                   <select class="form-control" name="receiver">
+                    <option required> ------------------- </option>
                   <?php
                         $sql = mysqli_query($con, "SELECT username From useraccount where usertype='client'");
                         $row = mysqli_num_rows($sql);
@@ -262,10 +263,6 @@ include('functions.php');
                
                 <div>
                   <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
-                </div>
-
-                
-                  </div>
                 </div>
               </form>
             </div>
