@@ -22,12 +22,7 @@ if(isset($_POST['create_account'])){
 
         //if user already exist, display error message
         echo '                
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Username is taken</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-    </button>
-    </div>    
+    <h6>Username Taken</h6>
 ';
 
     }else{

@@ -196,17 +196,14 @@ $username = $_SESSION['username'];
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                <img class="img-profile rounded-circle" src="">
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="changePictureModal">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Change Picture
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -224,14 +221,67 @@ $username = $_SESSION['username'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+            <div class="row">
 
+            <!-- Jobs Applied -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Applied</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">No of jobs</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <!-- Jobs Accepted -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">No of jobs</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
          
 
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Number of request</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         
 
-          
-        
+       
 
-           
+
+
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 

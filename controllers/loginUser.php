@@ -10,13 +10,11 @@ if (isset($_POST['login'])) {
     $password = md5($password);
 
    
-    $login_query = "SELECT * FROM useraccount WHERE username ='$user'";
+    $login_query = "SELECT * FROM useraccount WHERE username ='$user' and password ='$password'";
     $db_login_query = mysqli_query($con,$login_query);
     if( $db_login_query){
-        $num_of_user = mysqli_num_rows($db_login_query);
-
-        if($num_of_user == 1 ){
-            
+        if(mysqli_num_rows($db_login_query) > 0 ){
+           
             $user_row = mysqli_fetch_array($db_login_query);
             $verified =  $user_row['verified'];
             $usertype = $user_row['usertype'];
@@ -29,7 +27,8 @@ if (isset($_POST['login'])) {
                 $_SESSION['username'] = $user_row['username'];
                 $_SESSION['firstname'] = $user_row['firstname'];
                 $_SESSION['lastname']  = $user_row['lastname'];
-            }
+                $_SESSION['usertype']  = $user_row['usertype'];
+             }
             
             // $_SESSION['id'] = $user_row['id'];
             // $_SESSION['username'] = $user_row['username'];
@@ -45,34 +44,14 @@ if (isset($_POST['login'])) {
                 
                 echo "<script>window.location='freelance_dashboard.php'</script>";
             }else{
-                echo '                
-     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Sorry username or password incorrect</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-    </button>
-    </div> ';
+                echo "<script>window.location='check_mail.php'</script> ";
 
             }
 
         }
-         else echo '                
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Sorry username or password incorrect</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-    </button>
-    </div>    
-';
+         else echo '<h6>Incorrect Username or Password</h6>';
 
     }
-    else echo '                
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Sorry username or password incorrect</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-     <span aria-hidden="true">&times;</span>
-    </button>
-    </div>    
-';
+    else echo ' <h6>No user found</h6>';
 }
 ?>
