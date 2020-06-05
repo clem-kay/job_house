@@ -4,19 +4,24 @@ include('config/dbconfig2.php');
 include('functions.php');
 session_start();
 
-$username = $_SESSION['username'];
+if(isset($_REQUEST['id'])){
 
-$id = $_SESSION['id'];
+$jobid = $_REQUEST['id']; 
+
+$sql = mysqli_query($con, "SELECT * From job_posted WHERE id = '$jobid'");
+$job_row = mysqli_num_rows($sql);
+while ($job_row = mysqli_fetch_array($sql)){
+
+$description = $job_row['description'];
+$jobname = $job_row['job_title'];
+$budget = $job_row['budget'];
+
+}
+
+}
 
 
-  $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$id' ");
-    if($query){
-       $num_of_user = mysqli_num_rows($query);
-        if($num_of_user> 0 ){
-            //user exist so go ahead and activate account
-            $user_row = mysqli_fetch_array($query);
-        }
-    }
+
 
 ?>
 <!DOCTYPE html>
@@ -84,7 +89,7 @@ $id = $_SESSION['id'];
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>Post Job</span>
@@ -114,10 +119,14 @@ $id = $_SESSION['id'];
         </div>
       </li>
 
-     
-     
-    
-     
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-comments"></i>
+          <span>Rate Feelancer</span>
+        </a>
+      </li>
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -181,9 +190,10 @@ $id = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-              
+                <!-- Counter - Alerts -->
+               
               </a>
               <!-- Dropdown - Alerts -->
           
@@ -194,7 +204,7 @@ $id = $_SESSION['id'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                 <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
@@ -220,59 +230,71 @@ $id = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job</h6>
-            </div>
-            <div class="card-body">
-              <?php if(isset($_GET['response'])) { 
 
-                if($_GET['response']=="sucess"){ ?>
-                  <div class="alert alert-success">
-                    <p>Succssfully </p>
-                  </div>
-               <?php }else if($_GET['response']=="error"){ ?>
-                  <div class="alert alert-danger">
-                    <p>Error</p>
-                  </div>
-               <?php 
-             }
-             }
-                ?>
+         <div class="container">
 
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Job Title</th>
-                      <th>Job Category</th>
-                       <th>Job Type</th>
-                      <th>Description</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <?php
-                        $sql = mysqli_query($con, "SELECT * From job_posted where user_id='$id'");
+    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class=" col big-box">
+            <div class=" p-5">
+              <div class="text-center">
+               
+                <h1 class="h4 text-gray-900 mb-4">Post Your job</h1>
+
+              </div>
+              <form class="user" action="" method="post">
+              	 <?php  include('controllers/updateJob.php') ?>
+                <div class="form-group">
+                	<div class="form-group">
+                		<input type="text" name="jobtitle" class="form-control" value="<?php echo $jobname; ?>" placeholder="Job Title">
+                  	</div>
+                  	<div class="form-group">
+                  		<select name="category" class="form-control" placeholder="Select job type">
+                  			<option>Job Category</option>
+                  			<?php
+                        $sql = mysqli_query($con, "SELECT * From category");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                      echo 
-                         '<tr>
-                    <td>'.$row["job_title"].'</td>
-                    <td>'.$row["job_category"].'</td>
-                    <td>'.$row["job_type"].'</td>
-                    <td>'.$row["description"].'</td>                                            
-                      </tr> ';
-                        }
-                        ?>
-                 </tbody>
-                </table>
-              </div>
+                        echo "<option value='". $row['category_name'] ."'>" .$row['category_name'] ."</option>" ;}?>
+                  		</select>
+                  	</div>
+
+
+ 				<div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                   <select name="jobtype" class="form-control" placeholder="Select job type">
+                  			<option>Long Term</option>
+                  			<option>Short Term</option>
+                  		</select>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="number" name="budget" class="form-control" value="<?php echo $budget; ?>" placeholder="Budget">
+                  </div>
+                </div>
+
+      
+                
+                <div class="form-group">
+                 <textarea class="form-control" name="jobdescription" placeholder="Enter job description" required="required">
+                  <?php echo $description; ?> </textarea>
+                </div>
+
+               
+                <div>
+                  <input style=" float:right;background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="update_job" value="Update Job"/>
+                </div>
+              </form>
             </div>
-          
-        <!-- End of inbox-->
-         
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
 
 
           
@@ -289,7 +311,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Amalitech Freelance 2020</span>
           </div>
         </div>
       </footer>

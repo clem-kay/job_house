@@ -1,14 +1,13 @@
 <?php
-include('./config/dbconfig2.php');
-include('./functions.php');
 
-if(isset($_GET['id'])){
+if(isset($_REQUEST['id'])){
 	
 
-	$id= $_GET['id'];
+	$id= $_REQUEST['id'];
+	$delete_query ="DELETE FROM job_posted WHERE id = 'id'";
 
-	$delete_query = mysqli_query($con,"DELETE FROM job_posted WHERE id = '$id'");
-		if ($delete_query){
+	$delete = mysqli_query($con,$delete_query);
+		if ($delete){
 			header('Location:../client_job_posted.php?response=sucess');
 		}else{
 			header('Location:../client_job_posted.php?response=error');
