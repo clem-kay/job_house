@@ -23,24 +23,31 @@ include('functions.php');
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        input[type = "checkbox"]:checked + label:before{
+            background-color:#207b41;
+            border-color:#207b41;
+        }
+
+    </style>
 </head>
 
 <body class="login-back">
 
     <!-- Start your project here-->
-    <div class="card fl-login-card">
+    <div style="margin-top:70px;" class="card fl-login-card">
         <div class="card-body">
-            <div class="md-form">
+            <div  class="md-form">
                 <!-- Default form login -->
                 <form class="text-center needs-validation" method="post" action="" novalidate>
                     <?php include('controllers/loginUser.php');?>
-                    <p class="h1 mb-4 font-weight-bolder" style="color: #208927;">Login</p>
-                    <hr>
+                   
                     <!-- Email -->
                     <div class="md-form input-with-pre-icon">
                         <div>
-                            <i class="fas fa-envelope input-prefix"></i>
-                            <input type="text" id="username" class="form-control" name="username" required>
+                            <i style="color:#207b41;" class="fas fa-user input-prefix"></i>
+                            <input type="text" id="username" class="form-control" name="username" placeholder="username" required>
                         </div>
                         <div class="invalid-feedback">Please enter email</div>
                     </div>
@@ -48,7 +55,7 @@ include('functions.php');
                     <!-- Password -->
                     <div class="md-form input-with-pre-icon">
                         <div>
-                            <i class="fa fa-lock input-prefix" aria-hidden="true"></i>
+                            <i style="color:#207b41;" class="fa fa-lock input-prefix" aria-hidden="true"></i>
                             <input type="password" id="userPassword" class="form-control mb-4" name="password" placeholder="Password" required>
                             <!-- <label for="userPassword"></label> -->
                         </div>
@@ -56,32 +63,20 @@ include('functions.php');
 
                     </div>
 
-
-                    <div class="justify-content-around remember">
-
-                        <!-- Remember me -->
-                        <div class=" custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                        </div>
-
-                        <div class="forgot">
-                            <!-- Forgot password -->
-                            <a href="#forgot-password" id="forgot" class="text-primary">Forgot password?</a>
-                        </div>
-                    </div>
-
                     <!-- Sign in button -->
                     <div class="login-bottom">
-                        <button class="btn fl-btn-pm btn-rounded btn-block my-4" name="login" type="submit">LOGIN</button>
+                        <button style="border-radius:2px;"class="btn fl-btn-pm btn-block my-4" name="login" type="submit">LOGIN</button>
 
                         <!-- Register -->
                         <p>Not a member?
-                            <a href="signup.php">Register</a>
+                        <a style="color:black;" href="signup.php">Register</a>
                         </p>
-                        <!-- Social login -->
-                        <p>Sign in with Google: <a href="#" class="mx-2" role="button"><i class="fab fa-google light-blue-text"></i></a>
+                       
                         </p>
+                          <div class="forgot">
+                            <!-- Forgot password -->
+                            <a  style="float:left; color:black;"href="#forgot-password" id="forgot" class="">Forgot password?</a>
+                        </div>
                     </div>
 
                 </form>

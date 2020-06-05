@@ -7,7 +7,7 @@ $jobcategory =$_POST['category'];
 $jobtype =$_POST['jobtype'];
 $budget = $_POST['budget'];
 $description = $_POST['jobdescription'];
-$date = date('y/m/d'); 
+$date = date('y-m-d'); 
 $user_id = $_SESSION['id'];
 
 

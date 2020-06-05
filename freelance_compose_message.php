@@ -75,7 +75,7 @@ include('functions.php');
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="viewjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>
@@ -99,7 +99,7 @@ include('functions.php');
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="#">Edit Profile</a>
+            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
       </li>

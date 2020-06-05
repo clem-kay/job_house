@@ -1,0 +1,16 @@
+.poster-col {
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    border-left-width: 0.05rem;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-right-width: 0.05rem;
+    border-left-color: #0f0f0f;
+    border-left-color: #0f0f0f;
+}
+
+.job-desc {
+    display: inline-flex;
+    width: 30rem;
+}

@@ -30,6 +30,8 @@ $username = $_SESSION['username'];
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+
+
 </head>
 
 <body id="page-top">
@@ -75,7 +77,7 @@ $username = $_SESSION['username'];
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="viewjob.php">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>
@@ -99,7 +101,7 @@ $username = $_SESSION['username'];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
       </li>
@@ -220,69 +222,36 @@ $username = $_SESSION['username'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-            <div class="row">
-
-            <!-- Jobs Applied -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Applied</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">No of jobs</div>
+            <?php
+                        $sql = mysqli_query($con, "SELECT * From job_posted");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                            echo'
+       <div style="height: 100vh">
+        <div class="card ml-3 mr-3 pl-3 pr-3" style="width: fit-content;">
+            <div class="card-body row">
+                <div class="ml-3 col-md-1-12">
+                    <h5 class="card-title font-weight-bold">Create a Wordpress website for Hospital</h5>
+                    <div class="row pl-3">
+                      Username of client  |'.$row['created_date']. '&nbsp;| &nbsp; | &nbsp;' .$row['job_type']. '&nbsp;| &nbsp; <strong>'.$row['budget'].'</strong>
                     </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
+                    <hr/>
+                    <p class="card-text job-desc">'
+                       .$row['description'].'
+                    </p>
+                    <hr/>
                 </div>
-              </div>
-            </div>
-
-            
-            <!-- Jobs Accepted -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">No of jobs</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
+                <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
                 </div>
-              </div>
-            </div>
-         
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Number of request</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
+                <div class="col-sm-1-12 mt-2 ml-3" style="position:relative; ">
+                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Apply"/>
+                    <a class="btn fl-btn-pm btn-sm btn-rounded card-link ">Apply</a>
                 </div>
-              </div>
             </div>
-         
-
-       
-
-
-
-          <!-- End of row -->
         </div>
+    </div>';
+  }
+    ?>
         <!-- /.container-fluid -->
 
       </div>
@@ -327,23 +296,7 @@ $username = $_SESSION['username'];
       </div>
     </div>
   </div>
-  <!-- Upload Picture Modal -->
-  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
-        </div>
-        <div class="modal-body">Click to select a picture.</div>
-        <div class="modal-footer">
-          <form method="post" enctype="form">
-          <input type="files" name="change" id="pic">
-        </form>>
-        </div>
-      </div>
-    </div>
-  </div>
-
+ 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
   <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

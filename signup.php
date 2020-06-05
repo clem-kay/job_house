@@ -25,8 +25,8 @@ include('functions.php');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
-<!-- style="background-image: url('img/signup-back2.jpg'); background-size: cover; height: 100%;" -->
 
 <body style="overflow-y:auto">
     <!-- Start your project here-->
@@ -38,7 +38,7 @@ include('functions.php');
             <h1 class="font-weight-bolder" style="color: #208927;">Sign Up</h1>
             <p class="font-weight-light">You are at the right place to have your projects handled by our experts in varoius fields accross the world.</p>
             <hr>
-            <p>Already a member? <a href="">Click here to login</a></p>
+            <p>Already a member? <a href="login.php">Click here to login</a></p>
         </div>
 
 
@@ -48,20 +48,20 @@ include('functions.php');
                 <?php include('controllers/registerUser.php');?>
                 <form class="needs-validation" action="" method="post" novalidate>
                     <div class="md-form input-with-pre-icon minus-margin-bttm">
-                        <i class="fa fa-login fa-user input-prefix"></i>
+                        <i style="color:#207b41;" class="fa fa-login fa-user input-prefix"></i>
                         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
                     </div>
                     <!--first name and last name-->
                     <div class="row name ">
                         <div class="col minus-margin-bttm">
                             <div class="md-form input-with-pre-icon minus-margin-bttm">
-                                <i class="fa fa-user input-prefix"></i>
+                                <i style="color:#207b41;" class="fa fa-user input-prefix"></i>
                                 <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First Name" required>
                             </div>
                         </div>
                         <div class="col minus-margin-bttm">
                             <div class="md-form input-with-pre-icon minus-margin-bttm">
-                                <i class="fa fa-user input-prefix"></i>
+                                <i style="color:#207b41;" class="fa fa-user input-prefix"></i>
                                 <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last Name" required>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ include('functions.php');
                     <!---end of first name and last name-->
 
                     <div class="md-form email input-with-pre-icon minus-margin-bttm">
-                        <i class="fa fa-envelope input-prefix"></i>
+                        <i style="color:#207b41;" class="fa fa-envelope input-prefix"></i>
                         <input type="email" id="email" name="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                     </div>
 
@@ -79,14 +79,14 @@ include('functions.php');
                     <div class="row minus-margin-bttm">
                         <div class="col">
                             <div class="md-form  input-with-pre-icon">
-                                <i class="fas fa-lock input-prefix"></i>
-                                <input type="password" id="userPassword" name="password" class="form-control userPassword validate " placeholder="Password" required>
+                                <i style="color:#207b41;" class="fas fa-lock input-prefix"></i>
+                                <input  type="password" id="userPassword" name="password" class="form-control userPassword validate " placeholder="Password" required>
                                 <label for="userPassword" data-error="Wrong/Weak Password" data-success="Appopriate Password"></label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="md-form input-with-pre-icon">
-                                <i class="fa fa-lock input-prefix"></i>
+                                <i style="color:#207b41;" class="fa fa-lock input-prefix"></i>
                                 <input type="password" id="userConfirmPassword" class="form-control passRepeat" placeholder="Repeat Password" required>
                             </div>
                         </div>
@@ -106,7 +106,7 @@ include('functions.php');
                     <!---end of first name and last name-->
                     <!--type of subscription -->
 
-                    <div class="btn-group btn-group-toggle type" data-toggle="buttons">
+                    <div style="border-radius:5px;" class="btn-group btn-group-toggle type" data-toggle="buttons">
                         <label class="btn btn-success form-check-label text-sentence active">
                            <input class="form-check-input" type="radio" name="usertype" value="freelancer" id="Freelancer" autocomplete="off" checked>
                       Sign Up as Freelancer </label>
@@ -125,7 +125,7 @@ include('functions.php');
                         </div>
                     </div>
 
-                    <button id="signupButton" type="submit" name="create_account" class="btn btn-outline fl-btn-pm btn-lg btn-rounded btn-block">Confirm</button>
+                    <button style="border-radius:2px; " id="signupButton" type="submit" name="create_account" class="btn btn-outline fl-btn-pm btn-lg btn-block">Confirm</button>
 
                 </form>
 

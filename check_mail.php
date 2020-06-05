@@ -62,7 +62,7 @@ include('functions.php');
                     <div class="md-form my-0 input-with-pre-icon">
                         <input class="form-control mr-sm-2" type="text" name="username" placeholder="Enter Username">
                         <input class="form-control mr-sm-2" type="text" name="activationcode" placeholder="Enter Code">
-                        <input style="background-color: #207b41;color:#fff" class="form-control" type="submit" name="activate" placeholder="" value="Send Code"/>
+                        <input style="border-radius:2px;background-color: #207b41;color:#fff;vertical-align: middle;" class="form-control" type="submit" name="activate" value="Send Code"/>
                         
                     </div>
                 </form>

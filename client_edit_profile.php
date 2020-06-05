@@ -1,14 +1,19 @@
 <?php
-
 include('config/dbconfig2.php');
 include('functions.php');
-session_start();
+  session_start();
 
-$id = $_SESSION['id'];
+  $id=$_SESSION['id'];
 
+  $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$id'");
+    if($query){
+       $num_of_user = mysqli_num_rows($query);
+        if($num_of_user> 0 ){
+            //user exist so go ahead and activate account
+            $user_row = mysqli_fetch_array($query);
+        }
+    }
 
-  $query = mysqli_query($con,"SELECT * FROM job_posted WHERE id = '$id' ");
-  $result=mysqli_num_rows($query);
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +35,8 @@ $id = $_SESSION['id'];
 
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/countrySelect.min.css">
 
 </head>
 
@@ -88,7 +95,7 @@ $id = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Profile
+       Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -101,24 +108,10 @@ $id = $_SESSION['id'];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="client_profile.php">View Profile</a>
-            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
+            <a class="collapse-item" href="">Edit Profile</a>
           </div>
         </div>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-comments"></i>
-          <span>Rate Feelancer</span>
-        </a>
-      </li>
-
-
-     
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -193,7 +186,7 @@ $id = $_SESSION['id'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php $_SESSION['firstname']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                 <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
@@ -220,61 +213,111 @@ $id = $_SESSION['id'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-         
-           <div class="row">
+           <div style="height: 100vh">
+        <div class="card profile-card">
+            <div class="card-body">
+                <h4 class="card-title text-center font-weight-bold"><a>Personal Data</a></h4>
+                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                <form role="form needs-validation" action="" method="post" novalidate>
+                    <div class="row">
+                        <div class="col-md-3-12">
+                            <div class="ml-3">
+                                <div id="profile-container">
+                                    <img id="profileImage" src="img/avatar.png" />
+                                    <input class="file-upload" id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Posted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $result ?></div>
+                                </div>
+                                <small class="text-muted">Chose profile image
+                                    (150px Square)</small>
+                            </div>
+                            <hr>
+                            <div class="list-group-flush text-muted">
+                                <div class="list-group-item">
+                                    <p class="mb-0"><i class="fa fa-address-card mr-2" aria-hidden="true"></i> Freelancer</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <p class="mb-0"><i class="fa fa-calendar mr-2" aria-hidden="true"></i> Joined 29th May, 2020.</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <p class="mb-0"><i class="fa fa-heart mr-2" aria-hidden="true"></i>0 Recommendations</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h4 class="text-primary font-weigth-bold">Prince A.</h4>
+                            <small class="text-muted">abaidooprince</small> | <small class="text-muted">abaidooprince@gmail.com</small>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="md-form ml-4">
+                                        <div class="md-form">
+                                            <i class="fa fap fa-user-tag prefix" aria-hidden="true"></i>
+                                            <input type="text" id="profHeadline" class=" form-control" aria-describedby="profHeadlineHelp " required>
+                                            <label for="profHeadline ">Professional Headline</label>
+                                            <small id="profHeadlineHelp " class="form-text text-muted ">
+                                            What best describes the services you provide. E.g. Branding Agency, Software Developer, Graphic Designer...
+                                            </small>
+                                            <div class="invalid-feedback">Enter a Professional Headline</div>
+                                        </div>
+
+                                        <div class="md-form country">
+                                            <!-- <i class="fa fap fa-2x fa-globe" aria-hidden="true"></i> -->
+
+                                            <input class="form-control" type="text" name="" id="country_selector">
+                                            <input class="form-control" type="text" name="" id="country_selectors" style="display: none;">
+                                            <small id="countryHelp " style="margin-left: 2.3rem;" class="form-text text-muted">Select Country</small>
+                                        </div>
+
+                                        <div class="md-form">
+                                            <!-- <i class="fa fap fa-city prefix" aria-hidden="true"></i> -->
+                                            <input type="text" id="userCity" class="form-control">
+                                            <label for="userCity">Enter City</label>
+                                        </div>
+                                        <div class="md-form">
+                                            <!-- <i class="fas fap fa-mobile prefix   "></i> -->
+                                            <!-- <i class="fa fap fa-phone-square prefix" aria-hidden="true"></i> -->
+                                            <input type="text" id="userContact" class="form-control">
+                                            <input type="text" id="userContact2" class="form-control" style="display: none;">
+                                            <label for="userContact">Enter Phone</label>
+                                            <small id="contactHelp " class="form-text text-muted ">Ignore Country code</small>
+
+                                        </div>
+                                        <div class="md-form ">
+                                            <!-- <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i> -->
+                                            <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
+                                            <textarea id="textarea-char-counter" class="form-control md-textarea" length="250" rows="4"></textarea>
+                                            <label for="textarea-char-counter">Profile Summary</label>
+                                            <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
+                                        </div>
+                                        <div class="md-form">
+                                            <!-- <i class="fa fap fa-location-arrow prefix" aria-hidden="true"></i> -->
+                                            <textarea id="userAddress" class="form-control md-textarea" length="50" rows="2"></textarea>
+                                            <label for="textarea-char-counter">Address</label>
+                                            <small id="addressHelp" class="form-text text-muted ">Enter either location address or post address</small>
+                                        </div>
+                                    </div>
+
+
+                                    <!--proifle summary-->
+
+
+
+                                    <button class="btn fl-btn-pm btn-rounded btn-block my-4 mt-2" type="submit">Save</button>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </form>
             </div>
+        </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Approved</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">number of job</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-          
-        
+    </div>
+      
 
            
         </div>
@@ -287,7 +330,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Amalitech Freelance</span>
           </div>
         </div>
       </footer>
@@ -335,6 +378,20 @@ $id = $_SESSION['id'];
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+
+
+   <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js "></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js "></script>
+    <!-- Your custom scripts (optional) -->
+    <script src="../js/customscripts.js " type="text/javascript "></script>
+    <script src="../js/countrySelect.min.js" type="text/javascript"></script>
+    <script src="../js/addons/datatables-select.min.js" type="text/javascript"></script>
+    <script src="../js/phonecode.js" type="text/javascript"></script>
 </body>
 
 </html>

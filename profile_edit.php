@@ -1,3 +1,21 @@
+<?php
+include('config/dbconfig2.php');
+include('functions.php');
+  session_start();
+
+  $id=$_SESSION['id'];
+
+  $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$id'");
+    if($query){
+       $num_of_user = mysqli_num_rows($query);
+        if($num_of_user> 0 ){
+            //user exist so go ahead and activate account
+            $user_row = mysqli_fetch_array($query);
+        }
+    }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,43 +45,40 @@
                 <h4 class="card-title text-center font-weight-bold"><a>Personal Data</a></h4>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <form role="form needs-validation" action="" method="post" novalidate>
+                    <?php include('controllers/updateProfile.php')?>
                     <div class="row">
                         <div class="col-md-3-12">
                             <div class="ml-3">
                                 <div id="profile-container">
-                                    <img id="profileImage" src="img/avatar.png" />
-                                    <input class="file-upload" id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
-
+                                   
                                 </div>
-                                <small class="text-muted">Chose profile image
-                                    (150px Square)</small>
                             </div>
                             <hr>
                             <div class="list-group-flush text-muted">
                                 <div class="list-group-item">
-                                    <p class="mb-0"><i class="fa fa-address-card mr-2" aria-hidden="true"></i> Freelancer</p>
+                                    <p class="mb-0"><i class="fa fa-address-card mr-2" aria-hidden="true"></i> <?php echo $_SESSION['usertype']; ?></p>
                                 </div>
                                 <div class="list-group-item">
-                                    <p class="mb-0"><i class="fa fa-calendar mr-2" aria-hidden="true"></i> Joined 29th May, 2020.</p>
+                                    <p class="mb-0"><i class="fa fa-calendar mr-2" aria-hidden="true"></i> <?php echo $_SESSION['date']?></p>
                                 </div>
-                                <div class="list-group-item">
-                                    <p class="mb-0"><i class="fa fa-heart mr-2" aria-hidden="true"></i>0 Recommendations</p>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col">
-                            <h4 class="text-primary font-weigth-bold">Prince A.</h4>
-                            <small class="text-muted">abaidooprince</small> | <small class="text-muted">abaidooprince@gmail.com</small>
+                            <h4 class="text-primary font-weigth-bold"><?php echo $_SESSION['username'];?></h4>
+                            <small class="text-muted"><?php echo $_SESSION['firstname']." ". $_SESSION['lastname'];?></small> | <small class="text-muted"><?php echo $_SESSION['email'];?></small>
                             <hr>
                             <div class="row">
                                 <div class="col">
                                     <div class="md-form ml-4">
                                         <div class="md-form">
+                                            
                                             <i class="fa fap fa-user-tag prefix" aria-hidden="true"></i>
-                                            <input type="text" id="profHeadline" class=" form-control" aria-describedby="profHeadlineHelp " required>
+                                            <input type="text" id="profHeadline" name="headline" class=" form-control" value="<?php echo $user_row['headline'];?>" aria-describedby="profHeadlineHelp " required>
                                             <label for="profHeadline ">Professional Headline</label>
+
                                             <small id="profHeadlineHelp " class="form-text text-muted ">
-                                            What best describes the services you provide. E.g. Branding Agency, Software Developer, Graphic Designer...
+                                             Enter a title that best suits you........eg Web designers lover
                                             </small>
                                             <div class="invalid-feedback">Enter a Professional Headline</div>
                                         </div>
@@ -71,21 +86,21 @@
                                         <div class="md-form country">
                                             <!-- <i class="fa fap fa-2x fa-globe" aria-hidden="true"></i> -->
 
-                                            <input class="form-control" type="text" name="" id="country_selector">
-                                            <input class="form-control" type="text" name="" id="country_selectors" style="display: none;">
+                                            <input class="form-control" type="text" name="country" value=" <?php echo $user_row['country']?>" name="" id="country_selector">
+                                            <input class="form-control" type="text"   id="country_selectors" style="display: none;">
                                             <small id="countryHelp " style="margin-left: 2.3rem;" class="form-text text-muted">Select Country</small>
                                         </div>
 
                                         <div class="md-form">
                                             <!-- <i class="fa fap fa-city prefix" aria-hidden="true"></i> -->
-                                            <input type="text" id="userCity" class="form-control">
+                                            <input type="text" id="userCity" name="city" value=" <?php echo $user_row['city'];?>" class="form-control">
                                             <label for="userCity">Enter City</label>
                                         </div>
                                         <div class="md-form">
                                             <!-- <i class="fas fap fa-mobile prefix   "></i> -->
                                             <!-- <i class="fa fap fa-phone-square prefix" aria-hidden="true"></i> -->
-                                            <input type="text" id="userContact" class="form-control">
-                                            <input type="text" id="userContact2" class="form-control" style="display: none;">
+                                            <input type="text" id="userContact" name="phone" value="<?php echo $user_row['phone'];?>" class="form-control">
+                                            <input type="text" id="userContact2"  class="form-control" style="display: none;">
                                             <label for="userContact">Enter Phone</label>
                                             <small id="contactHelp " class="form-text text-muted ">Ignore Country code</small>
 
@@ -93,13 +108,13 @@
                                         <div class="md-form ">
                                             <!-- <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i> -->
                                             <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
-                                            <textarea id="textarea-char-counter" class="form-control md-textarea" length="250" rows="4"></textarea>
+                                            <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea" length="250" rows="4"> <?php echo $user_row['summary'];?></textarea>
                                             <label for="textarea-char-counter">Profile Summary</label>
                                             <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
                                         </div>
                                         <div class="md-form">
                                             <!-- <i class="fa fap fa-location-arrow prefix" aria-hidden="true"></i> -->
-                                            <textarea id="userAddress" class="form-control md-textarea" length="50" rows="2"></textarea>
+                                            <textarea id="userAddress" class="form-control md-textarea" name="address" length="50" rows="2">  <?php echo $user_row['address'];?></textarea>
                                             <label for="textarea-char-counter">Address</label>
                                             <small id="addressHelp" class="form-text text-muted ">Enter either location address or post address</small>
                                         </div>
@@ -110,7 +125,7 @@
 
 
 
-                                    <button class="btn fl-btn-pm btn-rounded btn-block my-4 mt-2" type="submit">Save</button>
+                                    <button style="border-radius: 2px;" class="btn fl-btn-pm btn-block my-4 mt-2" name="update_profile" type="submit">Update Profile</button>
 
 
                                 </div>

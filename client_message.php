@@ -57,7 +57,7 @@ $id = $_SESSION['id'];
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -251,7 +251,7 @@ $id = $_SESSION['id'];
 
                
                 <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
+                  <input style="float:right;background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
                 </div>
 
                 

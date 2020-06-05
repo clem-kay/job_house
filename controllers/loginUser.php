@@ -19,21 +19,14 @@ if (isset($_POST['login'])) {
             $verified =  $user_row['verified'];
             $usertype = $user_row['usertype'];
 
-            
-            if (!isset($_SESSION['id'])) {
-                $_SESSION['id'] = $user_row['id'];
-                echo "Isset" . " " .  $_SESSION['id'];
-
-                $_SESSION['username'] = $user_row['username'];
-                $_SESSION['firstname'] = $user_row['firstname'];
-                $_SESSION['lastname']  = $user_row['lastname'];
-                $_SESSION['usertype']  = $user_row['usertype'];
-             }
-            
-            // $_SESSION['id'] = $user_row['id'];
-            // $_SESSION['username'] = $user_row['username'];
-            // $_SESSION['firstname'] = $user_row['firstname'];
-            // $_SESSION['lastname']  = $user_row['lastname'];
+                       
+             $_SESSION['id'] = $user_row['id'];
+             $_SESSION['username'] = $user_row['username'];
+             $_SESSION['firstname'] = $user_row['firstname'];
+             $_SESSION['lastname']  = $user_row['lastname'];
+             $_SESSION['email'] = $user_row['email'];
+             $_SESSION['date'] =$user_row['date'];
+             $_SESSION['usertype'] = $usertype;
 
             // var_dump($_SESSION['id']);
 
@@ -47,11 +40,12 @@ if (isset($_POST['login'])) {
                 echo "<script>window.location='check_mail.php'</script> ";
 
             }
-
         }
          else echo '<h6>Incorrect Username or Password</h6>';
-
     }
     else echo ' <h6>No user found</h6>';
 }
 ?>
+
+
+
