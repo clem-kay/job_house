@@ -4,11 +4,19 @@ include('config/dbconfig2.php');
 include('functions.php');
 session_start();
 
+$username = $_SESSION['username'];
+
 $id = $_SESSION['id'];
 
 
-  $query = mysqli_query($con,"SELECT * FROM job_posted WHERE user_id = '$id' ");
-  $result=mysqli_num_rows($query);
+  $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$id' ");
+    if($query){
+       $num_of_user = mysqli_num_rows($query);
+        if($num_of_user> 0 ){
+            //user exist so go ahead and activate account
+            $user_row = mysqli_fetch_array($query);
+        }
+    }
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +58,7 @@ $id = $_SESSION['id'];
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -76,7 +84,7 @@ $id = $_SESSION['id'];
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>Post Job</span>
@@ -100,19 +108,11 @@ $id = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="client_profile.php">View Profile</a>
-            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
+            <a class="collapse-item" href="">View Profile</a>
+            <a class="collapse-item" href="">Edit Profile</a>
           </div>
         </div>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-comments"></i>
-          <span>Rate Feelancer</span>
-        </a>
-      </li>
-
 
      
      
@@ -181,8 +181,9 @@ $id = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
+              
               </a>
               <!-- Dropdown - Alerts -->
           
@@ -193,7 +194,7 @@ $id = $_SESSION['id'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php $_SESSION['firstname']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
                 <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
@@ -219,61 +220,65 @@ $id = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        <!-- Inbox come here -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job</h6>
+            </div>
+            <div class="card-body">
+              <?php if(isset($_GET['response'])) { 
 
+                if($_GET['response']=="sucess"){ ?>
+                  <div class="alert alert-success">
+                    <p>Succssfully </p>
+                  </div>
+               <?php }else if($_GET['response']=="error"){ ?>
+                  <div class="alert alert-danger">
+                    <p>Error</p>
+                  </div>
+               <?php 
+             }
+             }
+                ?>
+
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Job Title</th>
+                      <th>Job Category</th>
+                       <th>Job Type</th>
+                      <th>Description</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From job_posted where user_id='$id'");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                      echo 
+                         '<tr>
+                    <td>'.$row["job_title"].'</td>
+                    <td>'.$row["job_category"].'</td>
+                    <td>'.$row["job_type"].'</td>
+                    <td>'.$row["description"].'</td>
+                    <td> <a href="../jobhouse/controllers/deleteJob.php?id='.$row["id"].'" style="background-color: #FF0000; border-color: #FF0000;color:#fff;"class="btn" type="submit" name="delete">Delete</a>
+      
+                        <a style="background-color:#207b41;  border-color: #207b41;color:#fff"class="btn" type="submit" name="edit"/>Edit</a>
+                     </td>
+                                                                                                
+                      </tr> ';
+                        }
+                        ?>
+                 </tbody>
+                </table>
+              </div>
+            </div>
+          
+        <!-- End of inbox-->
          
-           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                   <a href="client_job_posted.php">   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Posted</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $result ?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Approved</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">number of job</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
           
         
