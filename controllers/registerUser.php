@@ -94,10 +94,6 @@ if(isset($_POST['create_account'])){
                                </tr>
                             </tbody></table>';
 
-
-
-
-
             mail($email,$email_title,$body_email,$headers);
 
          echo "<script>window.location='check_mail.php';</script>";

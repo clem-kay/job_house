@@ -267,8 +267,11 @@ $fid = $_SESSION['id'];
                         while ($row = mysqli_fetch_array($sql)){
                           $jobid = $row['jobid'];
                           $clientid = $row['client_id'];
-                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid'");
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed = 0 ");
                           $row2 = mysqli_num_rows($sql2);
+                          if ($row2 == 0){
+                            echo '<div class=""><h4>Sorry you do not have any on going project</h4></div>';
+                          }
                           while ($jobrow = mysqli_fetch_array($sql2)){
                     
                       echo 
@@ -278,7 +281,9 @@ $fid = $_SESSION['id'];
                     <td>'.$jobrow["job_type"].'</td>
                     <td>'.$jobrow["description"].'</td>
                     <td> <a  href="jobAccepted.php?id='.$jobid.'" style="background-color:#ff0000;border-color:#ff0000;color:#fff" class="btn btn-primary"><i class="fas fa-fw fa-times"></i>Decline</a>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> 
+                       <a  href="jobscompleted.php?id='.$jobid.'" style="background-color:#207b41;border-color:#207b41;color:#fff" class="btn btn-primary"><i class="fas fa-fw fa-check"></i>Complete</a>
+                      
                     </td> 
 
                       </tr> ';

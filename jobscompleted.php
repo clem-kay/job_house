@@ -1,11 +1,28 @@
 <?php
 
 session_start();
-   
+   $username = $_SESSION['username'];
 include('config/dbconfig2.php');
 include('functions.php');
-$username = $_SESSION['username'];
+
 $fid = $_SESSION['id'];
+
+if(isset($_GET['id'])){
+  $job_id =$_GET['id'];
+
+  $query = mysqli_query($con,"UPDATE job_posted SET completed = 1 WHERE id = '$job_id'");
+
+  if ($query){
+      echo "<script>window.location='jobscompleted.php'</script>";
+                }
+
+    else{
+    echo '<div class="alert alert-danger">
+                    <p>Not Succssful </p>
+                  </div>';
+  }
+}
+
 
 ?>
 
@@ -242,7 +259,7 @@ $fid = $_SESSION['id'];
                   </thead>
                   <tbody>
                       <?php
-                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 0");
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
                           $jobid = $row['jobid'];
