@@ -1,15 +1,16 @@
 <?php
 
+session_start();
+   
 include('config/dbconfig2.php');
 include('functions.php');
-session_start();
-
 $username = $_SESSION['username'];
-
-$id = $_SESSION['id'];
-
+$fid = $_SESSION['id'];
 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,8 +50,8 @@ $id = $_SESSION['id'];
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
-        <a class="nav-link" href="client_dashboard.php">
+      <li class="nav-item active">
+        <a class="nav-link" href="freelance_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -67,18 +68,17 @@ $id = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Message</h6>
-            <a class="collapse-item" href="client_message.php">Compose Message</a>
-            <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link collapsed" href="postjob.php">
+      <li class="nav-item">
+        <a class="nav-link" href="viewjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>Post Job</span>
+          <span>View Jobs</span>
         </a>
       </li>
 
@@ -87,25 +87,38 @@ $id = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Profile
+        Freelance
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="">Edit Profile</a>
+            <a class="collapse-item" href="profile_edit">Edit Profile</a>
           </div>
         </div>
       </li>
 
-     
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Portfolio</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            
+            <a class="collapse-item" href="">View Portfolio</a>
+            <a class="collapse-item" href="portfolio.php"> Portfolio</a>
+          </div>
+        </div>
+      </li>
+
      
     
      
@@ -172,21 +185,20 @@ $id = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-              
+                <!-- Counter - Alerts -->
               </a>
-              <!-- Dropdown - Alerts -->
-          
+              
             </li>
-
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                <img class="img-profile rounded-circle" src="">
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -194,8 +206,6 @@ $id = $_SESSION['id'];
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                
-               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -211,11 +221,29 @@ $id = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
-            <?include('controllers/approveJob.php')?>
+
+         <div class="card shadow mb-4">
+          <?php 
+            if(isset($_GET['id'])){
+              $jobid = $_GET['id'];
+              
+              $accepted_query = mysqli_query($con,"DELETE FROM appliedjob WHERE jobid = '$jobid'");
+
+              $end_job_query = mysqli_query($con, "UPDATE job_posted SET closed = 0 WHERE id = '$jobid'");
+
+              if($accepted_query && $end_job_query){
+                 echo '<div class="alert alert-success">
+                    <p>You have sucessfuly declined the job</p>
+                  </div>';
+                }else
+                 echo '<div class="alert alert-success">
+                    <p>Decline Failed</p>
+                  </div>';
+
+            }
+          ?>
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job Awaiting Approval</h6>
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Approved Job</h6>
             </div>
             <div class="card-body">
               
@@ -226,7 +254,6 @@ $id = $_SESSION['id'];
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
-                       <th>Freelancer Name</th>
                       <th>Description</th>
                       <th>Action</th>
                       
@@ -234,56 +261,34 @@ $id = $_SESSION['id'];
                   </thead>
                   <tbody>
                       <?php
-                        $id = $_SESSION['id'];
-                       $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
-                        $applied=mysqli_num_rows($query);
-                        if ($applied < 0){
-                           echo '<div class="alert alert-danger">
-                    <p>Sorry You have no Jobs to approve</p>
-                  </div>';
-                        }
-                        else{
-                        while($applied = mysqli_fetch_array($query) ){
-                          $applied_job_id = $applied['id'];
-                          $jobid = $applied['jobid'];
-                          $freelancer = $applied['freelancer_id'];
-                       
-                        $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$freelancer'");
-                        while($user_name_row = mysqli_fetch_array($query) ){ 
-                          $freelancer_name = $user_name_row['username'];
-                        
-                        $sql = mysqli_query($con, "SELECT * From job_posted where id='$jobid'");
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
+                          $jobid = $row['jobid'];
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid'");
+                          $row2 = mysqli_num_rows($sql2);
+                          while ($jobrow = mysqli_fetch_array($sql2)){
                       echo 
                          '<tr>
-                    <td>'.$row["job_title"].'</td>
-                    <td>'.$row["job_category"].'</td>
-                    <td>'.$row["job_type"].'</td>
-                    <td>'.$freelancer_name.'</td>
-                    <td>'.$row["description"].'</td> 
-                    <td><a href="controllers/approveJob.php?id='.$applied_job_id.'" style="background-color: #207b41; border-color: #207b41;color:#fff" class="btn btn-primary">Approve</a>
-                      <a href="invoice.php" style="background-color: #20c141; border-color: #20c141;color:#fff" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i>Invoice</a>
-                    </td>                                           
+                    <td>'.$jobrow["job_title"].'</td>
+                    <td>'.$jobrow["job_category"].'</td>
+                    <td>'.$jobrow["job_type"].'</td>
+                    <td>'.$jobrow["description"].'</td>
+                    <td> <a  href="jobAccepted.php?id='.$jobid.'" style="background-color:#ff0000;border-color:#ff0000;color:#fff" class="btn btn-primary"> Decline</a></td>                                            
                       </tr> ';
                         }
                       }
-                    }
-                  }
                         ?>
                  </tbody>
                 </table>
               </div>
             </div>
           
-        <!-- End of inbox-->
-         
+       
 
 
-          
-        
 
-           
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
@@ -294,7 +299,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Amalitech &copy; Freelance</span>
+            <span>Copyright &copy; Amalitech Freelance</span>
           </div>
         </div>
       </footer>
@@ -324,7 +329,23 @@ $id = $_SESSION['id'];
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Upload Picture Modal -->
+  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
+        </div>
+        <div class="modal-body">Click to select a picture.</div>
+        <div class="modal-footer">
+          <form method="post" enctype="form">
+          <input type="files" name="change" id="pic">
+        </form>>
         </div>
       </div>
     </div>

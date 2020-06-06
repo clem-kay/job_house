@@ -260,7 +260,7 @@ $fid = $_SESSION['id'];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div>
+                      <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
                     </div>
                     <div class="col-auto">
