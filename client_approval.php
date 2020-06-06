@@ -1,28 +1,15 @@
 <?php
 
-session_start();
-   
 include('config/dbconfig2.php');
 include('functions.php');
+session_start();
+
 $username = $_SESSION['username'];
-$fid = $_SESSION['id'];
 
- $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
-  $applied=mysqli_num_rows($query);
-
-
-
-   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
-  $approved=mysqli_num_rows($query);
-
-  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1");
-  $accepted=mysqli_num_rows($query);
+$id = $_SESSION['id'];
 
 
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,8 +49,8 @@ $fid = $_SESSION['id'];
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+      <li class="nav-item ">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -80,17 +67,18 @@ $fid = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
-            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <h6 class="collapse-header">Message</h6>
+            <a class="collapse-item" href="client_message.php">Compose Message</a>
+            <a class="collapse-item" href="client_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="viewjob.php">
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>View Jobs</span>
+          <span>Post Job</span>
         </a>
       </li>
 
@@ -99,38 +87,25 @@ $fid = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance
+        Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="">Edit Profile</a>
           </div>
         </div>
       </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Portfolio</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item" href="">View Portfolio</a>
-            <a class="collapse-item" href="portfolio.php"> Portfolio</a>
-          </div>
-        </div>
-      </li>
-
+     
      
     
      
@@ -197,20 +172,21 @@ $fid = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
               
+              </a>
+              <!-- Dropdown - Alerts -->
+          
             </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -218,6 +194,8 @@ $fid = $_SESSION['id'];
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -233,68 +211,77 @@ $fid = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-            <div class="row">
-
-            <!-- Jobs Applied -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+        <!-- Inbox come here -->
+          <div class="card shadow mb-4">
+            <?include('controllers/approveJob.php')?>
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job Awaiting Approval</h6>
+            </div>
+            <div class="card-body">
+              
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Job Title</th>
+                      <th>Job Category</th>
+                       <th>Job Type</th>
+                       <th>Freelancer Name</th>
+                      <th>Description</th>
+                      <th>Action</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $id = $_SESSION['id'];
+                       $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
+                        $applied=mysqli_num_rows($query);
+                        if ($applied < 0){
+                           echo '<div class="alert alert-danger">
+                    <p>Sorry You have no Jobs to approve</p>
+                  </div>';
+                        }
+                        else{
+                        while($applied = mysqli_fetch_array($query) ){
+                          $applied_job_id = $applied['id'];
+                          $jobid = $applied['jobid'];
+                          $freelancer = $applied['freelancer_id'];
+                       
+                        $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$freelancer'");
+                        while($user_name_row = mysqli_fetch_array($query) ){ 
+                          $freelancer_name = $user_name_row['username'];
+                        
+                        $sql = mysqli_query($con, "SELECT * From job_posted where id='$jobid'");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                      echo 
+                         '<tr>
+                    <td>'.$row["job_title"].'</td>
+                    <td>'.$row["job_category"].'</td>
+                    <td>'.$row["job_type"].'</td>
+                    <td>'.$freelancer_name.'</td>
+                    <td>'.$row["description"].'</td> 
+                    <td><a href="controllers/approveJob.php?id='.$applied_job_id.'" style="background-color: #207b41; border-color: #207b41;color:#fff" class="btn btn-primary">Approve</a></td>                                           
+                      </tr> ';
+                        }
+                      }
+                    }
+                  }
+                        ?>
+                 </tbody>
+                </table>
               </div>
             </div>
-
-            
-            <!-- Jobs Accepted -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          
+        <!-- End of inbox-->
          
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-         
 
-       
+          
+        
 
-
-
-          <!-- End of row -->
+           
         </div>
         <!-- /.container-fluid -->
 
@@ -305,7 +292,7 @@ $fid = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>Amalitech &copy; Freelance</span>
           </div>
         </div>
       </footer>
@@ -335,23 +322,7 @@ $fid = $_SESSION['id'];
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Upload Picture Modal -->
-  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
-        </div>
-        <div class="modal-body">Click to select a picture.</div>
-        <div class="modal-footer">
-          <form method="post" enctype="form">
-          <input type="files" name="change" id="pic">
-        </form>>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>

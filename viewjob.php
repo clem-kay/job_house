@@ -9,7 +9,6 @@ $username = $_SESSION['username'];
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,11 +118,6 @@ $username = $_SESSION['username'];
           </div>
         </div>
       </li>
-
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -175,7 +169,7 @@ $username = $_SESSION['username'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
+                      <button style="background-color: #207b41; border-color: #207b41;" class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -223,37 +217,44 @@ $username = $_SESSION['username'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <?php
-                        $sql = mysqli_query($con, "SELECT * From job_posted");
+                        $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0");
                         $row = mysqli_num_rows($sql);
+
+                       
                         while ($row = mysqli_fetch_array($sql)){
+                          $id =$row['id'];
+                          $userid = $row['user_id'];
+                        $sql2 = mysqli_query($con,"SELECT * from useraccount where id='$userid'");
+                        $row2 = mysqli_num_rows($sql2);
+                        $row2 = mysqli_fetch_array($sql2);
+
                             echo'
-       <div style="height: 100vh">
-        <div class="card ml-3 mr-3 pl-3 pr-3" style="width: fit-content;">
-            <div class="card-body row">
-                <div class="ml-3 col-md-1-12">
-                    <h5 class="card-title font-weight-bold">Create a Wordpress website for Hospital</h5>
-                    <div class="row pl-3">
-                      Username of client  |'.$row['created_date']. '&nbsp;| &nbsp; | &nbsp;' .$row['job_type']. '&nbsp;| &nbsp; <strong>'.$row['budget'].'</strong>
-                    </div>
-                    <hr/>
-                    <p class="card-text job-desc">'
+            <div style="height:100vh width:40px">
+              <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
+                <div class="card-body row">
+                  <div class="ml-3 col-md-1-12">
+                    <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
+                    <div class="row pl-3">'
+                      .$row2['username']. "  ". '|'."  " .$row['created_date']. '&nbsp;| &nbsp; | &nbsp;' .$row['job_type']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                     </div>
+                     <hr/>
+                      <p class="card-text job-desc">'
                        .$row['description'].'
                     </p>
                     <hr/>
                 </div>
                 <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
                 </div>
-                <div class="col-sm-1-12 mt-2 ml-3" style="position:relative; ">
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Apply"/>
-                    <a class="btn fl-btn-pm btn-sm btn-rounded card-link ">Apply</a>
+                <div class="col-sm-1-12 mt-2 ml-3" style="position:relative;float:right; ">         
+                  <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41;"href="applyJob.php?id='.$id.'">APPLY</a>
+                  
+                    
                 </div>
             </div>
         </div>
-    </div>';
-  }
-    ?>
+    </div>';}
+    ?>   
         <!-- /.container-fluid -->
-
       </div>
       <!-- End of Main Content -->
 

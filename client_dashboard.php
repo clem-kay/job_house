@@ -10,6 +10,14 @@ $id = $_SESSION['id'];
   $query = mysqli_query($con,"SELECT * FROM job_posted WHERE user_id = '$id' ");
   $result=mysqli_num_rows($query);
 
+  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
+  $applied=mysqli_num_rows($query);
+
+  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=1");
+  $approved=mysqli_num_rows($query);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -248,8 +256,8 @@ $id = $_SESSION['id'];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Approved</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">number of job</div>
+                     <a href="client_approval.php"> <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pending Approval</div></a>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -259,6 +267,23 @@ $id = $_SESSION['id'];
               </div>
             </div>
 
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jobs Approved</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 
@@ -289,7 +314,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Amalitech &copy; Freelance</span>
           </div>
         </div>
       </footer>

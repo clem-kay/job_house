@@ -226,21 +226,7 @@ $id = $_SESSION['id'];
               <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job</h6>
             </div>
             <div class="card-body">
-              <?php if(isset($_GET['response'])) { 
-
-                if($_GET['response']=="sucess"){ ?>
-                  <div class="alert alert-success">
-                    <p>Succssfully </p>
-                  </div>
-               <?php }else if($_GET['response']=="error"){ ?>
-                  <div class="alert alert-danger">
-                    <p>Error</p>
-                  </div>
-               <?php 
-             }
-             }
-                ?>
-
+              
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -289,7 +275,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Amalitech &copy; Freelance</span>
           </div>
         </div>
       </footer>

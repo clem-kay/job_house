@@ -5,19 +5,7 @@ session_start();
 include('config/dbconfig2.php');
 include('functions.php');
 $username = $_SESSION['username'];
-$fid = $_SESSION['id'];
-
- $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
-  $applied=mysqli_num_rows($query);
-
-
-
-   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
-  $approved=mysqli_num_rows($query);
-
-  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1");
-  $accepted=mysqli_num_rows($query);
-
+$user_id = $_SESSION['id'];
 
 ?>
 
@@ -42,6 +30,8 @@ $fid = $_SESSION['id'];
 
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+
 
 </head>
 
@@ -88,7 +78,7 @@ $fid = $_SESSION['id'];
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="viewjob.php">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>
@@ -112,7 +102,7 @@ $fid = $_SESSION['id'];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
       </li>
@@ -130,11 +120,6 @@ $fid = $_SESSION['id'];
           </div>
         </div>
       </li>
-
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -186,7 +171,7 @@ $fid = $_SESSION['id'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
+                      <button style="background-color: #207b41; border-color: #207b41;" class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -233,71 +218,89 @@ $fid = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+            <?php
 
-            <div class="row">
+            if (isset($_GET['id'])){
 
-            <!-- Jobs Applied -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              $job_id = $_GET['id'];
+              
+              $sql = mysqli_query($con, "SELECT * From job_posted WHERE id ='$job_id'");
+              $row = mysqli_num_rows($sql);
+                   
+              while ($row = mysqli_fetch_array($sql)){   
 
+              $jobtitle = $row['job_title'];
+              $client_id =$row['user_id']; 
+              $budget = $row['budget'];
+              $description = $row['description'];   
             
-            <!-- Jobs Accepted -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
+          }     
+      }
+    ?>
+    <div class="container">
+
+    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class=" col big-box">
+            <div class=" p-5">
+              <div class="text-center">
+               
+                <h1 class="h4 text-gray-900 mb-4">Apply For  Your job</h1>
+
+              </div>
+              <form class="user" action="" method="post">
+                <?php 
+                if(isset($_POST['apply'])){
+  
+
+$comment = $_POST['comment'];
+$save_to_db_query = mysqli_query($con,"INSERT INTO appliedjob(comment,freelancer_id,jobid,client_id)VALUES('$comment','$user_id','$job_id','$client_id')");
+          if($save_to_db_query){
+
+    echo '<div class="alert alert-success">
+                    <p>Succssfully </p>
+                  </div>';
+                }
+
+    else{
+    echo '<div class="alert alert-danger">
+                    <p>Not Succssful </p>
+                  </div>';
+  }
+}?> 
+                  
+                    <div class="form-group">
+                 <textarea class="form-control" name="description" placeholder="Enter job description" readonly="readonly">
+                  <?php echo $description ?></textarea>
+                </div>
+
+                    <div class="form-group row">
+                  <!-- <div class="col-sm-6 mb-3 mb-sm-0">
+                     <input type="number" name="budget" class="form-control" value="<?php echo $row['budget'] ?>" placeholder="Budget" readonly="readonly"></div> -->
+                  <div class="col-sm-6">
+                   
                   </div>
                 </div>
-              </div>
-            </div>
-         
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
+                <div class="form-group">
+                 <textarea class="form-control" name="comment" placeholder="Enter job comment about the job"> </textarea>
                 </div>
-              </div>
+                <div>
+                  <input style=" float:right;background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="apply" value="Apply Job"/>
+                </div>
+              </form>
             </div>
-         
-
-       
-
-
-
-          <!-- End of row -->
+          </div>
         </div>
-        <!-- /.container-fluid -->
+      </div>
+    </div>
 
+  </div>
+
+
+
+        <!-- /.container-fluid -->
       </div>
       <!-- End of Main Content -->
 
@@ -340,23 +343,7 @@ $fid = $_SESSION['id'];
       </div>
     </div>
   </div>
-  <!-- Upload Picture Modal -->
-  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
-        </div>
-        <div class="modal-body">Click to select a picture.</div>
-        <div class="modal-footer">
-          <form method="post" enctype="form">
-          <input type="files" name="change" id="pic">
-        </form>>
-        </div>
-      </div>
-    </div>
-  </div>
-
+ 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
   <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
