@@ -53,9 +53,8 @@ $fid = $_SESSION['id'];
       <li class="nav-item active">
         <a class="nav-link" href="freelance_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Dashboard</span></a> 
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -215,12 +214,13 @@ $fid = $_SESSION['id'];
             </li>
 
           </ul>
-
+        
         </nav>
         <!-- End of Topbar -->
-
+        
         <!-- Begin Page Content -->
         <div class="container-fluid">
+
 
          <div class="card shadow mb-4">
           <?php 
@@ -243,7 +243,8 @@ $fid = $_SESSION['id'];
             }
           ?>
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Approved Job</h6>
+              <h6 style="color:#000;" class="m-0 font-weight-bold">On-Going Jobs</h6>
+              <a href="jobscompleted.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
             </div>
             <div class="card-body">
               
@@ -265,29 +266,29 @@ $fid = $_SESSION['id'];
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
                           $jobid = $row['jobid'];
+                          $clientid = $row['client_id'];
                           $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid'");
                           $row2 = mysqli_num_rows($sql2);
                           while ($jobrow = mysqli_fetch_array($sql2)){
+                    
                       echo 
                          '<tr>
                     <td>'.$jobrow["job_title"].'</td>
                     <td>'.$jobrow["job_category"].'</td>
                     <td>'.$jobrow["job_type"].'</td>
                     <td>'.$jobrow["description"].'</td>
-                    <td> <a  href="jobAccepted.php?id='.$jobid.'" style="background-color:#ff0000;border-color:#ff0000;color:#fff" class="btn btn-primary"> Decline</a></td>                                            
+                    <td> <a  href="jobAccepted.php?id='.$jobid.'" style="background-color:#ff0000;border-color:#ff0000;color:#fff" class="btn btn-primary"><i class="fas fa-fw fa-times"></i>Decline</a>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> 
+                    </td> 
+
                       </tr> ';
-                        }
                       }
+                    }
                         ?>
                  </tbody>
                 </table>
               </div>
             </div>
-          
-       
-
-
-
           <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
@@ -316,6 +317,41 @@ $fid = $_SESSION['id'];
     <i class="fas fa-angle-up"></i>
   </a>
 
+       
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!--Rating, Review and comment-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">Review Your Client</h4> 
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" value="<?php echo $name; ?>" readonly="readonly">
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" max="5" min="1" placeholder="Number of stars for your client">
+        </div>
+        <div class="form-group">
+        <textarea class="form-control" placeholder="Enter Your Comment Here"></textarea>
+        </div>
+      </div>
+      
+
+      <div class="modal-footer">
+      
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -334,22 +370,7 @@ $fid = $_SESSION['id'];
       </div>
     </div>
   </div>
-  <!-- Upload Picture Modal -->
-  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
-        </div>
-        <div class="modal-body">Click to select a picture.</div>
-        <div class="modal-footer">
-          <form method="post" enctype="form">
-          <input type="files" name="change" id="pic">
-        </form>>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>

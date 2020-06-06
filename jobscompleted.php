@@ -7,17 +7,6 @@ include('functions.php');
 $username = $_SESSION['username'];
 $fid = $_SESSION['id'];
 
- $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
-  $applied=mysqli_num_rows($query);
-
-
-
-   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
-  $approved=mysqli_num_rows($query);
-
-  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1");
-  $accepted=mysqli_num_rows($query);
-
 ?>
 
 
@@ -233,59 +222,50 @@ $fid = $_SESSION['id'];
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-            <div class="row">
-
-            <!-- Jobs Applied -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+         <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Completed Jobs</h6>
+            </div>
+            <div class="card-body">
+              
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Job Title</th>
+                      <th>Job Category</th>
+                       <th>Job Type</th>
+                      <th>Description</th>
+                      
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 0");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                          $jobid = $row['jobid'];
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed= 1");
+                          $row2 = mysqli_num_rows($sql2);
+                          while ($jobrow = mysqli_fetch_array($sql2)){
+                      echo 
+                         '<tr>
+                    <td>'.$jobrow["job_title"].'</td>
+                    <td>'.$jobrow["job_category"].'</td>
+                    <td>'.$jobrow["job_type"].'</td>
+                    <td>'.$jobrow["description"].'</td>                                        
+                    </tr> ';
+                        }
+                      }
+                        ?>
+                 </tbody>
+                </table>
               </div>
             </div>
+          
+       
 
-            
-            <!-- Jobs Accepted -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied?></div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>         
 
 
           <!-- End of row -->

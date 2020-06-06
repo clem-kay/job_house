@@ -1,7 +1,5 @@
 <?php
 include('config/dbconfig.php');
-
-
 include('functions.php');
 
 ?>

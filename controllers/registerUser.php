@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_POST['create_account'])){
     //get form data
     $username = checkValues($_POST['username']);
@@ -31,6 +31,13 @@ if(isset($_POST['create_account'])){
         $save_to_db_query = mysqli_query($con,"INSERT INTO useraccount(username,password,firstname,lastname,email,verified,usertype,code)VALUES('$username','$password','$firstname','$lastname','$email','$verified','$usertype','$code')");
         $user_id = mysqli_insert_id($con);
         if($save_to_db_query){
+
+            $_SESSION['username'] = $username;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname']  = $lastname;
+            $_SESSION['email']      =$email;
+            $_SESSION['usertype'] = $usertype;
+
           //send activation code to email
             $host = $_SERVER['SERVER_NAME'];
 

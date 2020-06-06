@@ -1,6 +1,38 @@
 <?php
 
+include('config/dbconfig2.php');
+include('functions.php');
 
+if(isset($_GET['id'])){
+  $jobid =$_GET['id'];
+
+   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE id = '$jobid'");
+    while($user_name_row = mysqli_fetch_array($query) ){ 
+      $client_id = $user_name_row['client_id'];
+      $f_id = $user_name_row['freelancer_id'];
+      $jobid = $user_name_row['jobid'];
+    }
+    $query = mysqli_query ($con,"SELECT * FROM useraccount WHERE id = '$client_id' ");
+    while($row = mysqli_fetch_array($query)){
+      $client_firstname = $row['firstname'];
+      $client_lastname = $row['lastname'];
+      $client_email = $row['email'];
+    }
+    $query = mysqli_query ($con,"SELECT * FROM useraccount WHERE id = '$f_id' ");
+    while($row = mysqli_fetch_array($query)){
+      $free_firstname = $row['firstname'];
+      $free_lastname = $row['lastname'];
+      $free_email = $row['email'];
+    }
+
+    $query = mysqli_query ($con,"SELECT * FROM job_posted WHERE id = '$jobid' ");
+    while($row = mysqli_fetch_array($query)){
+      $jobname = $row['job_title'];
+      $price = $row['budget'];
+      $description = $row['description'];
+    }
+
+}
 
 
 ?>
@@ -10,7 +42,7 @@
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
        <meta http-equiv="x-ua-compatible" content="ie=edge">
-       <title>JobHouse || Invoice</title>
+       <title>Job House | Invoice</title>
        <!-- Font Awesome -->
        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
        <!-- Google Fonts Roboto -->
@@ -44,11 +76,10 @@
                          <!-- Freelancer Detials -->
                         <div class="col company-details">
                             <h3 class="name">
-                                <a target="_blank" href="https://lobianijs.com"> freelancer name</a>
+                                 <?php echo $free_firstname." ".$free_lastname?>
                             </h3>
-                            <div> address </div>
-                            <div>contact</div>
-                            <div class="email"><a href="#">email</a></div>
+                            
+                            <div class="email"><a href="#"><?php echo $free_email ?></a></div>
                         </div>
                     </div>
                 </header>
@@ -58,22 +89,23 @@
                     <div class="row contacts">
                         <div class="col invoice-to">
                             <div class="text-gray-light">INVOICE TO:</div>
-                            <h2 class="to">Client Name</h2>
-                            <div class="address">address</div>
-                            <div class="email"><a href="#">email</a></div>
+                            <h2 class="to"><?php echo $client_firstname . " ".$client_lastname; ?></h2>
+                            
+                            <div class="email"><a href="#"><?php echo $client_email; ?></a></div>
                         </div>
                         <div class="col invoice-details">
-                            <h1 class="invoice-id">INVOICE Number</h1><h6><?php  $num = (int)uniqid(rand(2332,30000));   echo $num;?></h6>
+                            <h1 class="invoice-id"><?php  $num = (int)uniqid(rand(2332,30000));   echo $num;?></h1>
                             <div class="date"><?php echo date('Y/M/D');?></div>
                         </div>
                     </div>
 
                     <!-- invioce content -->
-                    <table class="w-75" cellspacing="0" cellpadding="0">
+                    <table style="margin-left: auto; margin-right: auto" cellspacing="0" cellpadding="0">
                         <thead>
                             <tr>
                                
                                 <th class="text-left">Title</th>
+                                <th class="text-left">Job Description</th>
                                 <th class="text-right">Cost Price</th>
                                 <th class="text-right">TOTAL</th>
                             </tr>
@@ -81,9 +113,10 @@
                         <tbody>
                             <tr>
                                 
-                                <td class="text-left">#</td>
-                                <td class="qty">--</td>
-                                <td class="total">--</td>
+                                <td class="text-left"><?php echo $jobname?></td>
+                                <td class="text-left qty"><?php echo $description?></td>
+                                <td class="qty"><?php echo $price?></td>
+                                <td class="total"><?php echo $price?></td>
                             </tr>
                             
                            
@@ -92,26 +125,26 @@
                         <!-- calculations -->
                         <tfoot>
                             <tr>
-                                <td colspan="2"></td>
-                                <td colspan="2">SUBTOTAL</td>
-                                <td> -- </td>
+                                <td colspan="1"></td>
+                                <td colspan="1">SUBTOTAL</td>
+                                <td><?php echo "$".$price?></td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                                <td colspan="2">TAX 25%</td>
-                                <td> -- </td>
+                                <td colspan="1"></td>
+                                <td colspan="1">TAX 25%</td>
+                                <td> <?php $tax=($price * 0.25);    echo "$".$tax; ?></td>
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
-                                <td colspan="2">GRAND TOTAL</td>
-                                <td> -- </td>
+                                <td colspan="1"></td>
+                                <td colspan="1"><strong>GRAND TOTAL</strong></td>
+                                <td> <?php echo "$".($price + $tax); ?></td>
                             </tr>
                         </tfoot>
                     </table>
                     <div class="thanks">Thank you!</div>
-                    <div class="notices">
+                    <div style="background-color:#20c141;border-left:#20c141;" class="notices">
                         <div>NOTICE:</div>
-                        <div class="notice">A finance charge of  ---  will be made on unpaid balances after 30 days.</div>
+                        <div class="notice">A finance charge of $50 will be made on deducted if you terminate a contract with a freelancer.</div>
                     </div>
                 </main>
                 <footer>
