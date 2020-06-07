@@ -16,6 +16,8 @@ $id = $_SESSION['id'];
   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=1");
   $approved=mysqli_num_rows($query);
 
+$accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=1 and accepted =1 ");
+  $accepted=mysqli_num_rows($accept);
 
 
 ?>
@@ -274,7 +276,7 @@ $id = $_SESSION['id'];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jobs Approved</div>
+                      <a href="client_job_approved.php"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jobs Approved</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved ?></div>
                     </div>
                     <div class="col-auto">
@@ -286,17 +288,21 @@ $id = $_SESSION['id'];
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <a href="client_job_ongoing.php"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Ongoing</div></a>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 </div>
 

@@ -1,16 +1,24 @@
 <?php
 
-session_start();
-   
 include('config/dbconfig2.php');
 include('functions.php');
+session_start();
+
 $username = $_SESSION['username'];
-$fid = $_SESSION['id'];
-  
+
+$id = $_SESSION['id'];
+
+
+  $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$id' ");
+    if($query){
+       $num_of_user = mysqli_num_rows($query);
+        if($num_of_user> 0 ){
+            //user exist so go ahead and activate account
+            $user_row = mysqli_fetch_array($query);
+        }
+    }
+
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,11 +58,12 @@ $fid = $_SESSION['id'];
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+      <li class="nav-item ">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a> 
+          <span>Dashboard</span></a>
       </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -67,17 +76,18 @@ $fid = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
-            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <h6 class="collapse-header">Message</h6>
+            <a class="collapse-item" href="client_message.php">Compose Message</a>
+            <a class="collapse-item" href="client_inbox.php">Inbox</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="viewjob.php">
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>View Jobs</span>
+          <span>Post Job</span>
         </a>
       </li>
 
@@ -86,38 +96,25 @@ $fid = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance
+        Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="">Edit Profile</a>
           </div>
         </div>
       </li>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Portfolio</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item" href="">View Portfolio</a>
-            <a class="collapse-item" href="portfolio.php"> Portfolio</a>
-          </div>
-        </div>
-      </li>
-
+     
      
     
      
@@ -184,20 +181,21 @@ $fid = $_SESSION['id'];
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
               
+              </a>
+              <!-- Dropdown - Alerts -->
+          
             </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
+                <img class="img-profile rounded-circle" src="">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -205,6 +203,8 @@ $fid = $_SESSION['id'];
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -214,37 +214,16 @@ $fid = $_SESSION['id'];
             </li>
 
           </ul>
-        
+
         </nav>
         <!-- End of Topbar -->
-        
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-
-         <div class="card shadow mb-4">
-          <?php 
-            if(isset($_GET['id'])){
-              $jobid = $_GET['id'];
-              
-              $accepted_query = mysqli_query($con,"DELETE FROM appliedjob WHERE jobid = '$jobid'");
-
-              $end_job_query = mysqli_query($con, "UPDATE job_posted SET closed = 0 WHERE id = '$jobid'");
-
-              if($accepted_query && $end_job_query){
-                 echo '<div class="alert alert-success">
-                    <p>You have sucessfuly declined the job</p>
-                  </div>';
-                }else
-                 echo '<div class="alert alert-success">
-                    <p>Decline Failed</p>
-                  </div>';
-
-            }
-          ?>
+        <!-- Inbox come here -->
+          <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">On-Going Jobs</h6>
-              <a href="jobscompleted.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Completed Jobs</h6>
             </div>
             <div class="card-body">
               
@@ -256,59 +235,44 @@ $fid = $_SESSION['id'];
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
-                      <th>Action</th>
                       
                     </tr>
                   </thead>
                   <tbody>
                       <?php
-                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 1");
+                        $sql = mysqli_query($con, "SELECT * From appliedjob  where client_id='$id' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                          $jobid = $row['jobid'];
-                          $clientid = $row['client_id'];
-                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed = 0 ");
-                          $row2 = mysqli_num_rows($sql2);
-                          if ($row== 0){
-                            echo '<div class=""><h4>Sorry you do not have any on going project</h4></div>';
-                          }
-                          while ($jobrow = mysqli_fetch_array($sql2)){
-                    
+                          $job_id =$row['jobid'];
+                        $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id' and completed = 1");
+                        $row2 = mysqli_num_rows($sql2);
+
+                        while($row2 =mysqli_fetch_array($sql2)){
+
+
                       echo 
                          '<tr>
-                    <td>'.$jobrow["job_title"].'</td>
-                    <td>'.$jobrow["job_category"].'</td>
-                    <td>'.$jobrow["job_type"].'</td>
-                    <td>'.$jobrow["description"].'</td>
-                    <td> <a  href="jobAccepted.php?id='.$jobid.'" style="background-color:#ff0000;border-color:#ff0000;color:#fff" class="btn btn-primary"><i class="fas fa-fw fa-times"></i>Decline</a>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> 
-                       <a  href="jobscompleted.php?id='.$jobid.'" style="background-color:#207b41;border-color:#207b41;color:#fff" class="btn btn-primary"><i class="fas fa-fw fa-check"></i>Complete</a>
-                      
-                    </td> 
-
+                    <td>'.$row2["job_title"].'</td>
+                    <td>'.$row2["job_category"].'</td>
+                    <td>'.$row2["job_type"].'</td>
+                    <td>'.$row2["description"].'</td>                                            
                       </tr> ';
+                        }
                       }
-                    }
-
-                      if(isset($_POST['review'])){
-
-         $stars = $_POST['stars'];
-         $comment = $_POST['comment'];
-    
-    $save_query = mysqli_query($con,"INSERT into review(client_id,frelancer_id,stars,comment) VALUES ('$clientid','$fid','$stars','$comment')");
-
-    if($save_query){
-        echo 'Thank you very much for your review';
-    }else{
-        echo 'Review Failed....Please try again';
-    }
-    }
                         ?>
                  </tbody>
                 </table>
               </div>
             </div>
-          <!-- End of row -->
+          
+        <!-- End of inbox-->
+         
+
+
+          
+        
+
+           
         </div>
         <!-- /.container-fluid -->
 
@@ -319,7 +283,7 @@ $fid = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>Amalitech &copy; Freelance</span>
           </div>
         </div>
       </footer>
@@ -336,39 +300,6 @@ $fid = $_SESSION['id'];
     <i class="fas fa-angle-up"></i>
   </a>
 
-       
-
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!--Rating, Review and comment-->
-    <div class="modal-content">
-      <div class="modal-header">
-       <h4 class="modal-title">Review Your Client</h4> 
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
-        
-      </div>
-      <div class="modal-body">
-        <form method="post" action="">
-        <div class="form-group">
-          <input type="number" class="form-control" max="5" min="1" name="stars" placeholder="Number of stars for your client">
-        </div>
-        <div class="form-group">
-        <textarea class="form-control" name="comment" placeholder="Enter Your Comment Here"></textarea>
-        </div>
-      </div>
-    
-      <div class="modal-footer">
-      <input style="border-color:#207b41 ;background-color:#207b41;color:#fff; " type = submit name="review" class="btn" value="Review"/>
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </form>
-    </div>
-    </div>
-
-  </div>
-</div>
-
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -382,12 +313,11 @@ $fid = $_SESSION['id'];
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>
   </div>
-  
 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
