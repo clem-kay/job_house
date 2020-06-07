@@ -78,7 +78,7 @@ $user_id = $_SESSION['id'];
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>

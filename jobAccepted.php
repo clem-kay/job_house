@@ -6,7 +6,9 @@ include('config/dbconfig2.php');
 include('functions.php');
 $username = $_SESSION['username'];
 $fid = $_SESSION['id'];
-
+  if(isset($_POST('review'))){
+    
+  }
 ?>
 
 
@@ -269,7 +271,7 @@ $fid = $_SESSION['id'];
                           $clientid = $row['client_id'];
                           $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed = 0 ");
                           $row2 = mysqli_num_rows($sql2);
-                          if ($row2 == 0){
+                          if ($row== 0){
                             echo '<div class=""><h4>Sorry you do not have any on going project</h4></div>';
                           }
                           while ($jobrow = mysqli_fetch_array($sql2)){
@@ -336,20 +338,21 @@ $fid = $_SESSION['id'];
         
       </div>
       <div class="modal-body">
+        <form method="post" action="">
         <div class="form-group">
-          <input type="text" class="form-control" value="<?php echo $name; ?>" readonly="readonly">
+          <input type="text" class="form-control" value="" readonly="readonly">
         </div>
         <div class="form-group">
-          <input type="number" class="form-control" max="5" min="1" placeholder="Number of stars for your client">
+          <input type="number" class="form-control" max="5" min="1" name="stars" placeholder="Number of stars for your client">
         </div>
         <div class="form-group">
-        <textarea class="form-control" placeholder="Enter Your Comment Here"></textarea>
+        <textarea class="form-control" name="comment" placeholder="Enter Your Comment Here"></textarea>
         </div>
       </div>
-      
+      </form>
 
       <div class="modal-footer">
-      
+      <input style="border-color:#207b41 ;background-color:#207b41 " type = submit name="review" class="btn" value="Review"/>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

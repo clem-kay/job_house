@@ -14,7 +14,7 @@ $fid = $_SESSION['id'];
 
    $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
   $approved=mysqli_num_rows($query);
-
+ 
   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1");
   $accepted=mysqli_num_rows($query);
 
@@ -242,7 +242,7 @@ $fid = $_SESSION['id'];
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -260,7 +260,7 @@ $fid = $_SESSION['id'];
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -277,7 +277,7 @@ $fid = $_SESSION['id'];
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>

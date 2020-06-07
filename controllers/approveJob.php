@@ -12,7 +12,7 @@ include('../config/dbconfig2.php');
                     echo '<div class="alert alert-success">
                     <p>You have sucessfuly approved Job</p>
                   </div>';
-                  echo "<script>window.location='client_dashboard.php'</script>";
+                  echo "<script>window.location='../jobhouse/client_dashboard.php'</script>";
               }else{
                    echo '<div class="alert alert-danger">
                     <p>Error in approving of job</p>

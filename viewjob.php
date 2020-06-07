@@ -226,8 +226,7 @@ $username = $_SESSION['username'];
                           $userid = $row['user_id'];
                         $sql2 = mysqli_query($con,"SELECT * from useraccount where id='$userid'");
                         $row2 = mysqli_num_rows($sql2);
-                        $row2 = mysqli_fetch_array($sql2);
-
+                        while($row2 = mysqli_fetch_array($sql2)){
                             echo'
             <div style="height:100vh width:40px">
               <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
@@ -252,7 +251,9 @@ $username = $_SESSION['username'];
                 </div>
             </div>
         </div>
-    </div>';}
+    </div>';
+    }
+  }
     ?>   
         <!-- /.container-fluid -->
       </div>
