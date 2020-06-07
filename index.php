@@ -65,10 +65,10 @@
                     <ul class="ml-5 navbar-nav nav-flex-icons">
 
                         <li class="nav-item ml-8">
-                            <a href="signup.php" class="btn btn-success">SignUp</a>
+                            <a href="signup.php" class="btn btn-dark-green">SignUp</a>
                         </li>
                         <li class="nav-item">
-                            <a href="login.php" class="btn btn-success">Login</a>
+                            <a href="login.php" class="btn btn-dark-green">Login</a>
                         </li>
                     </ul>
 
@@ -130,7 +130,7 @@
                         <div class="col-md-6 pt-6">
                             <form class="form-inline md-form mb-4">
                                 <input class="form-control form-control-lg active-cyan-2 mr-sm-2" width="20" type="text" placeholder="Search" aria-label="Search">
-                                <button class="btn aqua-gradient btn-primary btn-lg my-0" type="submit">Search</button>
+                                <button class="btn aqua-gradient btn-dark-green btn-lg my-0" type="submit">Search</button>
                             </form>
                             <h4 class="font-weight-bold pt-4">Find rewarding projects</h4>
                             <h3 class="subheading">jobhouse is a great place to find more clients, and to run and grow your own freelance business.</h3>
@@ -138,7 +138,7 @@
                                 Wide variety and high pay. Clients are now posting jobs in hundreds of skill categories, paying top price for great work. More and more success. The greater the success you have on projects, the more likely you are to get
                                 hired by clients that use GetLance.</p>
 
-                            <a href="signup.php" class="btn btn-success btn-block mt-3">become a freelancer now</a>
+                            <a href="signup.php" class="btn btn-dark-green btn-block mt-3">become a freelancer now</a>
                         </div>
                     </div>
                     <br>
@@ -148,7 +148,7 @@
                             <h4 class="subheading">jobhouse makes it easy to connect with clients and begin doing great work.</h4>
                             <p class="text-muted">Streamlined hiring. GetLance’s sophisticated algorithms highlight projects you’re a great fit for. Top Rated and Rising Talent programs. Enjoy higher visibility with the added status of prestigious programs. Do substantial
                                 work with top clients. GetLance pricing encourages freelancers to use GetLance for repeat relationships with their clients.</p>
-                            <a href="signup.php" class="btn btn-success btn-block mt-3">join to post your project</a>
+                            <a href="signup.php" class="btn btn-dark-green btn-block mt-3">join to post your project</a>
 
                         </div>
                         <div class="col-md-6 how-img">

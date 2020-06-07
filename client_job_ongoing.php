@@ -248,8 +248,6 @@ $id = $_SESSION['id'];
                           $cid = $row['client_id'];
                           $fid=$row['freelancer_id'];
 
-                          echo $cid;
-                          echo $fid;
                           $job_id =$row['jobid'];
                         $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id'");
                         $row2 = mysqli_num_rows($sql2);
