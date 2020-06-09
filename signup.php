@@ -28,23 +28,32 @@ include('functions.php');
 
 </head>
 
-<body style="overflow-y:auto">
+<body style="overflow-y:none;">
+<!-- Just an image -->
+<nav class="navbar navbar-dark navbar-light">
+  <a class="navbar-brand" href="#">
+    <img src="img/jobhouse-logo.png" height="30" alt="mdb logo" class="ml-8" >
+  </a>
+</nav>
     <!-- Start your project here-->
-    <div style="height: 100vh; position: absolute; left: 15rem;">
+    <div style="height: 100vh; position:absolute; left: 15rem;">
         <div class="left-signup">
-            <h2 class="h1 text-hide" style="background-image: url('img/jobhouse-b.png'); margin-left: 4rem; width: 133px; height: 133px;">
-                JobHouse</h2>
-            <hr>
-            <h1 class="font-weight-bolder" style="color: #208927;">Sign Up</h1>
+            <!-- <h2 class="h1 text-hide" style="background-image: url('img/jobhouse-b.png'); margin-left: 4rem; width: 133px; height: 133px;">
+                JobHouse</h2> -->
+          <div class="mt-8" style = "margin-top: 5rem">
+          <h1 class="font-weight-bolder" style="color: #208927;">Sign Up</h1>
             <p class="font-weight-light">You are at the right place to have your projects handled by our experts in varoius fields accross the world.</p>
             <hr>
             <p>Already a member? <a href="login.php">Click here to login</a></p>
+            
+            </div>      
         </div>
+        
 
 
         <div class="card fl-signup-card">
             <!-- <br> -->
-            <div class="card-body ">
+            <div class="card-body" style = "padding-bottom:3rem;">
                 <?php include('controllers/registerUser.php');?>
                 <form class="needs-validation" action="" method="post" novalidate>
                     <div class="md-form input-with-pre-icon minus-margin-bttm">
@@ -100,19 +109,19 @@ include('functions.php');
                             </ul>
                         </div>
                     </div>
-                    <small>Password must be at least 8 characters</small>
+                    <!-- <small>Password must be at least 8 characters</small> -->
 
-                    <br>
+                    <!-- <br> -->
                     <!---end of first name and last name-->
                     <!--type of subscription -->
 
-                    <div style="border-radius:5px;" class="btn-group btn-group-toggle type" data-toggle="buttons">
+                    <div style="border-radius:5px; position:relative; left:3rem;" class="btn-group btn-group-toggle type" data-toggle="buttons">
                         <label class="btn btn-success form-check-label text-sentence active">
                            <input class="form-check-input" type="radio" name="usertype" value="freelancer" id="Freelancer" autocomplete="off" checked>
-                      Sign Up as Freelancer </label>
+                      Freelancer </label>
                         <label class="btn btn-success form-check-label">
                            <input class="form-check-input" type="radio" name="usertype" value="client" id="Client" autocomplete="off">
-                      Sign Up as Client
+                      Client
                        </label>
                     </div>
                     <div class="form-group agree">
@@ -133,9 +142,15 @@ include('functions.php');
         </div>
 
 
+        <div class="footer-copyright text-center fixed-bottom py-2">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/" >jobhouse.com</a>
+  </div>
+        </div>
+
+<!-- Footer -->
 
 
-    </div>
+
     <!-- End your project here-->
     <!-- jQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
