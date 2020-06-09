@@ -1,3 +1,11 @@
+<?php
+
+include('config/dbconfig2.php');
+include('functions.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +25,8 @@
 
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -61,13 +71,14 @@
         </div>
       </li>
 
-  <!-- Divider -->
-  <hr class="sidebar-divider">
+      <!-- Divider -->
+      <hr class="sidebar-divider">
       <li class="nav-item">
         <a class="nav-link" href="view_messages.php">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span></a>
       </li>
+
 
 
       <!-- Heading -->
@@ -138,10 +149,47 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
 
-        
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">  
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:black;" class="m-0 font-weight-bold">All Messages</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Sender</th>
+                      <th>Receiver</th>
+                      <th>Message</th>
+                    
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                        $sql = mysqli_query($con, "SELECT * From chat");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                          echo 
+                          '<tr>
+                     <td>'.$row["date"].'</td>
+                     <td>'.$row["sender"].'</td>
+                     <td>'.$row["receiver"].'</td>
+                     <td>'.$row["message"].'</td>';
+                        } 
+                    ?>   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
         </div>
         <!-- /.container-fluid -->
 
@@ -199,11 +247,11 @@
   <script src="admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="admin/js/demo/chart-area-demo.js"></script>
-  <script src="admin/js/demo/chart-pie-demo.js"></script>
+  <script src="admin/js/demo/datatables-demo.js"></script>
 
 </body>
 

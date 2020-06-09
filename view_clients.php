@@ -70,8 +70,13 @@ include('functions.php');
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+      <li class="nav-item">
+        <a class="nav-link" href="view_messages.php">
+          <i class="fas fa-fw fa-envelope"></i>
+          <span>Messages</span></a>
+      </li>
 
       <!-- Heading -->
       <div class="sidebar-heading">

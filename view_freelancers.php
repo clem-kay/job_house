@@ -73,6 +73,12 @@ include('functions.php');
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      <li class="nav-item">
+        <a class="nav-link" href="view_messages.php">
+          <i class="fas fa-fw fa-envelope"></i>
+          <span>Messages</span></a>
+      </li>
+
 
       <!-- Heading -->
       <div class="sidebar-heading">
@@ -244,7 +250,7 @@ include('functions.php');
 
   <!-- Page level plugins -->
   <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="admin/js/demo/datatables-demo.js"></script>
