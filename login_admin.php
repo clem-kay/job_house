@@ -38,6 +38,7 @@ include('functions.php');
   <a class="navbar-brand" href="#">
     <img src="img/jobhouse-logo.png" height="30" alt="mdb logo" class="ml-8" >
   </a>
+  
 </nav>
 
     <!-- Start your project here-->
@@ -47,7 +48,10 @@ include('functions.php');
                 <!-- Default form login -->
                 <form class="text-center needs-validation" method="post" action="" novalidate>
                     <?php include('controllers/loginUser.php');?>
-                   
+                  <div class=""><h4>Administrator</h4>
+                  <hr class="mt-2">
+                  </div>
+                  
                     <!-- Email -->
                     <div class="md-form input-with-pre-icon">
                         <div>
@@ -72,13 +76,8 @@ include('functions.php');
                     <div class="login-bottom">
                         <button style="border-radius:2px;"class="btn fl-btn-pm btn-block my-4" name="login" type="submit">LOGIN</button>
 
-                        <!-- Register -->
-                        <p>Not a member?
-                        <a style="color:black;" href="signup.php">Register</a>
-                        </p>
-                       
-                        </p>
-                          <div class="forgot">
+                
+                          <div class="forgot mb-4">
                             <!-- Forgot password -->
                             <a  style="float:left; color:black;"href="#forgot-password" id="forgot" class="">Forgot password?</a>
                         </div>
