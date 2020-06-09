@@ -58,7 +58,7 @@ $id = $_SESSION['id'];
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item ">
+      <li class="nav-item active">
         <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -79,12 +79,13 @@ $id = $_SESSION['id'];
             <h6 class="collapse-header">Message</h6>
             <a class="collapse-item" href="client_message.php">Compose Message</a>
             <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="client_send_message.php">Sent Messages</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>Post Job</span>
@@ -108,17 +109,11 @@ $id = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="">Edit Profile</a>
+            <a class="collapse-item" href="client_profile.php">View Profile</a>
+          <!--   <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
-
-     
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -179,27 +174,17 @@ $id = $_SESSION['id'];
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="client_inbox.php" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-              
-              </a>
-              <!-- Dropdown - Alerts -->
-          
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
-                <img class="img-profile rounded-circle" src="">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="client_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -216,7 +201,6 @@ $id = $_SESSION['id'];
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -224,7 +208,7 @@ $id = $_SESSION['id'];
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 style="color:#000;" class="m-0 font-weight-bold">Your Ongoing Jobs</h6>
-              <a href="jobscompleted.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
+              <a href="client_job_completed.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
             </div>
             <div class="card-body">
               
@@ -249,7 +233,7 @@ $id = $_SESSION['id'];
                           $fid=$row['freelancer_id'];
 
                           $job_id =$row['jobid'];
-                        $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id'");
+                        $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id' and completed = 1");
                         $row2 = mysqli_num_rows($sql2);
 
                         while($row2 =mysqli_fetch_array($sql2)){

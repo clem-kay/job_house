@@ -11,7 +11,9 @@ if(isset($_POST['save'])){
       $filepath = "upload/".$pix;
 
    if(move_uploaded_file($temp_image,$filepath)){
-    echo 'sucess';
+   echo '<div class="alert alert-success">
+                    <p>Image Uploaded</p>
+                  </div>';
      
    }
    else {
@@ -28,7 +30,9 @@ $user_id = $_SESSION['id'];
 
 $save_to_db_query = mysqli_query($con,"INSERT INTO portfolio(title,links,description,img_path,user_id)VALUES('$title','$links','$description','$img_path','$user_id')");
 if($save_to_db_query){
-   	echo 'sucess';
+   echo '<div class="alert alert-success">
+                    <p>Portfolio Created</p>
+                  </div>';
 	}
 }
 ?>

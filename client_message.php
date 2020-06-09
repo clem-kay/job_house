@@ -77,6 +77,7 @@ $id = $_SESSION['id'];
             <h6 class="collapse-header">Message</h6>
             <a class="collapse-item" href="client_message.php">Compose Message</a>
             <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="client_send_message.php">Sent Messages</a>
           </div>
         </div>
       </li>
@@ -94,7 +95,7 @@ $id = $_SESSION['id'];
 
       <!-- Heading -->
       <div class="sidebar-heading">
-       Profile
+        Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -106,17 +107,11 @@ $id = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="">Edit Profile</a>
+            <a class="collapse-item" href="client_profile.php">View Profile</a>
+          <!--   <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
-
-     
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -177,28 +172,17 @@ $id = $_SESSION['id'];
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-          
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_row['firstname']?></span>
-                <img class="img-profile rounded-circle" src="">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="client_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -215,7 +199,6 @@ $id = $_SESSION['id'];
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

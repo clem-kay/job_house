@@ -109,7 +109,7 @@ include('controllers/profileCreation.php');
                                         <small id="addressHelp" class="form-text text-muted ">Enter either location address or post address</small>
                                     </div>
 
-                                    <button class="btn fl-btn-pm btn-rounded btn-block my-4 mt-2" name="create_profile" type="submit">Save</button>
+                                    <button style="float:right; width:200px;" class="btn fl-btn-pm btn-block my-4 mt-2" name="create_profile" type="submit">Save</button>
 
 
                                 </div>

@@ -125,7 +125,7 @@ include('functions.php');
 
 
 
-                                    <button style="border-radius: 2px;" class="btn fl-btn-pm btn-block my-4 mt-2" name="update_profile" type="submit">Update Profile</button>
+                                    <button style="border-radius: 2px;width: 350px; float: right;" class="btn fl-btn-pm btn-block my-4 mt-2" name="update_profile" type="submit">Update Profile</button>
 
 
                                 </div>

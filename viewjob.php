@@ -29,8 +29,6 @@ $username = $_SESSION['username'];
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -62,21 +60,22 @@ $username = $_SESSION['username'];
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
             <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="viewjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>
@@ -99,7 +98,7 @@ $username = $_SESSION['username'];
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
+            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
             <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
@@ -113,11 +112,16 @@ $username = $_SESSION['username'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="">View Portfolio</a>
+            <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a>
             <a class="collapse-item" href="portfolio.php"> Portfolio</a>
           </div>
         </div>
       </li>
+
+     
+    
+     
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -160,7 +164,7 @@ $username = $_SESSION['username'];
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="freelance_compose_message.php" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
@@ -169,7 +173,7 @@ $username = $_SESSION['username'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41;" class="btn btn-primary" type="button">
+                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -178,16 +182,7 @@ $username = $_SESSION['username'];
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
-              
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-
+          
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -197,7 +192,7 @@ $username = $_SESSION['username'];
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="freelance_view_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -212,8 +207,6 @@ $username = $_SESSION['username'];
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <?php
@@ -228,13 +221,13 @@ $username = $_SESSION['username'];
                         $row2 = mysqli_num_rows($sql2);
                         while($row2 = mysqli_fetch_array($sql2)){
                             echo'
-            <div style="height:100vh width:40px">
+            <div id="dataTable" style="height:100vh width:40px">
               <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
                 <div class="card-body row">
                   <div class="ml-3 col-md-1-12">
                     <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                     <div class="row pl-3">'
-                      .$row2['username']. "  ". '|'."  " .$row['created_date']. '&nbsp;| &nbsp; | &nbsp;' .$row['job_type']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                      .$row2['username']. "  ". '|'."  " .$row['created_date']. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
                      </div>
                      <hr/>
                       <p class="card-text job-desc">'
@@ -243,9 +236,10 @@ $username = $_SESSION['username'];
                     <hr/>
                 </div>
                 <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
+                 <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41;"href="applyJob.php?id='.$id.'">APPLY</a>
                 </div>
                 <div class="col-sm-1-12 mt-2 ml-3" style="position:relative;float:right; ">         
-                  <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41;"href="applyJob.php?id='.$id.'">APPLY</a>
+                 
                   
                     
                 </div>
@@ -311,6 +305,13 @@ $username = $_SESSION['username'];
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <script>
+  $(document).ready(function () {
+  $('#dataTable').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
+
 </body>
 
 </html>

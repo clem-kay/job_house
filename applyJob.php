@@ -31,8 +31,6 @@ $user_id = $_SESSION['id'];
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -70,8 +68,9 @@ $user_id = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
             <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
           </div>
         </div>
       </li>
@@ -101,7 +100,7 @@ $user_id = $_SESSION['id'];
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
+            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
             <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
@@ -115,11 +114,16 @@ $user_id = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="">View Portfolio</a>
+            <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a>
             <a class="collapse-item" href="portfolio.php"> Portfolio</a>
           </div>
         </div>
       </li>
+
+     
+    
+     
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -162,7 +166,7 @@ $user_id = $_SESSION['id'];
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="freelance_compose_message.php" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
@@ -171,7 +175,7 @@ $user_id = $_SESSION['id'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41;" class="btn btn-primary" type="button">
+                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -181,15 +185,7 @@ $user_id = $_SESSION['id'];
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
-              
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-
+           
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -199,7 +195,7 @@ $user_id = $_SESSION['id'];
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="freelance_view_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -260,7 +256,7 @@ $save_to_db_query = mysqli_query($con,"INSERT INTO appliedjob(comment,freelancer
           if($save_to_db_query){
 
     echo '<div class="alert alert-success">
-                    <p>Succssfully </p>
+                    <p>Application Successful</p>
                   </div>';
                 }
 

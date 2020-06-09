@@ -1,14 +1,21 @@
 <?php
-session_start();
-
-
 include('config/dbconfig2.php');
 include('functions.php');
+  session_start();
+
+  $id=$_SESSION['id'];
+
+  $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$id'");
+    if($query){
+       $num_of_user = mysqli_num_rows($query);
+        if($num_of_user> 0 ){
+            //user exist so go ahead and activate account
+            $user_row = mysqli_fetch_array($query);
+        }
+    }
 
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +68,7 @@ include('functions.php');
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span>
         </a>
@@ -92,7 +99,7 @@ include('functions.php');
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_view_profile.php" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
@@ -100,7 +107,7 @@ include('functions.php');
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
-           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile --></a>
+          <!--   <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
@@ -112,8 +119,7 @@ include('functions.php');
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
-          <!--   <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a> -->
+          
             <a class="collapse-item" href="portfolio.php">Add Portfolio</a>
           </div>
         </div>
@@ -208,61 +214,153 @@ include('functions.php');
 
         </nav>
         <!-- End of Topbar -->
+        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
-<div class="container">
-
-    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
+            <div  class="container emp-profile">
+    
         <div class="row">
-          <div class=" col big-box">
-            <div class=" p-5">
-              <div class="text-center">
-                <?php  $login_query = "select username from useraccount where usertype='client' " ?>
-                <h1 class="h4 text-gray-900 mb-4">Send Your Message</h1>
 
-              </div>
-              <form class="user" method="post">
-                <?php include('controllers/sendMessage.php')?>
-                <div class="form-group">
-                  <select class="form-control" name="receiver">
-                    <option required> ------------------- </option>
-                  <?php
-                        $sql = mysqli_query($con, "SELECT username From useraccount where usertype='client'");
-                        $row = mysqli_num_rows($sql);
-                        while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value='". $row['username'] ."'>" .$row['username'] ."</option>" ;}?>
-                 </select>
-                  </div>
-                
-                
-                <div class="form-group">
-                 <textarea class="form-control" name="message" placeholder="Enter your message"> </textarea>
+          <div  class="col-md-6">
+                <div class="profile-head">
+                            <h5><?php echo $_SESSION['firstname']." ". $_SESSION['lastname']?> </h5>
+                            <h6> <?php echo $user_row['headline'];?> </h6>
+                            <p class="proile-rating">RANKINGS : <span>Not Yet</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" 
+                            href="#profile" role="tab" aria-controls="profile" aria-selected="false">Portfolio</a>
+                        </li>
+                    </ul>
                 </div>
-
-               
-                <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div style="margin-top:20px;" class="row">
+                                    <div class="col-md-6">
+                                        <label>User Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><?php echo $_SESSION['username']?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><?php echo $_SESSION['email']?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Country</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><?php echo $user_row['country']?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><?php echo $user_row['phone']?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Profession</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><?php echo $user_row['headline']?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Personal Summary</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                         <p><?php echo $user_row['summary'];?></p>
+                                    </div>
+                                </div>
 
-  </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <?php 
+                            $query = mysqli_query($con,"SELECT * FROM portfolio WHERE user_id = '$id'");
+                              if($query){
+                                $num_of_user = mysqli_num_rows($query);
+                                  if($num_of_user > 0 ){
+                                      //user exist so go ahead and activate account
+                                    $user_row = mysqli_fetch_array($query);
+                                    echo
+                                    ' <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Title</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>'.$user_row["title"].'</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Links to Project</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>'.$user_row["links"].'</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Brief Description</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>'.$user_row["description"].'</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Image</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img width="300px" src="'.$user_row["img_path"].'">
+                                    </div>
+                                </div>';
 
-          
-         
 
 
-          
-        
+
+                                  
+                                   }
+                                   else{
+                                    echo '<p>No Portfolio To display</p>';
+                                   }
+                              }
+
+                            ?>
+                                
+                        <div class="row">
+                            <div class="col-md-12">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>           
+</div>
+
+      
 
            
         </div>
@@ -275,7 +373,7 @@ include('functions.php');
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>Amalitech Freelance</span>
           </div>
         </div>
       </footer>
@@ -305,7 +403,7 @@ include('functions.php');
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
         </div>
       </div>
     </div>
@@ -323,7 +421,6 @@ include('functions.php');
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
-    <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

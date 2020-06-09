@@ -8,10 +8,6 @@ $username = $_SESSION['username'];
 $fid = $_SESSION['id'];
   
 ?>
-
-
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -53,22 +49,24 @@ $fid = $_SESSION['id'];
       <li class="nav-item active">
         <a class="nav-link" href="freelance_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a> 
+          <span>Dashboard</span></a>
       </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
             <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
           </div>
         </div>
       </li>
@@ -98,8 +96,8 @@ $fid = $_SESSION['id'];
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
+            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
           </div>
         </div>
       </li>
@@ -112,7 +110,7 @@ $fid = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="">View Portfolio</a>
+            <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a>
             <a class="collapse-item" href="portfolio.php"> Portfolio</a>
           </div>
         </div>
@@ -182,16 +180,6 @@ $fid = $_SESSION['id'];
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
-              
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -201,7 +189,7 @@ $fid = $_SESSION['id'];
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="freelance_view_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -214,9 +202,10 @@ $fid = $_SESSION['id'];
             </li>
 
           </ul>
-        
+
         </nav>
         <!-- End of Topbar -->
+
         
         <!-- Begin Page Content -->
         <div class="container-fluid">

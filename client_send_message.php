@@ -5,10 +5,8 @@ session_start();
 include('config/dbconfig2.php');
 include('functions.php');
 
-
+$username = $_SESSION['username']
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +48,7 @@ include('functions.php');
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="freelance_dashboard.php">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -61,24 +59,25 @@ include('functions.php');
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
-            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
-            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
+            <h6 class="collapse-header">Message</h6>
+            <a class="collapse-item" href="client_message.php">Compose Message</a>
+            <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="client_send_message.php">Sent Messages</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="viewjob.php">
+        <a class="nav-link collapsed" href="postjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
-          <span>View Jobs</span>
+          <span>Post Job</span>
         </a>
       </li>
 
@@ -87,42 +86,23 @@ include('functions.php');
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance
+        Profile
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_view_profile.php" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
-        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
-           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile --></a>
-          </div>
-        </div>
-      </li>
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Portfolio</span>
-        </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
-          <!--   <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a> -->
-            <a class="collapse-item" href="portfolio.php">Add Portfolio</a>
+            <h6 class="collapse-header">Profiles</h6>
+            <a class="collapse-item" href="client_profile.php">View Profile</a>
+          <!--   <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
-
-     
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -183,19 +163,22 @@ include('functions.php');
               </div>
             </li>
 
+
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                  <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="freelance_view_profile.php">
+                <a class="dropdown-item" href="client_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -207,64 +190,51 @@ include('functions.php');
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
         <div class="container-fluid">
 
 
 <div class="container">
 
-    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class=" col big-box">
-            <div class=" p-5">
-              <div class="text-center">
-                <?php  $login_query = "select username from useraccount where usertype='client' " ?>
-                <h1 class="h4 text-gray-900 mb-4">Send Your Message</h1>
+        <!-- Inbox come here -->
 
-              </div>
-              <form class="user" method="post">
-                <?php include('controllers/sendMessage.php')?>
-                <div class="form-group">
-                  <select class="form-control" name="receiver">
-                    <option required> ------------------- </option>
-                  <?php
-                        $sql = mysqli_query($con, "SELECT username From useraccount where usertype='client'");
+
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your sent messages</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Receiver</th>
+                      <th>Message</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From chat where sender='$username'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value='". $row['username'] ."'>" .$row['username'] ."</option>" ;}?>
-                 </select>
-                  </div>
-                
-                
-                <div class="form-group">
-                 <textarea class="form-control" name="message" placeholder="Enter your message"> </textarea>
-                </div>
+                      echo 
+                         '<tr>
+                    <td>'.$row["date"].'</td>
+                    <td>'.$row["receiver"].'</td>
+                    <td>'.$row["message"].'</td>
+                                                                                                
+                      </tr>'   ;
+                        }?>
 
-               
-                <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
-                </div>
-              </form>
+                 </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
           
-         
-
-
-          
-        
-
-           
+        <!-- End of inbox-->
         </div>
         <!-- /.container-fluid -->
 
@@ -323,7 +293,12 @@ include('functions.php');
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
-    <script src="admin/js/demo/datatables-demo.js"></script>
+
+  <script src="admin/js/demo/datatables-demo.js"></script>
+
+
+
+
 </body>
 
 </html>

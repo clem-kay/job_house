@@ -10,7 +10,7 @@ if (isset($_POST['update_profile'])){
     $address = checkValues($_POST['address']);
     $userid =$user_row['id'];
 
-$save_to_db_query = mysqli_query($con,"UPDATE profile SET headline=$headline,country=$country,city=$city,phone=$phone,summary=$summary,address=$address WHERE userid=$userid");
+$save_to_db_query = mysqli_query($con,"UPDATE profile SET headline='$headline',country='$country',city='$city',phone='$phone',summary='$summary',address='$address' WHERE userid='$userid'");
 if($save_to_db_query){
     if ($_SESSION['usertype']==="client"){
         

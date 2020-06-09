@@ -10,6 +10,7 @@ include('functions.php');
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,16 +68,16 @@ include('functions.php');
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Buttons</h6>
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
-            <a class="collapse-item" href="freelancer_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
+            <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link" href="viewjob.php">
           <i class="fas fa-fw fa-briefcase"></i>
           <span>View Jobs</span>
         </a>
@@ -87,40 +88,37 @@ include('functions.php');
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Freelance Profile
+        Freelance
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="#">Edit Profile</a>
+            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
+           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
 
- <hr class="sidebar-divider d-none d-md-block">
-
-      <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Portfolio</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
-            <a class="collapse-item" href="view_portfolio.php">View Portfolio</a>
-            <a class="collapse-item" href="#">Edit Portfolio</a>
+          
+            <a class="collapse-item" href="portfolio.php">Add Portfolio</a>
           </div>
         </div>
       </li>
-     
+
      
     
      
@@ -147,7 +145,7 @@ include('functions.php');
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;" class="fa fa-bars"></i>
+            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -155,7 +153,7 @@ include('functions.php');
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button name="save" style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
+                <button style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -185,33 +183,19 @@ include('functions.php');
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-          
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                <img class="img-profile rounded-circle" src="">
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="freelance_view_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                
-               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -224,6 +208,7 @@ include('functions.php');
 
         </nav>
         <!-- End of Topbar -->
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

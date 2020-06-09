@@ -85,30 +85,6 @@
     <main class="mt-0 pt-0">
 
         <div class="container">
-
-            <!--Section: Jumbotron-->
-            <section class="card blue-gradient wow fadeIn" id="intro">
-
-                <!-- Content -->
-                <div class=" mask card-body text-white text-center py-5 px-5 my-5">
-
-                    <h1 class="mb-4 mt-4 pt-8">
-                        <strong>We have experts to make your dream a reality.</strong>
-                    </h1>
-                    <p class="mb-md-4">
-                        <strong></strong>Over 100 skills accross the world at one place.</strong>
-                    </p>
-                    <p class="mb-4">
-                        1,000 jobs and still counting.
-                    </p>
-                    <a target="_blank" href="signup.php class="btn btn-outline-white btn-lg mt-4">Get Started
-            </a>
-
-                </div>
-                <!-- Content -->
-            </section>
-            <!--Section: Jumbotron-->
-
             <!--Section: Cards-->
             <section class="">
 
@@ -158,7 +134,7 @@
                     <div class="row">
                        
                         <div class="col">
-                            <h4 class="font-weight-bold mb-4">Browse our skills</h4>
+                            <h4 class="font-weight-bold mb-4">Browse our Job Categories</h4>
                             <div class="row">
                                 <div class="col-lg-1-12 m-2">
                                     <div class="card btn">
@@ -259,7 +235,7 @@
     <!--Main layout-->
 
     <!--Footer-->
-    <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+    <footer height="300px" class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
 
         <div class="my p-5 z-depth-1 unique-color-dark">
 

@@ -1,10 +1,11 @@
 <?php
+
 session_start();
-
-
+   
 include('config/dbconfig2.php');
 include('functions.php');
-
+$username = $_SESSION['username'];
+$fid = $_SESSION['id'];
 
 ?>
 
@@ -61,7 +62,7 @@ include('functions.php');
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_compose_message.php" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-envelope"></i>
           <span>Messages</span>
         </a>
@@ -92,7 +93,7 @@ include('functions.php');
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="freelance_view_profile.php" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
           <span>Profile</span>
         </a>
@@ -100,7 +101,7 @@ include('functions.php');
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
-           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile --></a>
+           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
@@ -112,9 +113,9 @@ include('functions.php');
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            
-          <!--   <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a> -->
-            <a class="collapse-item" href="portfolio.php">Add Portfolio</a>
+           <!--  
+            <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a> -->
+            <a class="collapse-item" href="portfolio.php"> Portfolio</a>
           </div>
         </div>
       </li>
@@ -183,6 +184,9 @@ include('functions.php');
               </div>
             </li>
 
+            <!-- Nav Item - Alerts -->
+          
+           
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -212,59 +216,72 @@ include('functions.php');
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+         <div class="card shadow mb-4">
+          <?php 
+            if(isset($_GET['id'])){
+              $jobid = $_GET['id'];
+              
+              $accepted_query = mysqli_query($con,"UPDATE appliedjob SET accepted = 1 WHERE jobid = '$jobid'");
 
-<div class="container">
+              $end_job_query = mysqli_query($con, "UPDATE job_posted SET closed = 1 WHERE id = '$jobid'");
 
-    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class=" col big-box">
-            <div class=" p-5">
-              <div class="text-center">
-                <?php  $login_query = "select username from useraccount where usertype='client' " ?>
-                <h1 class="h4 text-gray-900 mb-4">Send Your Message</h1>
+              if($accepted_query && $end_job_query){
+                 echo '<div class="alert alert-success">
+                    <p>You have sucessfuly accepted the job</p>
+                  </div>';
+                }else
+                 echo '<div class="alert alert-success">
+                    <p>Acceptance Failed</p>
+                  </div>';
 
-              </div>
-              <form class="user" method="post">
-                <?php include('controllers/sendMessage.php')?>
-                <div class="form-group">
-                  <select class="form-control" name="receiver">
-                    <option required> ------------------- </option>
-                  <?php
-                        $sql = mysqli_query($con, "SELECT username From useraccount where usertype='client'");
+            }
+          ?>
+            <div class="card-header py-3">
+              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Applied Jobs</h6>
+            </div>
+            <div class="card-body">
+              
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Job Title</th>
+                      <th>Job Category</th>
+                       <th>Job Type</th>
+                      <th>Description</th>
+                    
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <?php
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                        echo "<option value='". $row['username'] ."'>" .$row['username'] ."</option>" ;}?>
-                 </select>
-                  </div>
-                
-                
-                <div class="form-group">
-                 <textarea class="form-control" name="message" placeholder="Enter your message"> </textarea>
-                </div>
-
-               
-                <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
-                </div>
-              </form>
+                          $jobid = $row['jobid'];
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid'");
+                          $row2 = mysqli_num_rows($sql2);
+                          while ($jobrow = mysqli_fetch_array($sql2)){
+                      echo 
+                         '<tr>
+                    <td>'.$jobrow["job_title"].'</td>
+                    <td>'.$jobrow["job_category"].'</td>
+                    <td>'.$jobrow["job_type"].'</td>
+                    <td>'.$jobrow["description"].'</td>                                         
+                      </tr> ';
+                        }
+                      }
+                        ?>
+                 </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
           
-         
+       
 
 
-          
-        
 
-           
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
@@ -310,6 +327,22 @@ include('functions.php');
       </div>
     </div>
   </div>
+  <!-- Upload Picture Modal -->
+  <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change Picture</h5>
+        </div>
+        <div class="modal-body">Click to select a picture.</div>
+        <div class="modal-footer">
+          <form method="post" enctype="form">
+          <input type="files" name="change" id="pic">
+        </form>>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
@@ -323,7 +356,8 @@ include('functions.php');
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
-    <script src="admin/js/demo/datatables-demo.js"></script>
+
+  <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

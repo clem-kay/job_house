@@ -7,10 +7,11 @@ include('functions.php');
 $username = $_SESSION['username'];
 $fid = $_SESSION['id'];
 
- $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
+ $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid'");
   $applied=mysqli_num_rows($query);
 
-
+   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
+  $pending=mysqli_num_rows($query);
 
    $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
   $approved=mysqli_num_rows($query);
@@ -19,8 +20,6 @@ $fid = $_SESSION['id'];
   $accepted=mysqli_num_rows($query);
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,8 +78,9 @@ $fid = $_SESSION['id'];
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="freelance_compose_message.php">Compose_message</a>
+            <a class="collapse-item" href="freelance_compose_message.php">Compose Message</a>
             <a class="collapse-item" href="freelance_inbox.php">Inbox</a>
+            <a class="collapse-item" href="freelance_send_message.php">Sent Message</a>
           </div>
         </div>
       </li>
@@ -110,8 +110,8 @@ $fid = $_SESSION['id'];
         <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
-            <a class="collapse-item" href="">View Profile</a>
-            <a class="collapse-item" href="profile_edit">Edit Profile</a>
+            <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
+           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
@@ -124,8 +124,8 @@ $fid = $_SESSION['id'];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="">View Portfolio</a>
-            <a class="collapse-item" href="portfolio.php"> Portfolio</a>
+           <!--  <a class="collapse-item" href="freelance_view_potfolio.php">View Portfolio</a> -->
+            <a class="collapse-item" href="portfolio.php">Add Portfolio</a>
           </div>
         </div>
       </li>
@@ -176,7 +176,7 @@ $fid = $_SESSION['id'];
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="freelance_compose_message.php" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
@@ -195,15 +195,7 @@ $fid = $_SESSION['id'];
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Alerts -->
-              </a>
-              
-            </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-
+           
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -241,8 +233,25 @@ $fid = $_SESSION['id'];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
+                      <a href="jobsApplied.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Applied</div></a>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied ?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Jobs Approved -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
                       <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -259,8 +268,8 @@ $fid = $_SESSION['id'];
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Accepted</div></a>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">On-Going Jobs</div></a>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -277,7 +286,7 @@ $fid = $_SESSION['id'];
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $pending?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -363,6 +372,7 @@ $fid = $_SESSION['id'];
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+    <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
