@@ -174,5 +174,6 @@ $(document).ready(function() {
         return string.replace(/\D/g, '').substring(0, 9);
     }
     // ---ending bracket
+    new WOW().init();
 
 });
