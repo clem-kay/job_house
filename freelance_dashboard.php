@@ -13,10 +13,10 @@ $fid = $_SESSION['id'];
    $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=0");
   $pending=mysqli_num_rows($query);
 
-   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1");
+   $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and approved=1 and accepted = 0");
   $approved=mysqli_num_rows($query);
  
-  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1");
+  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid' and accepted=1 ");
   $accepted=mysqli_num_rows($query);
 
 ?>

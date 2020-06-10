@@ -251,12 +251,13 @@ $id = $_SESSION['id'];
   </a>
 
 
- <!-- Payment Form-->
- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
     <div class="modal-content">
       <form method="post" action="">
       <div class="modal-header">
-        <h4 class="modal-title">Pay Funds</h4>
+        <h4 class="modal-title">Add New Admin</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -273,10 +274,9 @@ $id = $_SESSION['id'];
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </form>
+  </form>>
   </div>
 </div>
-
 
 
   <!-- Logout Modal-->

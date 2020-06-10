@@ -244,7 +244,7 @@ $id = $_SESSION['id'];
                     <td>'.$row["job_title"].'</td>
                     <td>'.$row["job_category"].'</td>
                     <td>'.$row["job_type"].'</td>
-                    <td>'.$freelancer_name.'</td>
+                    <td><a href="#">'.$freelancer_name.'<a></td>
                     <td>'.$row["description"].'</td> 
                     <td><a href="controllers/approveJob.php?id='.$applied_job_id.'" style="background-color: #207b41; border-color: #207b41;color:#fff" class="btn btn-primary">Approve</a>
                       <a href="invoice.php?id='.$applied_job_id.'" style="background-color: #20c141; border-color: #20c141;color:#fff" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i>Invoice</a>
