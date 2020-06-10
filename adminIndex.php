@@ -1,3 +1,12 @@
+<?php 
+
+session_start();
+include('config/dbconfig2.php');
+include('functions.php');
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,16 +123,24 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']?></span>
                 <div class="topbar-divider d-none d-sm-block"></div>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Add Administrator
                 </a>
+
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#myModal">
+                  <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+
               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -169,6 +186,64 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <?php 
+    if (isset($_POST['save'])){
+    $user = $_POST['username'];
+   $password = md5($_POST['password']);
+  
+    //check if user already exist
+    $check_user_account = mysqli_query($con,"SELECT * FROM adminuser WHERE username = '$user' ");
+
+    $num_of_users = mysqli_num_rows($check_user_account);
+    if($num_of_users > 0){
+
+        //if user already exist, display error message
+        echo '<h6>Username Taken</h6>';
+
+    }else{
+        //proceed to register user
+        //perform query
+        $save_to_db_query = mysqli_query($con,"INSERT INTO adminuser(username,password)VALUES('$user','$password')");
+       
+        if($save_to_db_query){
+          echo '<h6>New Administrator Added</h6>';
+        }
+  }
+
+}
+
+    ?>
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form method="post" action="">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Admin</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Enter Username" >
+        </div>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <input style="background-color:#207b41; color: #fff;" type="submit" class="btn btn-primay" name="save" value="Save">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>>
+  </div>
+</div>
+
+
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -182,7 +257,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a style="background-color: #ff0000;border-color:#ff0000;" class="btn btn-primary" href="controllers/logoutAdmin.php">Logout</a>
         </div>
       </div>
     </div>

@@ -139,42 +139,8 @@ $id = $_SESSION['id'];
             <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -217,6 +183,7 @@ $id = $_SESSION['id'];
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
+                      <th>Action</th>
                       
                     </tr>
                   </thead>
@@ -237,7 +204,8 @@ $id = $_SESSION['id'];
                     <td>'.$row2["job_title"].'</td>
                     <td>'.$row2["job_category"].'</td>
                     <td>'.$row2["job_type"].'</td>
-                    <td>'.$row2["description"].'</td>                                            
+                    <td>'.$row2["description"].'</td> 
+                    <td><a style="background-color: #207b41; border-color: #207b41;" href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Make Payment</a></td>                                           
                       </tr> ';
                         }
                       }
@@ -281,6 +249,35 @@ $id = $_SESSION['id'];
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+
+ <!-- Payment Form-->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-content">
+      <form method="post" action="">
+      <div class="modal-header">
+        <h4 class="modal-title">Pay Funds</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Enter Username" >
+        </div>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <input style="background-color:#207b41; color: #fff;" type="submit" class="btn btn-primay" name="save" value="Save">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+
+
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -210,10 +210,68 @@ include('functions.php');
   </div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
+   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <?php 
+    if (isset($_POST['save'])){
+    $user = $_POST['username'];
+   $password = md5($_POST['password']);
+  
+    //check if user already exist
+    $check_user_account = mysqli_query($con,"SELECT * FROM adminuser WHERE username = '$user' ");
+
+    $num_of_users = mysqli_num_rows($check_user_account);
+    if($num_of_users > 0){
+
+        //if user already exist, display error message
+        echo '<h6>Username Taken</h6>';
+
+    }else{
+        //proceed to register user
+        //perform query
+        $save_to_db_query = mysqli_query($con,"INSERT INTO adminuser(username,password)VALUES('$user','$password')");
+       
+        if($save_to_db_query){
+          echo '<h6>New Administrator Added</h6>';
+        }
+  }
+
+}
+
+    ?>
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form method="post" action="">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Admin</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" class="form-control" name="username" placeholder="Enter Username" >
+        </div>
+        
+        <div class="form-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <input style="background-color:#207b41; color: #fff;" type="submit" class="btn btn-primay" name="save" value="Save">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>>
+  </div>
+</div>
+
+
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -228,7 +286,7 @@ include('functions.php');
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a style="background-color: #ff0000;border-color:#ff0000;" class="btn btn-primary" href="controllers/logoutAdmin.php">Logout</a>
         </div>
       </div>
     </div>
@@ -245,11 +303,11 @@ include('functions.php');
   <script src="admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="admin/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="admin/js/demo/datatables-demo.js"></script>
+  <script src="admin/js/demo/chart-area-demo.js"></script>
+  <script src="admin/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

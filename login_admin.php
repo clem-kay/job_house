@@ -47,8 +47,8 @@ include('functions.php');
             <div  class="md-form">
                 <!-- Default form login -->
                 <form class="text-center needs-validation" method="post" action="" novalidate>
-                    <?php include('controllers/loginUser.php');?>
-                  <div class=""><h4>Administrator</h4>
+                    <?php include('controllers/adminlogin.php');?>
+                  <div class=""><h4>Administrator Login</h4>
                   <hr class="mt-2">
                   </div>
                   
@@ -58,7 +58,7 @@ include('functions.php');
                             <i style="color:#207b41;" class="fas fa-user input-prefix"></i>
                             <input type="text" id="username" class="form-control" name="username" placeholder="username" required>
                         </div>
-                        <div class="invalid-feedback">Please enter email</div>
+                        <div class="invalid-feedback">Please enter username</div>
                     </div>
 
                     <!-- Password -->

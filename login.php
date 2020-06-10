@@ -35,7 +35,7 @@ include('functions.php');
 
 <body class="login-back">
 <nav class="navbar navbar-dark navbar-light">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="index.php">
     <img src="img/jobhouse-logo.png" height="30" alt="mdb logo" class="ml-8" >
   </a>
 </nav>
