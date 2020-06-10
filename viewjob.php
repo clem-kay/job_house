@@ -212,9 +212,8 @@ $username = $_SESSION['username'];
          <!-- DataTales Example -->
          <div class="card shadow mb-4">
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table" id="dataTable" width="100%" cellspacing="0">
-                  <tbody>
+            
+                
                   <?php
                      $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0");
                      $row = mysqli_num_rows($sql);
@@ -225,21 +224,22 @@ $username = $_SESSION['username'];
                      $sql2 = mysqli_query($con,"SELECT * from useraccount where id='$userid'");
                      $row2 = mysqli_num_rows($sql2);
                      while($row2 = mysqli_fetch_array($sql2)){
+                      $date=TimeAgo($row['created_date']);
                           
-                      echo' <tr><td>
-                      <div id="dataTable" style="height:100vh width:40px">
+                      echo' 
+                    
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
                           <div class="card-body row">
                             <div class="ml-3 col-md-1-12">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
-                                .$row2['username']. "  ". '|'."  " .$row['created_date']. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                                .$row2['username']. "  ". '|'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
                                </div>
                                <hr/>
                                 <p class="card-text job-desc">'
                                  .$row['description'].'
                               </p>
-                              <hr/>
+                              
                           </div>
                           <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
                            <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
@@ -248,16 +248,16 @@ $username = $_SESSION['username'];
                           </div>
                       </div>
                   </div>
-              </div></td>
-              </tr>'
+                  <br/>
+                 
+             
+              '
               ;
               }
             }        
            ?>   
                   
-                  </tbody>
-                </table>
-              </div>
+              
             </div>
           </div>
         <!-- /.container-fluid -->

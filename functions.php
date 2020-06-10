@@ -1,22 +1,4 @@
 <?php
-// This file is the place to store all basic functions
-
-/*
-function redirect_to( $location = NULL ) {
-    if ($location != NULL) {
-        header("Location: {$location}");
-        exit;
-   }
-}*/
-
-/*
-function redirect_to($url) {
-    ob_start();
-    header('Location: '.$url);
-    ob_end_flush();
-    die();
-}*/
-
 
 
 function checkValues($value)
@@ -100,3 +82,25 @@ function UploadProfilePhoto($file){
 
 
 }
+
+
+function TimeAgo($date) {
+    $timestamp = strtotime($date);
+
+    $strTime = array("second", "minute", "hour", "day", "month", "year");
+    $length = array("60","60","24","30","12","10");
+
+    $currentTime = time();
+    if($currentTime >= $timestamp) {
+        $diff     = time()- $timestamp;
+        for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+            $diff = $diff / $length[$i];
+        }
+
+        $diff = round($diff);
+        return $diff . " " . $strTime[$i] . "(s) ago ";
+    }
+}
+
+
+

@@ -194,10 +194,9 @@ $username = $_SESSION['username']
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Date</th>
                       <th>Sender</th>
                       <th>Message</th>
-                      
+                      <th>Date</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -205,12 +204,12 @@ $username = $_SESSION['username']
                         $sql = mysqli_query($con, "SELECT * From chat where receiver='$username'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
+                          $date = Timeago($row['date']);
                       echo 
                          '<tr>
-                    <td>'.$row["date"].'</td>
                     <td>'.$row["sender"].'</td>
                     <td>'.$row["message"].'</td>
-                                                                                                
+                    <td>'.$date.'</td>                                                                        
                       </tr>'   ;
                         }?>
 
