@@ -4,12 +4,30 @@
     }
 }
 
-.carousel,.carousel .carousel-inner,.carousel .carousel-inner .active,.carousel .carousel-inner .carousel-item,
-.view,body,html{height:100%}
-.navbar{background-color:rgba(0,0,0,.2)}
-.page-footer,.top-nav-collapse{background-color:#1C2331}
-@media only screen and (max-width:768px){
-    .navbar{background-color:#1C2331}}
+.carousel,
+.carousel .carousel-inner,
+.carousel .carousel-inner .active,
+.carousel .carousel-inner .carousel-item,
+.view,
+body,
+html {
+    height: 100%
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, .2)
+}
+
+.page-footer,
+.top-nav-collapse {
+    background-color: #1C2331
+}
+
+@media only screen and (max-width:768px) {
+    .navbar {
+        background-color: #1C2331
+    }
+}
 
 .fl-bk-pm {
     background-color: #006228;
@@ -182,7 +200,15 @@
 .fap {
     color: #006228;
 }
-input[type=text]{
-          border-bottom: 1px solid #207b41;
-    }
- 
+
+input[type=text] {
+    border-bottom: 1px solid #207b41;
+}
+
+.skill {
+    color: #333533;
+}
+
+.skill:hover {
+    color: #00c851;
+}
