@@ -190,15 +190,30 @@ $fid = $_SESSION['id'];
                        echo '<div class="alert alert-danger"> No job related to your search </div>';
                       }
                   else{
-                    while($row = mysqli_fetch_array($query)){
-                      $id = $row['id'];
-                      $userid = $row['user_id'];
+                    if (isset($_GET['pageno'])){
+              $pageno = $_GET['pageno'];
+            }else{
+              $pageno = 1;
+            }         
+            $no_of_records_per_page = 3;
+
+            $offset = ($pageno - 1)*$no_of_records_per_page;
+            $result = mysqli_query($con, "SELECT COUNT(*) From job_posted where closed = 0");
+          $total_rows = mysqli_fetch_array($result)[0];
+      $total_pages = ceil($total_rows / $no_of_records_per_page);
+            
+            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 and job_category = '$searchq' LIMIT $offset, $no_of_records_per_page");
+                     $row = mysqli_num_rows($sql);
+
+                     while ($row = mysqli_fetch_array($sql)){
+                       $id =$row['id'];
+                       $userid = $row['user_id'];
                      $sql2 = mysqli_query($con,"SELECT * from useraccount where id='$userid'");
                      $row2 = mysqli_num_rows($sql2);
                      while($row2 = mysqli_fetch_array($sql2)){
-                        $date=TimeAgo($row['created_date']);
-
-                    echo' 
+                      $date=TimeAgo($row['created_date']);
+                          
+                      echo' 
                     
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
                           <div class="card-body row">
@@ -214,20 +229,36 @@ $fid = $_SESSION['id'];
                               
                           </div>
                           <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
-                           <a class="btn btn-primary " style="background-color: #207b41; position:relative; border-color: #207b41;position:relative; left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
+                           <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
                           </div>
-                         
+                          <div class="col-sm-1-12 mt-2 ml-3"  ">            
+                          </div>
                       </div>
                   </div>
-              ';
-
-                    }
-
-                  }
-                }
+                  <br/>';
               }
-            ?>
-          <!-- End of row -->
+            } 
+          }
+}
+           ?>   
+                  
+         <nav style="float: right;"aria-label="Page navigation example">
+              <ul class="pagination">
+        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+        </li>
+        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+         </ul>
+              </nav>
+            </div>
+                
+          </div>
+        <!-- /.container-fluid -->
+
         </div>
         <!-- /.container-fluid -->
 

@@ -138,7 +138,7 @@ $id = $_SESSION['id'];
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                  <div class="topbar-divider d-none d-sm-block"></div>
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -185,6 +185,18 @@ $id = $_SESSION['id'];
                   </thead>
                   <tbody>
                       <?php
+
+                        if(isset($_GET['response'])){
+                          $msg = $_GET['response'];
+
+                          if($msg==='error'){
+                              echo '<div class=alert alert-danger>Job has already been paid</div>';
+                          }
+                          else if($msg ==='success'){
+                            echo '<div class=alert alert-success>Payment Sucessful</div>';
+                          }
+
+                        }
                         $id = $_SESSION['id'];
                        $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
                         $applied=mysqli_num_rows($query);
@@ -211,10 +223,10 @@ $id = $_SESSION['id'];
                     <td>'.$row["job_title"].'</td>
                     <td>'.$row["job_category"].'</td>
                     <td>'.$row["job_type"].'</td>
-                    <td><a href="#">'.$freelancer_name.'<a></td>
+                    <td><a href=?id='.$freelancer.'">'.$freelancer_name.'<a></td>
                     <td>'.$row["description"].'</td> 
                     <td><a href="controllers/approveJob.php?id='.$applied_job_id.'" style="background-color: #207b41; border-color: #207b41;color:#fff" class="btn btn-primary">Approve</a>
-                      <a href="invoice.php?id='.$applied_job_id.'" style="background-color: #20c141; border-color: #20c141;color:#fff" class="btn btn-primary"><i class="fas fa-download fa-sm text-white-50"></i>Invoice</a>
+                      <a href="invoice.php?id='.$applied_job_id.'" style="background-color: #20c141; border-color: #20c141;color:#fff" class="btn btn-primary"></i>Invoice</a>
                     </td>                                           
                       </tr> ';
                         }
@@ -287,6 +299,7 @@ $id = $_SESSION['id'];
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <script type="text/javascript" src="admin/js/avatar.js"></script>
 </body>
 
 </html>

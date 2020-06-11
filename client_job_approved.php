@@ -146,7 +146,7 @@ $id = $_SESSION['id'];
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                  <div class="topbar-divider d-none d-sm-block"></div>
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -172,6 +172,22 @@ $id = $_SESSION['id'];
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 style="color:#000;" class="m-0 font-weight-bold">Your Approved Jobs</h6>
+              <?php if (!empty($_GET['message'])){
+                  $message = $_GET['message'];
+
+                  if($message==='paid'){
+                    $new = 'Your Job has already been paid for';
+                    echo "<div class=alert alert-success>$new</div>";
+                  }
+                  else if($message === 'success'){
+                    $new ='Payment Sucessfully Done';
+                    echo "<div class=alert alert-success>$new</div>";
+                  }
+                  else
+                     $new ='Something Went Wrong';
+                    echo "<div class=alert alert-success>$new</div>";
+                }
+              ?>
             </div>
             <div class="card-body">
               
@@ -187,25 +203,38 @@ $id = $_SESSION['id'];
                       
                     </tr>
                   </thead>
+
                   <tbody>
                       <?php
+                        
                         $sql = mysqli_query($con, "SELECT * From appliedjob  where client_id='$id' and approved = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
                           $job_id =$row['jobid'];
+                          
                         $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id'");
                         $row2 = mysqli_num_rows($sql2);
 
                         while($row2 =mysqli_fetch_array($sql2)){
-
-
+                          $price = $row2['budget'];
                       echo 
                          '<tr>
                     <td>'.$row2["job_title"].'</td>
                     <td>'.$row2["job_category"].'</td>
                     <td>'.$row2["job_type"].'</td>
                     <td>'.$row2["description"].'</td> 
-                    <td><a style="background-color: #207b41; border-color: #207b41;" href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Make Payment</a></td>                                           
+                    <td>
+                      <form action="charge.php?job_id='.$job_id.'" method="Post">
+                              <script
+                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="pk_test_51GsPXxEEFt2aMR7A5JaAFPswqlawseUmNuUlVdNeTYnjEvasxfkfBcz67GdY9FbYLYKd4dEegADo0qCBUropcIcT00Fm78ojsz"
+                                            data-amount="<?php echo $price*100; ?>"
+                                            data-name="Job HousePayment"
+                                            data-description="Payment Form"
+                                            data-image=""
+                                            data-locale="auto">
+                                    </script>
+                                </form></td>                                           
                       </tr> ';
                         }
                       }
@@ -274,7 +303,7 @@ $id = $_SESSION['id'];
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </form>>
+  </form>
   </div>
 </div>
 
@@ -310,6 +339,8 @@ $id = $_SESSION['id'];
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <script src="admin/js/avatar.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 </body>
 
 </html>

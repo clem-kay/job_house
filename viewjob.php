@@ -101,7 +101,7 @@ $username = $_SESSION['username'];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Profiles</h6>
             <a class="collapse-item" href="freelance_view_profile.php">View Profile</a>
-            <a class="collapse-item" href="profile_edit.php">Edit Profile</a>
+           <!--  <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
           </div>
         </div>
       </li>
@@ -188,7 +188,7 @@ $username = $_SESSION['username'];
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                  <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -213,9 +213,20 @@ $username = $_SESSION['username'];
          <div class="card shadow mb-4">
             <div class="card-body">
             
-                
-                  <?php
-                     $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0");
+            <?php
+            if (isset($_GET['pageno'])){
+              $pageno = $_GET['pageno'];
+            }else{
+              $pageno = 1;
+            }         
+            $no_of_records_per_page = 10;
+
+            $offset = ($pageno - 1)*$no_of_records_per_page;
+            $result = mysqli_query($con, "SELECT COUNT(*) From job_posted where closed = 0");
+          $total_rows = mysqli_fetch_array($result)[0];
+      $total_pages = ceil($total_rows / $no_of_records_per_page);
+            
+            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 LIMIT $offset, $no_of_records_per_page");
                      $row = mysqli_num_rows($sql);
 
                      while ($row = mysqli_fetch_array($sql)){
@@ -249,16 +260,29 @@ $username = $_SESSION['username'];
                       </div>
                   </div>
                   <br/>
-                 
+
              
               '
               ;
               }
-            }        
+            } 
+
            ?>   
                   
-              
+         <nav style="float: right;"aria-label="Page navigation example">
+              <ul class="pagination">
+        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+        </li>
+        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+         </ul>
+              </nav>
             </div>
+                
           </div>
         <!-- /.container-fluid -->
 
@@ -326,6 +350,7 @@ $username = $_SESSION['username'];
 
   <!-- Page level custom scripts -->
   <script src="admin/js/demo/datatables-demo.js"></script>
+  <script type="text/javascript" src="admin/js/avatar.js"></script>
 </body>
 
 </html>
