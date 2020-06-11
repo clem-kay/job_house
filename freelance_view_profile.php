@@ -49,7 +49,7 @@ include('functions.php');
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
+        <div class="sidebar-brand-text mx-3">jobhouse</div>
       </a>
 
       <!-- Divider -->
