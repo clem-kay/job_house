@@ -1,5 +1,5 @@
 <?php
-include('config/dbconfig.php');
+include('config/dbconfig2.php');
 include('functions.php');
 
 ?>

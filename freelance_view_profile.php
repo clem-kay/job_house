@@ -166,7 +166,7 @@ include('functions.php');
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
                  <div class="topbar-divider d-none d-sm-block"></div>
-                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -393,6 +393,7 @@ include('functions.php');
 
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <script type="text/javascript" src="admin/js/avatar.js"></script>
 </body>
 
 </html>

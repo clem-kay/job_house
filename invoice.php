@@ -142,9 +142,9 @@ if(isset($_GET['id'])){
                         </tfoot>
                     </table>
                     <div class="thanks">Thank you!</div>
-                    <div style="background-color:#20c141;border-left:#20c141;" class="notices">
+                    <div class="notices">
                         <div>NOTICE:</div>
-                        <div class="notice">A finance charge of $50 will be made on deducted if you terminate a contract with a freelancer.</div>
+                        <div class="notice">A finance charge of $50 will be deducted if you terminate a contract with a freelancer.</div>
                     </div>
                 </main>
                 <footer>
