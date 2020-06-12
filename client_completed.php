@@ -162,7 +162,7 @@ $id = $_SESSION['id'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
+                      <button style="background-color: #207b41; border-color: #207b41;" class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
@@ -173,11 +173,11 @@ $id = $_SESSION['id'];
 
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usertype']?></span>
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -321,7 +321,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Amalitech &copy; Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -340,7 +340,7 @@ $id = $_SESSION['id'];
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>

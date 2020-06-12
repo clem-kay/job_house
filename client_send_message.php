@@ -13,21 +13,21 @@ $username = $_SESSION['username']
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <title>Dashboard</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body id="page-top">
@@ -40,7 +40,7 @@ $username = $_SESSION['username']
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
       </a>
 
       <!-- Divider -->
@@ -125,7 +125,7 @@ $username = $_SESSION['username']
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i>
           </button>
 
     
@@ -133,10 +133,10 @@ $username = $_SESSION['username']
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -169,14 +169,14 @@ $username = $_SESSION['username']
 
 
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your sent messages</h6>
+            <div class="card-header py-3 background-grey">
+              <h6 class="m-0 font-weight-bold">Your sent messages</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success">
                       
                       <th>Receiver</th>
                       <th>Message</th>
@@ -214,7 +214,7 @@ $username = $_SESSION['username']
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>

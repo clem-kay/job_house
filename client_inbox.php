@@ -39,6 +39,7 @@ $id = $_SESSION['id'];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body id="page-top">
@@ -47,7 +48,7 @@ $id = $_SESSION['id'];
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #207b41;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background-color: #006228;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -135,16 +136,16 @@ $id = $_SESSION['id'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto ">
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -177,7 +178,7 @@ $id = $_SESSION['id'];
 
 
           <div class="card shadow mb-4">
-            <div class="card-header py-3 fl-bk-sc">
+            <div class="card-header py-3 background-grey">
               <h6 class="m-0 font-weight-bold">Read your messages</h6>
             </div>
             <div class="card-body">

@@ -22,8 +22,7 @@ include('functions.php');
 
 <head>
 
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dashboard</title>
     <!-- Font Awesome -->
@@ -38,6 +37,7 @@ include('functions.php');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+
 
   <!-- Custom styles for this template-->
 
@@ -162,11 +162,11 @@ include('functions.php');
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

@@ -10,20 +10,21 @@ session_start();
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <title>Dashboard</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -33,25 +34,24 @@ session_start();
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #207b41;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background-color: ; padding-top:5rem;" class="navbar-nav fixed-top bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
-      </a>
+      
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item mt-4 active">
         <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
+          <hr class="sidebar-divider my-0 mb-4">
+
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <!-- <hr class="sidebar-divider"> -->
 
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -118,22 +118,24 @@ session_start();
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+        <nav class="navbar fl-bk-pm navbar-expand fixed-top navbar-dark  topbar mb-4 static-top shadow">
+        <a class="navbar-brand " href="#">
+      <img class="navbar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
+      </a>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto align-items-center">
 
           
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-light-600 small"><?php echo $_SESSION['firstname']?>&nbsp &nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -142,8 +144,7 @@ session_start();
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                
-               
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -160,7 +161,7 @@ session_start();
 
          <div class="container">
 
-    <div style="margin-left: 120px;" class="card o-hidden border-0 shadow-lg my-5 w-75">
+    <div style="margin-left: 15rem;" class="card o-hidden border-0  my-5 w-75">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
@@ -171,15 +172,15 @@ session_start();
                 <h1 class="h4 text-gray-900 mb-4">Post Your job</h1>
 
               </div>
-              <form class="user" action="" method="post">
+              <form class="md-form user needs-validation" action="" method="post" novalidate>
               	 <?php  include('controllers/postJob.php') ?>
                 <div class="form-group">
                 	<div class="form-group">
-                		<input type="text" name="jobtitle" class="form-control" placeholder="Job Title">
+                		<input type="text" name="jobtitle" class="form-control" placeholder="Enter Job Title" required>
                   	</div>
-                  	<div class="form-group">
-                  		<select name="category" class="form-control" placeholder="Select job type">
-                  			<option>Job Category</option>
+                  	<div class="form-group" required>
+                  		<select name="category" class="form-control" placeholder="Select job type" required>
+                  			<option value="" class="form-text">Select Category...</option>
                   			<?php
                         $sql = mysqli_query($con, "SELECT * From category");
                         $row = mysqli_num_rows($sql);
@@ -191,25 +192,31 @@ session_start();
 
  				<div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                   <select name="jobtype" class="form-control" placeholder="Select job type">
-                  			<option>Long Term</option>
+                  <!-- <label for="jobType" class="ml-4 font-weight-regular" >Select Job Type</label> -->
+                   <select id="jobType"name="jobtype" role="" class="form-control" placeholder="Select job type" required>
+                     <option value="" class="form-text" selected>Select Term...</option>
+                        <option class="">Long Term</option>
                   			<option>Short Term</option>
                   		</select>
                   </div>
                   <div class="col-sm-6">
-                    <input type="number" name="budget" class="form-control"  placeholder="Budget">
+                    <input type="number" name="budget" class="form-control"  placeholder="Enter Budget ($)" required>
+                    <small class="form-text text-muted"> The notice on payments should be here
+                     
+                        </small>
                   </div>
-                </div>
+        </div>
+        <div class="md-form mb-4 green-textarea active-green-textarea">
+           <textarea id="jobDesc" class="md-textarea form-control" rows="5" placeholder="Enter Job Desciption...." required></textarea>
+           <!-- <label class="font-weight-medium" for="jobDesc">Enter job description..</label> -->
+           <small class="text-muted">Short details of job including skills required and deliverables</small>
 
-      
-                
-                <div class="form-group">
-                 <textarea class="form-control" name="jobdescription" placeholder="Enter job description" required="required"> </textarea>
-                </div>
+        </div>
+              
 
                
-                <div>
-                  <input style=" float:right;background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="postjob" value="Post Job"/>
+                <div class="text-right">
+                  <input class="md-form btn fl-btn-pm" type="submit" name="postjob" value="Post Job"/>
                 </div>
               </form>
             </div>
@@ -237,7 +244,7 @@ session_start();
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -274,15 +281,22 @@ session_start();
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="admin/vendor/jquery/jquery.min.js"></script>
-  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+    <!-- Your custom scripts (optional) -->
 
   <!-- Core plugin JavaScript-->
   <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="admin/js/sb-admin-2.min.js"></script>
-
+  <script src="js/customscripts.js" type="text/javascript">
+    </script>
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>

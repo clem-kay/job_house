@@ -30,11 +30,11 @@ html {
 }
 
 .fl-bk-pm {
-    background-color: #006228;
+    background-color: #006228!important;
 }
 
 .fl-bk-sc {
-    background-color: #2e302f;
+    background-color: #c3c7c5;
 }
 
 .fl-bk-light {
@@ -68,8 +68,8 @@ html {
 }
 
 .fl-btn-pm {
-    background-color: #006228;
-    color: whitesmoke;
+    background-color: #006228!important;
+    color: whitesmoke!important;
 }
 
 .fl-btn-pm-outline {
@@ -93,8 +93,8 @@ html {
 }
 
 .fl-btn-pm:focus {
-    background-color: #00c851;
-    color: whitesmoke;
+    background-color: #00c851!important;
+    color: whitesmoke!important;
 }
 
 .fl-btn-bl {
