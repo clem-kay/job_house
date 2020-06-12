@@ -232,7 +232,7 @@ $username = $_SESSION['username'];
           $total_rows = mysqli_fetch_array($result)[0];
       $total_pages = ceil($total_rows / $no_of_records_per_page);
             
-            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 LIMIT $offset, $no_of_records_per_page");
+            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 ORDER BY created_date DESC LIMIT $offset, $no_of_records_per_page");
                      $row = mysqli_num_rows($sql);
 
                      while ($row = mysqli_fetch_array($sql)){
@@ -244,7 +244,6 @@ $username = $_SESSION['username'];
                       $date=TimeAgo($row['created_date']);
                           
                       echo' 
-                    
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
                           <div class="card-body row align-items-center">
                             <div class="ml-3 col-md-10-12">
@@ -264,14 +263,9 @@ $username = $_SESSION['username'];
                          
                       </div>
                   </div>
-                  <br/>
-
-             
-              '
-              ;
+                  <br/>';
               }
             } 
-
            ?>   
                   
          <nav style="float: right;"aria-label="Page navigation example">

@@ -250,6 +250,7 @@ include('functions.php');
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <?php ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Experience</label>

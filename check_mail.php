@@ -56,24 +56,13 @@ include('functions.php');?>
                         <p class="card-text">Thank your for signing up with Jobhouse.</p>
                     </div>
                     <form class="form-inline" method="post">
-<<<<<<< HEAD
+
                     <div class="md-form my-0 input-with-pre-icon">
                         <input class="form-control mr-sm-2" type="text" name="email" placeholder="Enter Email">
                         <input class="form-control mr-sm-2" type="text" name="activationcode" placeholder="Enter Code">
                     </div>
                     <input style="border-radius:2px;background-color: #207b41;color:#fff;vertical-align: middle;" class="form-control" type="submit" value="Activate" name="activate">
-=======
-                    <div class="md-form  input-with-pre-icon">
-                        <input class="form-control mr-sm-2" type="text" name="username" placeholder="Enter Username">
-                        <input class="form-control mr-sm-2" type="text" name="activationcode" placeholder="Enter Code">
-                        <!-- <input class="form-control btn fl-btn-pm " type="submit" name="activate" value="Send Code"/> -->
-                        <button type="button" class="btn fl-btn-pm btn-lg btn-block" name="activate">Send Code</button>
-
-                    </div>
-
-
->>>>>>> ad1732d1a1dc092494654bf4ede3d5ee7fe8ee99
-                </form>
+                   </form>
                 </div>
             </div>
 

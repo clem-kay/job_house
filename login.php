@@ -44,9 +44,9 @@ include('functions.php');
     <div style="top:5rem" class="card fl-login-card">
         <div class="card-body">
             <div  class="md-form">
-                <!-- Default form login -->
+                <!-- Default form login --><?php include('controllers/loginUser.php');?>
                 <form class="text-center needs-validation" method="post" action="" novalidate>
-                    <?php include('controllers/loginUser.php');?>
+                    
                    
                     <!-- Email -->
                     <div class="md-form input-with-pre-icon">

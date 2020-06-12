@@ -25,7 +25,6 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +41,6 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-=======
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dashboard</title>
@@ -58,7 +56,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
->>>>>>> ad1732d1a1dc092494654bf4ede3d5ee7fe8ee99
+
 </head>
 
 <body id="page-top">
@@ -159,31 +157,13 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
-<<<<<<< HEAD
+
         
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-=======
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <!-- <div class="input-group mdb-form">
-              <input type="text" class=" form-control border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn fl-btn-pm" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div> -->
-            <div class="md-form my-0 input-with-pre-icon ">
-                        <!-- <i class="fa fa-search input-prefix" aria-hidden="true"></i> -->
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search for..." aria-label="Search">
-                        <button class="btn btn-sm fl-btn-pm" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-                    </div>
-          </form>
 
+  
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -208,7 +188,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             </li>
 
 
->>>>>>> ad1732d1a1dc092494654bf4ede3d5ee7fe8ee99
+
             <!-- Nav Item - User Information -->
             <li class="nav-item avatar dropdown no-arrow mr-2">
               <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -317,9 +297,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 </div>
 
           
-        
-
-           
+            
         </div>
         <!-- /.container-fluid -->
 
@@ -330,7 +308,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>www.jobhouse.com</span>
+            <a href="index.php"><span>www.jobhouse.com</span></a>
           </div>
         </div>
       </footer>

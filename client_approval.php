@@ -8,7 +8,6 @@ $username = $_SESSION['username'];
 
 $id = $_SESSION['id'];
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -290,32 +289,37 @@ $id = $_SESSION['id'];
 
   <!-- view freelancer profile modal -->
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
-   Launch demo modal
-</button>
-
 <!-- Modal -->
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><?php   $query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$freelancer'");
+                        while($user_name_row = mysqli_fetch_array($query) ){ 
+                          $freelancer_name = $user_name_row['firstname']." ".$user_name_row['lastname'];
+                          
+                        }
+                        $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$freelancer'");
+                        while($user_name_row = mysqli_fetch_array($query) ){ 
+                          $headline = $user_name_row['headline'];
+                          
+                        }
+                           ?>
    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content pt-3 pb-3 pl-4  pr-4">
            <div class="fl-modal-head">
              <div class=" form-inline align-items-center mb-2">
-             <img src="img/avatar.jpg "  class="rounded-circle z-depth-1 img-fluid ">
-               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel">Freelancer Name &nbsp |</h5>
-               <h6 class="pt-2 pl-3">Professional Heading</h6>
+             <img class="rounded-circle z-depth-1 img-fluid " avatar="<?php echo $freelancer_name?>">
+               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel"><?php echo $freelancer_name?> |</h5>
+               <h6 class="pt-2 pl-3"><?php echo $headline ?></h6>
 
-               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-               </button> -->
+              <?php
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$freelancer' and approved = 1 and accepted = 1");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                          $jobid = $row['jobid'];
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed= 1");
+                          $row2 = mysqli_num_rows($sql2);
+                          }?>
              </div>
              
-             <small class="text-muted green-text font-weight-bold" >Rank: 3.4 &nbsp | &nbsp Completed Job: 10</small>
-            
-             <!-- <div class="form-inline justify">
-               <p>Country: Ghana</p> 
-              <p>Date Joined: 10-01-20</p>
-            </div> -->
+             <small class="text-muted green-text font-weight-bold" >Completed Job: <?php echo $row2?></small>
            </div>
            <br>
            <div class="fl-modal-body">
@@ -325,8 +329,13 @@ $id = $_SESSION['id'];
       aria-selected="true">Portfolio</a>
   </li>
   <li class="nav-item">
+    <?php
+                        $sql = mysqli_query($con, "SELECT * From freview where freelancer_id='$freelancer'");
+                        $row = mysqli_num_rows($sql);
+
+                        ?>
     <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile"
-      aria-selected="false">Reviews <span class="badge badge-success">0</span> </a>
+      aria-selected="false">Reviews <span class="badge badge-success"><?php echo $row; ?></span> </a>
   </li>
   <li class="nav-item">
     <a class="nav-link text-muted" id="contact-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="contact"
@@ -336,37 +345,54 @@ $id = $_SESSION['id'];
 <!--contents of tabs-->
 <div class="tab-content pl-3 pr-3" id="myTabContent">
  <!-- portfolio contents -->
-
-  <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="home-tab">
+ <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="home-tab">
+ <?php 
+                    $sql2 = mysqli_query($con, "SELECT * From portfolio where user_id = '$freelancer'");
+                        $row2 = mysqli_num_rows($sql2);
+                        if($row2 == 0){
+                          echo'
   <div class="no-content align-items-center text-center mt-4">
     <p>No Portfolio yet.</p>
-    <i class="fas fa-briefcase fa-2x text-muted   "></i>
+    <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+                        }
+                        else{
+                          while($row2 = mysqli_fetch_array($sql2)){
+                              $title = $row2['title'];
+                              $link = $row2['links'];
+                              $description = $row2['description']; 
 
-  </div>  
-  
+              echo'<div class="no-content align-items-center text-center mt-4">
+                               <p>No Portfolio yet.</p>
+                                <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+                        }
+                      }
+
+ ?>
+
   </div>
-
   <!-- review contents -->
   <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
    <div class = "">
      <hr class="my-2">
-     
-     <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
-    lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
-    locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
-    squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie
-    etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog
-    stumptown. Pitchfork sustainable tofu synth chambray yr.<i class="fa fa-quote-right ml-2" aria-hidden="true"></i>
-</p>
-    <div class="inline"><i class="fa fa-user-circle mr-2" aria-hidden="true"></i><strong>Client Name &nbsp </strong>| &nbsp  <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Date Posted
-</div>
-<div class="no-content align-items-center text-center mt-4">
+     <?php if($row == 0){
+      echo' <div class="no-content align-items-center text-center mt-4">
     <p>No Reviews yet.</p>
     <i class="fas fa-comment-dots fa-2x text-muted   "></i>
 
-  </div>
+  </div>';}
+  else {
+       while ($row = mysqli_fetch_array($sql)){
+                          $comment = $row['comment'];
+                          $stars = $row['stars'];
+                          $clientid = $row['client_id'];
+            
+            echo ' <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>'.$comment.'<i class="fa fa-quote-right ml-2" aria-hidden="true"></i></p>';
+          }
+
+}
+     ?>
    </div>
-                </div>
+  </div>
 <!-- projects contents -->
   <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="contact-tab">
   <div class="no-content align-items-center text-center mt-4">
