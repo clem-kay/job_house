@@ -25,6 +25,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,6 +42,23 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
   <!-- Custom styles for this template-->
   <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
+=======
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+>>>>>>> ad1732d1a1dc092494654bf4ede3d5ee7fe8ee99
 </head>
 
 <body id="page-top">
@@ -49,11 +67,11 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #207b41;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background-color: #006228;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">
       </a>
 
       <!-- Divider -->
@@ -141,16 +159,62 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
+<<<<<<< HEAD
         
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
+=======
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <!-- <div class="input-group mdb-form">
+              <input type="text" class=" form-control border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn fl-btn-pm" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div> -->
+            <div class="md-form my-0 input-with-pre-icon ">
+                        <!-- <i class="fa fa-search input-prefix" aria-hidden="true"></i> -->
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search for..." aria-label="Search">
+                        <button class="btn btn-sm fl-btn-pm" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+                    </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn fl-btn-pm" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
+
+
+>>>>>>> ad1732d1a1dc092494654bf4ede3d5ee7fe8ee99
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -182,15 +246,15 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             <!-- Earnings (Monthly) Card Example -->
             
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                   <a href="client_job_posted.php">   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Job Posted</div></a>
+                   <a href="client_job_posted.php">   <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Job Posted</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $result ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-upload fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -200,15 +264,15 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                     <a href="client_approval.php"> <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pending Approval</div></a>
+                     <a href="client_approval.php"> <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Pending Approval</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-layer-group fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -218,15 +282,15 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card border-left-secondary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="client_job_approved.php"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jobs Approved</div></a>
+                      <a href="client_job_approved.php"><div class="text-xs font-weight-bold text-sencondary text-uppercase mb-1">Jobs Approved</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-check-circle fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -239,7 +303,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="client_job_ongoing.php"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Ongoing</div></a>
+                      <a href="client_job_ongoing.php"><div class="text-xs font-weight-bold text-default text-uppercase mb-1">Jobs Ongoing</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted ?></div>
                     </div>
                     <div class="col-auto">
@@ -266,7 +330,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Amalitech &copy; Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -285,7 +349,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>

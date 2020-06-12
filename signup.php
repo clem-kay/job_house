@@ -30,7 +30,7 @@ include('functions.php');
 <!-- Just an image -->
 <nav class="navbar navbar-dark navbar-light">
   <a class="navbar-brand" href="index.php">
-    <img src="img/jobhouse-logo.png" height="30" alt="mdb logo" class="ml-8" >
+    <img src="img/job-house-logo .png" width="140px" alt="mdb logo" class="ml-8" >
   </a>
 </nav>
     <!-- Start your project here-->
@@ -39,7 +39,7 @@ include('functions.php');
             <!-- <h2 class="h1 text-hide" style="background-image: url('img/jobhouse-b.png'); margin-left: 4rem; width: 133px; height: 133px;">
                 JobHouse</h2> -->
           <div class="mt-8" style = "margin-top: 5rem">
-          <h1 class="font-weight-bolder" style="color: #208927;">Sign Up</h1>
+          <h1 class="font-weight-bolder" style="color: #006228;">Sign Up</h1>
             <p class="font-weight-light">You are at the right place to have your projects handled by our experts in varoius fields accross the world.</p>
             <hr>
             <p>Already a member? <a href="login.php">Click here to login</a></p>

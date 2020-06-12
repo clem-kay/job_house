@@ -34,9 +34,9 @@ include('functions.php');
 </head>
 
 <body class="login-back">
-<nav class="navbar navbar-dark navbar-light">
+<nav class="navbar navbar-light">
   <a class="navbar-brand" href="index.php">
-    <img src="img/jobhouse-logo.png" height="30" alt="mdb logo" class="ml-8" >
+  <img class="sidebar-brand-text mx-3" src="img/job-house-logo-g.png" alt="jobhouse" width="120px">
   </a>
 </nav>
 
