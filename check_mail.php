@@ -15,7 +15,7 @@ include('functions.php');
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -26,11 +26,11 @@ include('functions.php');
 
 <body>
     <!-- Start your project here-->
-    <div style="height: 100vh">
+    <div style="height: 100vh;">
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar fixed-top navbar-expand-md scrolling-navbar">
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="#"><img src="img/jobhouse-logo.png" alt="Jobhouse"></a>
+            <a class="navbar-brand ml-4" href="#"><img src="img/job-house-logo-g.png" width="140px" alt="Jobhouse"></a>
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -57,29 +57,33 @@ include('functions.php');
                         <p class="card-text">Thank your for signing up with Jobhouse.</p>
                     </div>
                     <form class="form-inline" method="post">
-                    <div class="md-form my-0 input-with-pre-icon">
+                    <div class="md-form  input-with-pre-icon">
                         <input class="form-control mr-sm-2" type="text" name="username" placeholder="Enter Username">
                         <input class="form-control mr-sm-2" type="text" name="activationcode" placeholder="Enter Code">
-                        <input style="border-radius:2px;background-color: #207b41;color:#fff;vertical-align: middle;" class="form-control" type="submit" name="activate" value="Send Code"/>
-                        
+                        <!-- <input class="form-control btn fl-btn-pm " type="submit" name="activate" value="Send Code"/> -->
+                        <button type="button" class="btn fl-btn-pm btn-lg btn-block" name="activate">Send Code</button>
+
                     </div>
+
+
                 </form>
                 </div>
             </div>
 
-            <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- <div class="collapse navbar-collapse" id="basicExampleNav">
                
-                <!-- Links -->
+               
 
-            </div>
-
-        </div>
-        <footer class="page-footer font-small black ">
+            </div> -->
+            <footer class="page-footer font-small black ">
 
             <div class="footer-copyright text-center py-3">© 2020 Copyright:
                 <a href="#"> www.jobhouse.com</a>
             </div>
         </footer>
+
+        </div>
+        
     </div>
 
 

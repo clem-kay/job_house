@@ -14,20 +14,22 @@ $username = $_SESSION['username'];
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <title>Dashboard</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
   <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
@@ -39,7 +41,7 @@ $username = $_SESSION['username'];
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #207b41;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style="background-color: #006228;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -146,7 +148,7 @@ $username = $_SESSION['username'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i style="color: #006228; border-color: #006228;"class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -170,14 +172,19 @@ $username = $_SESSION['username'];
               </a>
               <!-- Dropdown - Messages -->
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                 <form class="form-inline mr-auto w-100 navbar-search" method="post" action="search.php">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <input style="background-color: #207b41; border-color: #207b41;" type="submit" name="search" class="btn btn-primary" value=">>"/>
-                    
+                 <!-- <form class="mdb-form form-inline mr-auto w-100 navbar-search" method="post" action="search.php">
+                  <div class="mdb-form input-group">
+                    <input type="text" class="form-control   small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="mdb-form input-group-append">
+                      <input  type="submit" name="search" class="btn fl-btn-pm" value=">>"/>
                     </div>
                   </div>
+                </form> -->
+                <form class="form-inline mr-auto" method = "post" action="search.php">
+                    <div class="md-form my-0 input-with-pre-icon ">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search for job by category" aria-label="Search">
+                        <button type="submit" name="search" class="btn fl-btn-pm">Search</button>
+                    </div>
                 </form>
               </div>
             </li>
@@ -239,9 +246,9 @@ $username = $_SESSION['username'];
                           
                       echo' 
                     
-                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
-                          <div class="card-body row">
-                            <div class="ml-3 col-md-1-12">
+                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
+                          <div class="card-body row align-items-center">
+                            <div class="ml-3 col-md-10-12">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
                                 .$row2['username']. "  ". '|'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
@@ -252,11 +259,10 @@ $username = $_SESSION['username'];
                               </p>
                               
                           </div>
-                          <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
-                           <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
+                          <div class="ml-3 col-md-2-12 pl-3 pr-3" style="">
+                           <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
                           </div>
-                          <div class="col-sm-1-12 mt-2 ml-3"  ">            
-                          </div>
+                         
                       </div>
                   </div>
                   <br/>
@@ -271,14 +277,14 @@ $username = $_SESSION['username'];
                   
          <nav style="float: right;"aria-label="Page navigation example">
               <ul class="pagination">
-        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li><a class="btn btn-sm btn-outline-green " href="?pageno=1">First</a></li>
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
         </li>
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
         </li>
-        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+        <li><a class="btn btn-sm btn-outline-green" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
          </ul>
               </nav>
             </div>
