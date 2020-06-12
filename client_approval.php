@@ -39,7 +39,7 @@ $id = $_SESSION['id'];
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #006228;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul  class="navbar-nav sidebar sidebar-dark fl-bk-pm accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">

@@ -41,11 +41,11 @@ $username = $_SESSION['username'];
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #006228;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul  class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px"></a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -147,15 +147,15 @@ $username = $_SESSION['username'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #006228; border-color: #006228;"class="fa fa-bars"></i>
+            <i class="fa fap fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="search.php">
+          <form class="md-form d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="search.php">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <input style="background-color: #207b41; border-color: #207b41;" type="submit" name="search" class="btn btn-primary" value=">>"/>
+                <input type="submit" name="search" class="btn fl-btn-pm" value=""/> <i class="fa fap fa-search" aria-hidden="true"></i>
               </div>
             </div>
           </form>
