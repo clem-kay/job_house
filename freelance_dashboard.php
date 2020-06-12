@@ -291,7 +291,88 @@ $fid = $_SESSION['id'];
                   </div>
                 </div>
               </div>
-            </div>         
+            </div> 
+
+
+            <div class="card shadow mb-4">
+            <div class="card-body">
+            
+            <?php
+            if (isset($_GET['pageno'])){
+              $pageno = $_GET['pageno'];
+            }else{
+              $pageno = 1;
+            }         
+            $no_of_records_per_page = 10;
+
+            $offset = ($pageno - 1)*$no_of_records_per_page;
+            $result = mysqli_query($con, "SELECT COUNT(*) From job_posted where closed = 0");
+          $total_rows = mysqli_fetch_array($result)[0];
+      $total_pages = ceil($total_rows / $no_of_records_per_page);
+       
+            
+            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 ORDER BY created_date DESC LIMIT $offset, $no_of_records_per_page");
+                     $row = mysqli_num_rows($sql);
+
+                     while ($row = mysqli_fetch_array($sql)){
+                       $id =$row['id'];
+                       $userid = $row['user_id'];
+                     $sql2 = mysqli_query($con,"SELECT * from useraccount where id='$userid'");
+                     $row2 = mysqli_num_rows($sql2);
+                     while($row2 = mysqli_fetch_array($sql2)){
+                      $date=TimeAgo($row['created_date']);
+                          
+                      echo' 
+                    
+                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
+                          <div class="card-body row">
+                            <div class="ml-3 col-md-1-12">
+                              <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
+                              <div class="row pl-3">'
+                                .$row2['username']. "  ". '|'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                               </div>
+                               <hr/>
+                                <p class="card-text job-desc">'
+                                 .$row['description'].'
+                              </p>
+                              
+                          </div>
+                          <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
+                           <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
+                          </div>
+                          <div class="col-sm-1-12 mt-2 ml-3"  ">            
+                          </div>
+                      </div>
+                  </div>
+                  <br/>
+
+             
+              '
+              ;
+              }
+            } 
+
+           ?>   
+                  
+         <nav style="float: right;"aria-label="Page navigation example">
+              <ul class="pagination">
+        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+        </li>
+        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+        </li>
+        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+         </ul>
+              </nav>
+            </div>
+                
+          </div>
+        <!-- /.container-fluid -->
+
+        </div>
+        
 
 
           <!-- End of row -->

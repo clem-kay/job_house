@@ -1,8 +1,6 @@
 <?php
 include('config/dbconfig2.php');
-include('functions.php');
-
-?>
+include('functions.php');?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +40,9 @@ include('functions.php');
         <!--/.Navbar-->
 
         <div class="card" style="overflow-x: hidden;">
-            <?php include('controllers/activate.php')?>
+           
             <div class="row">
+                 <?php include('controllers/activate.php')?>
                 <div class="col-6">
                     <img class="card-img-top" src="img/check_mail_banner.png" alt="Card image cap">
                 </div>
@@ -58,11 +57,10 @@ include('functions.php');
                     </div>
                     <form class="form-inline" method="post">
                     <div class="md-form my-0 input-with-pre-icon">
-                        <input class="form-control mr-sm-2" type="text" name="username" placeholder="Enter Username">
+                        <input class="form-control mr-sm-2" type="text" name="email" placeholder="Enter Email">
                         <input class="form-control mr-sm-2" type="text" name="activationcode" placeholder="Enter Code">
-                        <input style="border-radius:2px;background-color: #207b41;color:#fff;vertical-align: middle;" class="form-control" type="submit" name="activate" value="Send Code"/>
-                        
                     </div>
+                    <input style="border-radius:2px;background-color: #207b41;color:#fff;vertical-align: middle;" class="form-control" type="submit" value="Activate" name="activate">
                 </form>
                 </div>
             </div>

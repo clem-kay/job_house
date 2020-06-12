@@ -6,7 +6,7 @@
 		$query = mysqli_query ($con,"SELECT * FROM transaction WHERE jobid = '$jobid'");
 		$num_row =mysqli_num_rows($query);
 		if($num_row < 1){
-			echo '<div class="alert alert-danger">Please Ensure that the rwquired amount is paid into the account<div>';
+			echo '<div class="alert alert-danger">Please Ensure that the required amount is paid into the account<div>';
 		}
 		else{
 			$query = mysqli_querry($con,"SELECT * FROM appliedjob WHERE jobid='$jobid'");

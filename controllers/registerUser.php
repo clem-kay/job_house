@@ -15,14 +15,14 @@ if(isset($_POST['create_account'])){
   
 
     //check if user already exist
-    $check_user_account = mysqli_query($con,"SELECT * FROM useraccount WHERE username = '$username' ");
+    $check_user_account = mysqli_query($con,"SELECT * FROM useraccount WHERE email = '$email' ");
 
     $num_of_users = mysqli_num_rows($check_user_account);
     if($num_of_users > 0){
 
         //if user already exist, display error message
         echo '                
-    <h6>Username Taken</h6>
+    <div class="alert alert-danger" role="alert"><p>This email is in use</p></div>
 ';
 
     }else{

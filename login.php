@@ -52,7 +52,7 @@ include('functions.php');
                     <div class="md-form input-with-pre-icon">
                         <div>
                             <i style="color:#207b41;" class="fas fa-user input-prefix"></i>
-                            <input type="text" id="username" class="form-control" name="username" placeholder="username" required>
+                            <input type="text" id="username" class="form-control" name="email" placeholder="email" required>
                         </div>
                         <div class="invalid-feedback">Please enter email</div>
                     </div>

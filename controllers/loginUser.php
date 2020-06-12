@@ -4,13 +4,13 @@ $result = '';
 if (isset($_POST['login'])) {
     //obtain user input and sanitize
 
-    $user = checkValues($_POST['username']);
+    $email = checkValues($_POST['email']);
     $password = checkValues($_POST['password']);
 
     $password = md5($password);
 
    
-    $login_query = "SELECT * FROM useraccount WHERE username ='$user' and password ='$password'";
+    $login_query = "SELECT * FROM useraccount WHERE email ='$email' and password ='$password'";
     $db_login_query = mysqli_query($con,$login_query);
     if( $db_login_query){
         if(mysqli_num_rows($db_login_query) > 0 ){
@@ -41,9 +41,9 @@ if (isset($_POST['login'])) {
 
             }
         }
-         else echo '<h6>Incorrect Username or Password</h6>';
+         else echo "<div class='alert alert-danger' role='alert'>Incorrect Username or Password</div>";
     }
-    else echo ' <h6>No user found</h6>';
+    else echo "<div class='alert alert-danger' role='alert'>Incorrect Username or Password</div>";
 }
 ?>
 
