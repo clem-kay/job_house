@@ -31,27 +31,29 @@ session_start();
 <body id="page-top">
 
   <!-- Page Wrapper -->
+
+  <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style=" padding-top:5rem;" class="navbar-nav fixed-top fl-bl-pm sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul  class="navbar-nav sidebar sidebar-dark fl-bk-pm accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
 
       <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item mt-4 active">
+      <li class="nav-item active">
         <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
-          <hr class="sidebar-divider my-0 mb-4">
-
       </li>
 
       <!-- Divider -->
-      <!-- <hr class="sidebar-divider"> -->
+      <hr class="sidebar-divider">
 
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -82,9 +84,9 @@ session_start();
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <!-- <div class="sidebar-heading">
+      <div class="sidebar-heading">
         Profile
-      </div> -->
+      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -118,23 +120,19 @@ session_start();
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar fl-bk-pm navbar-expand fixed-top navbar-dark  topbar mb-4 static-top shadow">
-        <a class="navbar-brand " href="#">
-      <img class="navbar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
-      </a>
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto align-items-center">
-
-          
+          <ul class="navbar-nav ml-auto ">
             <!-- Nav Item - User Information -->
             <li class="nav-item avatar dropdown no-arrow mr-2">
               <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-light-600 small"><?php echo $_SESSION['firstname']?>&nbsp &nbsp | &nbsp</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
                  <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
@@ -144,7 +142,8 @@ session_start();
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-
+                
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -161,7 +160,7 @@ session_start();
 
          <div class="container">
 
-    <div style="margin-left: 15rem;" class="card o-hidden border-0  my-5 w-75">
+    <div style="margin-left: 7rem;" class="card o-hidden border-0  my-5 w-75">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
