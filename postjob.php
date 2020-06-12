@@ -34,7 +34,7 @@ session_start();
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: ; padding-top:5rem;" class="navbar-nav fixed-top bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul style=" padding-top:5rem;" class="navbar-nav fixed-top fl-bl-pm sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       
