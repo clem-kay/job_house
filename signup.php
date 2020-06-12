@@ -128,13 +128,13 @@ include('functions.php');
                     <div class="form-inline my-0 align-items-center row">
                     <small class=" inline row ml-3 mr-4">What do you want to do</small>
                     <div class="custom-control col custom-radio custom-control-inline text-center ml-2">
-                    <input type="radio" class="custom-control-input success-color " id="freelancer" name="usertype" checked>
+                    <input type="radio" class="custom-control-input success-color " id="freelancer" value="freelancer" name="usertype" checked>
                     <label class="custom-control-label text-muted" for="freelancer">Freelancer</label>
                 </div>
 
 <!-- Default inline 2-->
                 <div class="custom-control  col custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="client" name="usertype">
+                    <input type="radio" class="custom-control-input" id="client" value="client" name="usertype">
                     <label class="custom-control-label text-muted" for="client">Client</label>
                 </div>
                     </div>

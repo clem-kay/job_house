@@ -85,7 +85,7 @@ include('controllers/profileCreation.php');
                                         <div class="md-form">
                                             <i class="fas fap fa-mobile prefix   "></i>
                                             <!-- <i class="fa fap fa-phone-square prefix" aria-hidden="true"></i> -->
-                                            <input type="text" id="userContact" name ="phone" class="form-control">
+                                            <input type="number" id="userContact" name ="phone" class="form-control">
                                             <input type="text" id="userContact2"  class="form-control" style="display: none;">
                                             <label for="userContact">Enter Phone</label>
                                             <small id="contactHelp " class="form-text text-muted ">Ignore Country code</small>

@@ -403,8 +403,8 @@ $id = $_SESSION['id'];
 </div>
            </div>
            <div class="modal-footer mt-2">
-               <button type="button" class="btn btn-outline-green fl-btn-pm" data-dismiss="modal">View More</button>
-               <button type="button" class="btn fl-btn-pm">Approve</button>
+               <button type="button" class="btn btn-outline-green" data-dismiss="modal">Close</button>
+               
            </div>
        </div>
    </div>
