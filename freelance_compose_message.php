@@ -201,7 +201,7 @@ include('functions.php');
               </div>
               <form class="user" method="post">
                 <?php include('controllers/sendMessage.php')?>
-                <div class="form-group">
+                <div class="md-form form-group">
                   <select class="form-control" name="receiver">
                     <option required> ------------------- </option>
                   <?php
@@ -213,13 +213,13 @@ include('functions.php');
                   </div>
                 
                 
-                <div class="form-group">
+                <div class="md-form form-group">
                  <textarea class="form-control" name="message" placeholder="Enter your message"> </textarea>
                 </div>
 
                
-                <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="send" value="Send"/>
+                <div class="text-right">
+                  <input class="btn fl-btn-pm " type="submit" name="send" value="Send"/>
                 </div>
               </form>
             </div>

@@ -146,7 +146,7 @@ include('functions.php');
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fap fa-bars"></i>
           </button>
 
           <!-- Topbar Navbar -->
@@ -195,24 +195,25 @@ include('functions.php');
                 <h1 class="h4 text-gray-900 mb-4">Create Your Portfolio!</h1>
 
               </div>
-              <form class="user" method="post" enctype="multipart/form-data">
+              <form class="user md-form needs-validation" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
-                 <input type="text" class="form-control" name="title" placeholder="Title">
+                 <input type="text" class="form-control" name="title" placeholder="Title" required>
                   </div>
+
                 
                 <div class="form-group">
-                    <input type="text" class="form-control" name="links" placeholder="Paste links to your projects">
+                    <input type="text" class="form-control" name="links" placeholder="Paste links to your projects" required>
                   </div>
                 <div class="form-group">
-                 <textarea class="form-control" name="description" placeholder="enter a brief description about yourself"> </textarea>
+                 <textarea class="form-control md-textarea" rows="2" name="description" placeholder="Enter a brief description of project"> </textarea>
                 </div>
 
                 <div class="form-group">
                  <input type="file" class="form-control" id="pics" name="pics">
                 </div>
 
-                <div>
-                  <input style="background-color: #207b41; border-color: #207b41;"class="btn btn-primary" type="submit" name="save" value="Add Portfolio"/>
+                <div class="text-right">
+                  <input class="btn fl-btn-pm " type="submit" name="save" value="Add Portfolio"/>
                 </div>
 
                 

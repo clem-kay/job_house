@@ -146,7 +146,7 @@ $username = $_SESSION['username']
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fap fa-bars"></i>
           </button>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -157,7 +157,7 @@ $username = $_SESSION['username']
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                   <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -188,14 +188,14 @@ $username = $_SESSION['username']
 
 
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
+            <div class="card-header py-3 background-grey">
+              <h6 class="m-0 font-weight-bold">Read your messages</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success">
                       
                       <th>Receiver</th>
                       <th>Message</th>
@@ -233,7 +233,7 @@ $username = $_SESSION['username']
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>

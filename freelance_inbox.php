@@ -187,14 +187,14 @@ $username = $_SESSION['username']
 
 
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
+            <div class="card-header py-3 background-grey">
+              <h6  class="m-0 font-weight-bold">Read your messages</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success">
                       <th>Sender</th>
                       <th>Message</th>
                       <th>Date</th>
@@ -230,7 +230,7 @@ $username = $_SESSION['username']
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -259,8 +259,8 @@ $username = $_SESSION['username']
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+          <button class="btn btn-outline-red" type="button" data-dismiss="modal">Cancel</button>
+          <a  class="btn fl-btn-pm" href="controllers/logoutUser.php">Logout</a>
         </div>
       </div>
     </div>

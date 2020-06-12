@@ -157,7 +157,7 @@ $fid = $_SESSION['id'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fap fa-bars"></i>
           </button>
 
           <!-- Topbar Search -->
@@ -184,7 +184,7 @@ $fid = $_SESSION['id'];
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <input style="background-color: #207b41; border-color: #207b41;" type="submit" name="search" class="btn btn-primary" value=">>"/>
+                      <input type="submit" name="search" class="btn btn-sm fl-btn-sm" value="Search"/>
                     
                     </div>
                   </div>
@@ -227,15 +227,15 @@ $fid = $_SESSION['id'];
 
             <!-- Jobs Applied -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
+              <div  class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="jobsApplied.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Applied</div></a>
+                      <a href="jobsApplied.php"><div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jobs Applied</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applied ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                      <i class="fa fa-location-arrow fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -244,15 +244,15 @@ $fid = $_SESSION['id'];
 
             <!-- Jobs Approved -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div  style="color: #200c10;" class="card border-left-primary shadow h-100 py-2">
+              <div  class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="jobsApproved.php"><div style="color: #200c10;" class="text-xs font-weight-bold text-uppercase mb-1">Jobs Approved</div></a>
+                      <a href="jobsApproved.php"><div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jobs Approved</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $approved ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                      <i class="fas fa-check-circle fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -262,15 +262,15 @@ $fid = $_SESSION['id'];
             
             <!-- Jobs Accepted -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
+              <div class="card border-left-secondary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <a href="jobAccepted.php"><div style="color: #200c10"class="text-xs font-weight-bold text-success text-uppercase mb-1">On-Going Jobs</div></a>
+                      <a href="jobAccepted.php"><div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">On-Going Jobs</div></a>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $accepted?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                      <i class="fas fa-clock fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -287,7 +287,7 @@ $fid = $_SESSION['id'];
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $pending?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="fas fa-layer-group fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -326,7 +326,7 @@ $fid = $_SESSION['id'];
                       echo' 
                     
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
-                          <div class="card-body row">
+                          <div class="card-body row align-items-center">
                             <div class="ml-3 col-md-1-12">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
@@ -338,11 +338,9 @@ $fid = $_SESSION['id'];
                               </p>
                               
                           </div>
-                          <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
-                           <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
-                          </div>
-                          <div class="col-sm-1-12 mt-2 ml-3"  ">            
-                          </div>
+                          <div class="ml-3 col-md-2-12 pl-3 pr-3 text-right" style="">
+                          <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
+                         </div>
                       </div>
                   </div>
                   <br/>
@@ -357,14 +355,14 @@ $fid = $_SESSION['id'];
                   
          <nav style="float: right;"aria-label="Page navigation example">
               <ul class="pagination">
-        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li><a class="btn btn-sm btn-outline-green" href="?pageno=1">First</a></li>
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
         </li>
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
         </li>
-        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+        <li><a class="btn btn-sm btn-outline-green" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
          </ul>
               </nav>
             </div>
