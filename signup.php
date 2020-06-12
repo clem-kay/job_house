@@ -28,9 +28,9 @@ include('functions.php');
 
 <body style="overflow-y:none;">
 <!-- Just an image -->
-<nav class="navbar navbar-dark navbar-light">
+<nav class="navbar fixed-top navbar-light navbar-light">
   <a class="navbar-brand" href="index.php">
-    <img src="img/job-house-logo .png" width="140px" alt="mdb logo" class="ml-8" >
+    <img src="img/job-house-logo-g.png" width="140px" alt="mdb logo" class="ml-8" >
   </a>
 </nav>
     <!-- Start your project here-->
@@ -39,7 +39,7 @@ include('functions.php');
             <!-- <h2 class="h1 text-hide" style="background-image: url('img/jobhouse-b.png'); margin-left: 4rem; width: 133px; height: 133px;">
                 JobHouse</h2> -->
           <div class="mt-8" style = "margin-top: 5rem">
-          <h1 class="font-weight-bolder" style="color: #006228;">Sign Up</h1>
+          <h1 class="font-weight-bolder" style="color: #388e3c;">Sign Up</h1>
             <p class="font-weight-light">You are at the right place to have your projects handled by our experts in varoius fields accross the world.</p>
             <hr>
             <p>Already a member? <a href="login.php">Click here to login</a></p>
@@ -55,20 +55,20 @@ include('functions.php');
                 <?php include('controllers/registerUser.php');?>
                 <form class="needs-validation" action="" method="post" novalidate>
                     <div class="md-form input-with-pre-icon minus-margin-bttm">
-                        <i style="color:#207b41;" class="fa fa-login fa-user input-prefix"></i>
+                        <i style="color:#388e3c;" class="fa fa-login fa-user input-prefix"></i>
                         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
                     </div>
                     <!--first name and last name-->
                     <div class="row name ">
                         <div class="col minus-margin-bttm">
                             <div class="md-form input-with-pre-icon minus-margin-bttm">
-                                <i style="color:#207b41;" class="fa fa-user input-prefix"></i>
+                                <i style="color:#388e3c;" class="fa fa-user input-prefix"></i>
                                 <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First Name" required>
                             </div>
                         </div>
                         <div class="col minus-margin-bttm">
                             <div class="md-form input-with-pre-icon minus-margin-bttm">
-                                <i style="color:#207b41;" class="fa fa-user input-prefix"></i>
+                                <i style="color:#388e3c;" class="fa fa-user input-prefix"></i>
                                 <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last Name" required>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ include('functions.php');
                     <!---end of first name and last name-->
 
                     <div class="md-form email input-with-pre-icon minus-margin-bttm">
-                        <i style="color:#207b41;" class="fa fa-envelope input-prefix"></i>
+                        <i style="color:#388e3c;" class="fa fa-envelope input-prefix"></i>
                         <input type="email" id="email" name="email" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                     </div>
 
@@ -86,14 +86,14 @@ include('functions.php');
                     <div class="row minus-margin-bttm">
                         <div class="col">
                             <div class="md-form  input-with-pre-icon">
-                                <i style="color:#207b41;" class="fas fa-lock input-prefix"></i>
+                                <i style="color:#388e3c;" class="fas fa-lock input-prefix"></i>
                                 <input  type="password" id="userPassword" name="password" class="form-control userPassword validate " placeholder="Password" required>
                                 <label for="userPassword" data-error="Wrong/Weak Password" data-success="Appopriate Password"></label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="md-form input-with-pre-icon">
-                                <i style="color:#207b41;" class="fa fa-lock input-prefix"></i>
+                                <i style="color:#388e3c;" class="fa fa-lock input-prefix"></i>
                                 <input type="password" id="userConfirmPassword" class="form-control passRepeat" placeholder="Repeat Password" required>
                             </div>
                         </div>
@@ -113,26 +113,43 @@ include('functions.php');
                     <!---end of first name and last name-->
                     <!--type of subscription -->
 
-                    <div style="border-radius:5px; position:relative; left:3rem;" class="btn-group btn-group-toggle type" data-toggle="buttons">
-                        <label class="btn btn-success form-check-label text-sentence active">
+                    <!-- <div style="position:relative; left:3rem;" class="custom-control custom-radio custom-control-inline" data-toggle="buttons">
+                        <label class="custom-control-label text-sentence active">
                            <input class="form-check-input" type="radio" name="usertype" value="freelancer" id="Freelancer" autocomplete="off" checked>
                       Freelancer </label>
                         <label class="btn btn-success form-check-label">
                            <input class="form-check-input" type="radio" name="usertype" value="client" id="Client" autocomplete="off">
                       Client
                        </label>
+                    </div> -->
+                    <!-- Default inline 1-->
+                    
+                    
+                    <div class="form-inline my-0 align-items-center row">
+                    <small class=" inline row ml-3 mr-4">What do you want to do</small>
+                    <div class="custom-control col custom-radio custom-control-inline text-center ml-2">
+                    <input type="radio" class="custom-control-input success-color " id="freelancer" name="usertype" checked>
+                    <label class="custom-control-label text-muted" for="freelancer">Freelancer</label>
+                </div>
+
+<!-- Default inline 2-->
+                <div class="custom-control  col custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="client" name="usertype">
+                    <label class="custom-control-label text-muted" for="client">Client</label>
+                </div>
                     </div>
+                
                     <div class="form-group agree">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="invalidCheck" required>
-                            <label class="custom-control-label fl-radio" for="invalidCheck">Agree to terms and conditions</label>
+                            <label class="custom-control-label fl-radio" for="invalidCheck"><a class="" href="#">Agree to Terms & Conditions</a></label>
                             <div class="invalid-feedback">
                                 You must agree before submitting.
                             </div>
                         </div>
                     </div>
 
-                    <button style="border-radius:2px; " id="signupButton" type="submit" name="create_account" class="btn btn-outline fl-btn-pm btn-lg btn-block">Confirm</button>
+                    <button style="border-radius:2px; " id="signupButton" type="submit" name="create_account" class="btn btn-lg btn-block fl-btn-pm">Register</button>
 
                 </form>
 
@@ -140,7 +157,7 @@ include('functions.php');
         </div>
 
 
-        <div class="footer-copyright text-center fixed-bottom py-2">© 2020 Copyright:
+        <div class="footer-copyright text-left fixed-bottom ml-4 py-2">© 2020 Copyright:
     <a href="https://mdbootstrap.com/" >jobhouse.com</a>
   </div>
         </div>
