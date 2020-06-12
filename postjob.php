@@ -207,7 +207,7 @@ session_start();
                   </div>
         </div>
         <div class="md-form mb-4 green-textarea active-green-textarea">
-           <textarea id="jobDesc" class="md-textarea form-control" rows="5" placeholder="Enter Job Desciption...." required></textarea>
+           <textarea id="jobDesc" class="md-textarea form-control" name="jobdescription" rows="5" placeholder="Enter Job Desciption...." required></textarea>
            <!-- <label class="font-weight-medium" for="jobDesc">Enter job description..</label> -->
            <small class="text-muted">Short details of job including skills required and deliverables</small>
 

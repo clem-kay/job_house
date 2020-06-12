@@ -7,7 +7,7 @@ if(isset($_POST['create_account'])){
     $lastname = checkValues($_POST['lastname']);
     $email = checkValues($_POST['email']);
     $password = md5(checkValues($_POST['password']));
-    $usertype = $_POST['usertype'];
+    $usertype = checkValues($_POST['usertype']);
     $verified = 0;
     $activation_code = uniqid(rand(2332,30000));
     $code = $activation_code ;
