@@ -51,8 +51,7 @@ $id = $_SESSION['id'];
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
-      </a>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -178,18 +177,18 @@ $id = $_SESSION['id'];
 
 
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Read your messages</h6>
+            <div class="card-header py-3 fl-bk-sc">
+              <h6 class="m-0 font-weight-bold">Read your messages</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       
-                      <th>Sender</th>
-                      <th>Message</th>
-                      <th>Date</th>
+                      <th class="green-text">Sender</th>
+                      <th class="green-text">Message</th>
+                      <th class="green-text">Date</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -224,7 +223,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -253,8 +252,8 @@ $id = $_SESSION['id'];
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
+          <button class="btn btn-sm btn-outline-danger" type="button" data-dismiss="modal">Cancel</button>
+          <a  class="btn fl-btn-pm btn-sm" href="login.php">Logout</a>
         </div>
       </div>
     </div>

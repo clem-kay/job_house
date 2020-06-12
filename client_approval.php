@@ -43,8 +43,7 @@ $id = $_SESSION['id'];
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
-      </a>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -271,7 +270,7 @@ $id = $_SESSION['id'];
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -297,7 +296,7 @@ $id = $_SESSION['id'];
 
 <!-- Modal -->
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
+   <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content pt-3 pb-3 pl-4  pr-4">
            <div class="fl-modal-head">
              <div class=" form-inline align-items-center mb-2">
@@ -370,7 +369,7 @@ $id = $_SESSION['id'];
 <!-- projects contents -->
   <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="contact-tab">
   <div class="no-content align-items-center text-center mt-4">
-    <p>No Reviews yet.</p>
+    <p>No Projects yet.</p>
     <i class="fas fa-toolbox fa-2x text-muted   "></i>
 
   </div>
