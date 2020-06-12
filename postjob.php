@@ -82,9 +82,9 @@ session_start();
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <!-- <div class="sidebar-heading">
         Profile
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">

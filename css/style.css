@@ -1,6 +1,6 @@
 @media (min-width: 800px) and (max-width: 850px) {
     .navbar:not(.top-nav-collapse) {
-        background: #006228!important;
+        background: #388e3c!important;
     }
 }
 
@@ -30,7 +30,7 @@ html {
 }
 
 .fl-bk-pm {
-    background-color: #006228!important;
+    background-color: ##388e3c!important;
 }
 
 .fl-bk-sc {
@@ -47,7 +47,7 @@ html {
     width: 30rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
 .fl-login-card {
@@ -68,14 +68,14 @@ html {
 }
 
 .fl-btn-pm {
-    background-color: #006228!important;
+    background-color: #388e3c!important;
     color: whitesmoke!important;
 }
 
 .fl-btn-pm-outline {
     border-style: solid;
     border-width: 20px;
-    border-color: #006228;
+    border-color: #388e3c;
     color: whitesmoke;
 }
 
@@ -122,6 +122,7 @@ html {
 
 .agree {
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .left-signup {
@@ -213,7 +214,7 @@ html {
 }
 
 .fap {
-    color: #006228;
+    color: #388e3c;
 }
 
 .fap-w {
@@ -229,11 +230,11 @@ html {
 }
 
 input[type=text] {
-    border-bottom: 1px solid #006228;
+    border-bottom: 1px solid #388e3c;
 }
 
 .skill {
-    color: #006228;
+    color: #388e3c;
 }
 
 .skill:hover {
