@@ -195,11 +195,11 @@ $fid = $_SESSION['id'];
             <!-- Nav Item - Alerts -->
            
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -327,10 +327,10 @@ $fid = $_SESSION['id'];
                     
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
                           <div class="card-body row align-items-center">
-                            <div class="ml-3 col-md-1-12">
+                            <div class="ml-3 col-8">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
-                                .$row2['username']. "  ". '|'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                                .$row2['username']. "  ". '&nbsp|&nbsp'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
                                </div>
                                <hr/>
                                 <p class="card-text job-desc">'
@@ -338,7 +338,7 @@ $fid = $_SESSION['id'];
                               </p>
                               
                           </div>
-                          <div class="ml-3 col-md-2-12 pl-3 pr-3 text-right" style="">
+                          <div class="ml-3 col-4 pl-3 text-right" style="">
                           <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
                          </div>
                       </div>
