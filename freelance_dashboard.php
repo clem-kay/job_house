@@ -161,15 +161,21 @@ $fid = $_SESSION['id'];
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="search.php">
+          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="search.php">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <input style="background-color: #207b41; border-color: #207b41;" type="submit" name="search" class="btn btn-primary" value=">>"/>
+                <input type="submit" name="search" class="btn btn-primary" value=">>"/>
               </div>
             </div>
-          </form>
-
+          </form> -->
+       <!-- Search form -->
+       <form class="form-inline ml-auto">
+      <div class="md-form my-0">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </div>
+      <button href="#!" class="btn btn-outline-white btn-md my-0 ml-sm-2" type="submit">Search</button>
+    </form>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
