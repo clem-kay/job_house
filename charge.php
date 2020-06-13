@@ -25,9 +25,9 @@ if(isset($_GET['job_id'])){
          $row = mysqli_fetch_array($query);
          $pay_amount = $row['budget'];
          $pay_amount = $pay_amount + ($pay_amount * 0.25);
-         echo $pay_amount;
+        
          $stripe_pay_amount = $pay_amount*100;
-         echo $stripe_pay_amount;
+         
     $save_transaction = mysqli_query($con,"INSERT INTO transaction(client_id,jobid,amount)VALUES('$id','$job_id','$pay_amount')");
       if($save_transaction){
         

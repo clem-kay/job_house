@@ -39,6 +39,7 @@ $id = $_SESSION['id'];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
 </head>
@@ -197,6 +198,8 @@ $id = $_SESSION['id'];
                         $sql = mysqli_query($con, "SELECT * From appliedjob  where client_id='$id' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
+                           $cid = $row['client_id'];
+                          $fid=$row['freelancer_id'];
                           $job_id =$row['jobid'];
                         $sql2 = mysqli_query($con, "SELECT * From job_posted  where id = '$job_id' and completed = 1");
                         $row2 = mysqli_num_rows($sql2);
@@ -210,12 +213,11 @@ $id = $_SESSION['id'];
                     <td>'.$row2["job_category"].'</td>
                     <td>'.$row2["job_type"].'</td>
                     <td>'.$row2["description"].'</td> 
-                    <td><a href="payfreelancer.php?id='.$job_id.'" style="background-color: #207b41; border-color: #207b41;color:#fff"class="btn">Pay Freelancer</a></td>                                           
-                      </tr> ';
-                        }
-                      }
-                        ?>
-                 </tbody>
+                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> </td>';
+
+}
+}          ?>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -233,6 +235,53 @@ $id = $_SESSION['id'];
 
       </div>
       <!-- End of Main Content -->
+      <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <?php
+
+        if(isset($_POST['review'])){
+
+         $stars = $_POST['stars'];
+         $comment = $_POST['comment'];
+    
+    $save_query = mysqli_query($con,"INSERT into freview(client_id,freelancer_id,stars,comment) VALUES ('$cid','$fid','$stars','$comment')");
+
+    if($save_query){
+        echo 'Thank you very much for your review';
+    }else{
+        echo 'Review Failed....Please try again';
+    }
+    }
+              
+    ?>
+
+    <!--Rating, Review and comment-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">Review Your Freelancer</h4> 
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+        <form method="post" action="">
+        <div class="form-group">
+          <input type="number" class="form-control" max="5" min="1" name="stars" placeholder="Number of stars for your client">
+        </div>
+        <div class="form-group">
+        <textarea class="form-control" name="comment" placeholder="Enter Your Comment Here"></textarea>
+        </div>
+      </div>
+    
+      <div class="modal-footer">
+      <input style="border-color:#207b41 ;background-color:#207b41;color:#fff; " type = submit name="review" class="btn" value="Review"/>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </form>
+    </div>
+    </div>
+
+  </div>
+</div>
+
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -287,6 +336,12 @@ $id = $_SESSION['id'];
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>
+   <!-- Page level plugins -->
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

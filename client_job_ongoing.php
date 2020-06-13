@@ -39,6 +39,7 @@ $id = $_SESSION['id'];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
 </head>
@@ -190,7 +191,7 @@ $id = $_SESSION['id'];
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
-                      <th>Action</th>
+                     
                       
                     </tr>
                   </thead>
@@ -214,8 +215,7 @@ $id = $_SESSION['id'];
                     <td>'.$row2["job_title"].'</td>
                     <td>'.$row2["job_category"].'</td>
                     <td>'.$row2["job_type"].'</td>
-                    <td>'.$row2["description"].'</td>
-                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-fw fa-comments"></i>Review</button> </td>                                        
+                    <td>'.$row2["description"].'</td>                                      
                       </tr> ';
                         }
                       }
@@ -294,7 +294,7 @@ $id = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Amalitech &copy; Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -343,6 +343,12 @@ $id = $_SESSION['id'];
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>
+  <!-- Page level plugins -->
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
