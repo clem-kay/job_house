@@ -26,8 +26,8 @@ $fid = $_SESSION['id'];
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
+<!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">    <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
@@ -156,10 +156,10 @@ $fid = $_SESSION['id'];
   <!-- Nav Item - Alerts -->
                    
           <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -205,14 +205,14 @@ $fid = $_SESSION['id'];
             }
           ?>
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Applied Jobs</h6>
+              <h6 class="m-0 font-weight-bold">Your Applied Jobs</h6>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success font-weight-bold">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
@@ -260,7 +260,7 @@ $fid = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -328,7 +328,9 @@ $fid = $_SESSION['id'];
   <script src="admin/js/demo/datatables-demo.js"></script>
   <!-- Page level plugins -->
   <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="admin/js/demo/datatables-demo.js"></script>
