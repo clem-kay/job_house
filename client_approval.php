@@ -8,6 +8,18 @@ $username = $_SESSION['username'];
 
 $id = $_SESSION['id'];
 
+ if(isset($_GET['response'])){
+                          $msg = $_GET['response'];
+
+                          if($msg==='error'){
+                              echo '<div class=alert alert-danger>Job has already been paid</div>';
+                          }
+                          else if($msg ==='success'){
+                            echo '<div class=alert alert-success>Payment Sucessful</div>';
+                          }
+
+                        }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,18 +197,6 @@ $id = $_SESSION['id'];
                   </thead>
                   <tbody>
                       <?php
-
-                        if(isset($_GET['response'])){
-                          $msg = $_GET['response'];
-
-                          if($msg==='error'){
-                              echo '<div class=alert alert-danger>Job has already been paid</div>';
-                          }
-                          else if($msg ==='success'){
-                            echo '<div class=alert alert-success>Payment Sucessful</div>';
-                          }
-
-                        }
                         $id = $_SESSION['id'];
                        $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
                         $applied=mysqli_num_rows($query);

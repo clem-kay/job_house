@@ -35,6 +35,8 @@ if(isset($_GET['id'])){
 }
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +65,17 @@ if(isset($_GET['id'])){
         <div class="toolbar hidden-print">
             <div class="text-right">
                 <button id="printInvoice" style="background-color: #20c141;border-color:#20c141;color:#fff" class="btn"><i class="fa fa-print"></i> Print</button>
-                <button style="background-color: #20c141;border-color:#20c141;color:#fff" class="btn"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                 <form action="charge.php?job_id=<?php echo $jobid; ?>" method="Post">
+                              <script
+                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="pk_test_51GsPXxEEFt2aMR7A5JaAFPswqlawseUmNuUlVdNeTYnjEvasxfkfBcz67GdY9FbYLYKd4dEegADo0qCBUropcIcT00Fm78ojsz"
+                                            data-amount="<?php echo $price*100; ?>"
+                                            data-name="Job HousePayment"
+                                            data-description="Payment Form"
+                                            data-image=""
+                                            data-locale="auto">
+                                    </script>
+                                </form></td>     
             </div>
             <hr>
         </div>
