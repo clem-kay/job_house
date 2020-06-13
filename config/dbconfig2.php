@@ -1,12 +1,12 @@
-<!-- <?php
-$host = "localhost";
-$user = " job";
-$password = " yjDX26UsNkYGgwf";
+  <!-- // <?php
+//$host = "localhost";
+//$user = " job";
+//$password = " ";
 
-    $con = mysqli_connect($host,$user,$password);
-    mysqli_select_db($con,"advathin_job");
+    // $con = mysqli_connect($host,$user,$password);
+    // mysqli_select_db($con,"advathin_job");
 
-?> -->
+?>   -->
 
 
 <?php
@@ -18,3 +18,4 @@ $password = "";
     mysqli_select_db($con,"job");
 
 ?> 
+<!-- yjDX26UsNkYGgwf -->

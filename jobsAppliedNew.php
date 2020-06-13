@@ -16,7 +16,7 @@ $fid = $_SESSION['id'];
 
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dashboard</title>
     <!-- Font Awesome -->
@@ -26,11 +26,14 @@ $fid = $_SESSION['id'];
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-<!-- MDBootstrap Datatables  -->
-<link href="css/addons/datatables.min.css" rel="stylesheet">    <!-- Material Design Bootstrap -->
+
+    <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
+     <!-- <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
 
 </head>
 
@@ -325,16 +328,15 @@ $fid = $_SESSION['id'];
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
 
-  <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
-  <!-- Page level plugins -->
-  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <!-- <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
-  <!-- MDBootstrap Datatables  -->
-<script type="text/javascript" src="js/addons/datatables.min.js"></script>
-
   <!-- Page level custom scripts -->
   <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
   <script type="text/javascript" src="admin/js/avatar.js"></script>
+    <!-- Page level plugins -->
+    <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="addmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
+<script type="text/javascript" src="admin/js/dashboardscripts.js"></script>
 </body>
 
 </html>

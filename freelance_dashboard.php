@@ -170,11 +170,11 @@ $fid = $_SESSION['id'];
             </div>
           </form> -->
        <!-- Search form -->
-       <form class="form-inline ml-auto">
-      <div class="md-form my-0">
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+       <form class=" md-form form-inline ml-auto" method="post" action="search.php">
+      <div class=" my-0">
+        <input class="form-control active-green" type="text" placeholder="Search for jobs..." aria-label="Search">
       </div>
-      <button href="#!" class="btn btn-outline-white btn-md my-0 ml-sm-2" type="submit">Search</button>
+      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" type="submit">Search</button>
     </form>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -197,7 +197,10 @@ $fid = $_SESSION['id'];
                 </form>
               </div>
             </li>
+              <li>
+                <a href="" class="btn fl-btn-pm btn-sm  ml-4">Find Clients</a>
 
+              </li>
             <!-- Nav Item - Alerts -->
            
             <!-- Nav Item - User Information -->

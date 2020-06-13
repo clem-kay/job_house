@@ -143,15 +143,21 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
           </button>
 
 
-        
+        <!-- Top bar search -->
+        <form class=" md-form form-inline ml-auto" method="post" action="search.php">
+      <div class=" my-0">
+        <input class="form-control active-green" type="text" placeholder="Search..." aria-label="Search">
+      </div>
+      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" type="submit">Search</button>
+    </form>
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <!-- <ul class="navbar-nav ml-auto"> -->
 
 
   
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
+     
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -173,7 +179,10 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             </li>
 
 
+            <li>
+                <a href="" class="btn fl-btn-pm btn-sm  ml-4">Find Freelancers</a>
 
+              </li>
             <!-- Nav Item - User Information -->
             <li class="nav-item avatar dropdown no-arrow mr-2">
               <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
