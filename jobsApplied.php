@@ -26,7 +26,7 @@ $fid = $_SESSION['id'];
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
@@ -325,6 +325,12 @@ $fid = $_SESSION['id'];
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
 
+  <script src="admin/js/demo/datatables-demo.js"></script>
+  <!-- Page level plugins -->
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
   <script src="admin/js/demo/datatables-demo.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>
 </body>

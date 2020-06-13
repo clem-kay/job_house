@@ -44,6 +44,7 @@ if(isset($_GET['id'])){
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -316,6 +317,12 @@ if(isset($_GET['id'])){
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>
+    <!-- Page level plugins -->
+  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="admin/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>
