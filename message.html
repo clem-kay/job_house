@@ -132,7 +132,9 @@ $id = $_SESSION['id'];
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                    <a role="button" class="btn btn-md fl-btn-pm ml-4" placeholder="Compose" value="" data-toggle="modal" data-target="#composeModal">
+                        <i class="fa fap-w fa-plus-square fa-2x mr-2 " aria-hidden="true"></i>New Message
+                    </a>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fap fa-bars"></i>
@@ -142,7 +144,9 @@ $id = $_SESSION['id'];
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+
                         <!-- Nav Item - User Information -->
+
                         <li class="nav-item avatar dropdown no-arrow mr-2">
                             <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
@@ -173,9 +177,11 @@ $id = $_SESSION['id'];
                 <div class="container-fluid">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active btn flat" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+                            <a class="nav-item nav-link active btn flat" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                                <i class="fa  fap fa-inbox mr-2" aria-hidden="true"></i> Inbox</a>
+                            <a class="nav-item nav-link btn flat" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                <i class="fas fap fa-location-arrow  mr-2  "></i> Sent</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Drafts</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -209,7 +215,36 @@ $id = $_SESSION['id'];
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <!-- Compose Message Modal -->
+    <!-- Button trigger modal -->
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="composeModal" tabindex="-1" role="dialog" aria-labelledby="composeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form action="" method="post">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold" id="composeModalLabel">New Message</h5>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true" hidden>&times;</span>
+                   </button>
+                    </div>
+                    <div class="modal-body">
+                        Content
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary btn-sm">Save</button>
+                        <button type="submit" class="btn fl-btn-pm btn-sm">Send</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
