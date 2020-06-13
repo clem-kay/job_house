@@ -242,6 +242,7 @@ $username = $_SESSION['username'];
                      $row2 = mysqli_num_rows($sql2);
                      while($row2 = mysqli_fetch_array($sql2)){
                       $date=TimeAgo($row['created_date']);
+                      $description = $row['description'];
                           
                       echo' 
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
@@ -249,15 +250,16 @@ $username = $_SESSION['username'];
                             <div class="ml-3 col-md-10-12">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
-                                .$row2['username']. "  ". '|'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
+                                .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
                                </div>
                                <hr/>
                                 <p class="card-text job-desc">'
-                                 .$row['description'].'
+                                 .substr($description, 0,150).'...
                               </p>
                               
                           </div>
                           <div class="ml-3 col-md-2-12 pl-3 pr-3" style="">
+                          <a class="btn btn-sm fl-btn-pm" data-toggle="modal" data-target="#basicExampleModal" href="">View Job</a>
                            <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
                           </div>
                          
@@ -311,7 +313,89 @@ $username = $_SESSION['username'];
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
+  <!-- View Freelancer Modal-->
+
+<!-- Modal -->
+<?php 
+$query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$userid'");
+                        while($user_name_row = mysqli_fetch_array($query) ){ 
+                          $fullname = $user_name_row['firstname']." ".$user_name_row['lastname'];
+                          
+                        }
+
+$result = mysqli_query($con, "SELECT * From job_posted where user_id='$userid' ");
+$number = mysqli_num_rows($result);
+?>
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content pt-3 pb-3 pl-4  pr-4">
+           <div class="fl-modal-head">
+             <div class=" form-inline align-items-center mb-2">
+             <img class="rounded-circle z-depth-1 img-fluid " avatar="<?php echo $fullname?>">
+               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel"><?php echo $fullname?></h5>
+               <h6 class="pt-2 pl-3"></h6>
+             </div>
+             
+             <small class="text-muted green-text font-weight-bold" >Posted Job:<?php echo $number;?></small>
+           </div>
+           <br>
+           <div class="fl-modal-body">
+           <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-muted active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="home"
+      aria-selected="true">Job Description</a>
+  </li>
+  <li class="nav-item">
+  
+    <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile"
+      aria-selected="false">Reviews <span class="badge badge-success"><?php echo $row; ?></span> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-muted" id="contact-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="contact"
+      aria-selected="false">Projects <span class="badge badge-success"><?php echo $number; ?></span> </a>
+  </li>
+</ul>
+<!--contents of tabs-->
+<div class="tab-content pl-3 pr-3" id="myTabContent">
+ <!-- Job Description contents -->
+ <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="home-tab">
+ 
+  <div class="no-content align-items-center text-center mt-4">
+    <p><?php echo $description?></p>
+    <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+                    
+  </div>
+  <!-- review contents -->
+  <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
+   <div class = "">
+     <hr class="my-2">
+    <div class="no-content align-items-center text-center mt-4">
+    <p>No Reviews yet.</p>
+    <i class="fas fa-comment-dots fa-2x text-muted   "></i>
+
+  </div>
+  <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>'.$comment.'<i class="fa fa-quote-right ml-2" aria-hidden="true"></i></p>
+   </div>
+  </div>
+<!-- projects contents -->
+  <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="contact-tab">
+  <div class="no-content align-items-center text-center mt-4">
+    <?php 
+        while ($row4 = mysqli_fetch_array($result)){
+            echo $row4['job_title'].'<br/>';
+        }
+    ?>
+    
+   
+
+  </div>
+</div>
+           </div>
+           <div class="modal-footer mt-2">
+               <button type="button" class="btn btn-outline-green" data-dismiss="modal">Close</button>
+               
+           </div>
+       </div>
    <!-- Logout Modal-->
    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
