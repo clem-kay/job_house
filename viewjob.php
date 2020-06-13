@@ -218,14 +218,17 @@ $username = $_SESSION['username'];
          <!-- DataTales Example -->
          <div class="card shadow mb-4">
             <div class="card-body">
-            
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <tbody>
+
             <?php
             if (isset($_GET['pageno'])){
               $pageno = $_GET['pageno'];
             }else{
               $pageno = 1;
             }         
-            $no_of_records_per_page = 10;
+            $no_of_records_per_page = 4;
 
             $offset = ($pageno - 1)*$no_of_records_per_page;
             $result = mysqli_query($con, "SELECT COUNT(*) From job_posted where closed = 0");
@@ -243,8 +246,10 @@ $username = $_SESSION['username'];
                      while($row2 = mysqli_fetch_array($sql2)){
                       $date=TimeAgo($row['created_date']);
                       $description = $row['description'];
+
+                      
                           
-                      echo' 
+                      echo' <tr><td>
                         <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
                           <div class="card-body row align-items-center">
                             <div class="ml-3 col-md-10-12">
@@ -259,16 +264,22 @@ $username = $_SESSION['username'];
                               
                           </div>
                           <div class="ml-3 col-md-2-12 pl-3 pr-3" style="">
-                          <a class="btn btn-sm fl-btn-pm" data-toggle="modal" data-target="#basicExampleModal" href="">View Job</a>
+                          <a class="btn btn-sm fl-btn-pm" data-id="'.$id.'" id="viewjobid" data-toggle="modal" data-target="#basicExampleModal" href="">View Job</a>
                            <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
                           </div>
                          
                       </div>
-                  </div>
-                  <br/>';
+                  </div></td></tr>';
               }
             } 
            ?>   
+
+                      
+                      
+                 </tbody>
+                </table>
+              </div>
+
                   
          <nav style="float: right;"aria-label="Page navigation example">
               <ul class="pagination">
@@ -390,12 +401,12 @@ $number = mysqli_num_rows($result);
 
   </div>
 </div>
-           </div>
-           <div class="modal-footer mt-2">
-               <button type="button" class="btn btn-outline-green" data-dismiss="modal">Close</button>
-               
-           </div>
-       </div>
+</div>
+<div class="modal-footer mt-2">
+<button type="button" class="btn btn-outline-green" data-dismiss="modal">Close</button>
+</div>
+</div>
+
    <!-- Logout Modal-->
    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">

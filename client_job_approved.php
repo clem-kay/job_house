@@ -201,7 +201,7 @@ $id = $_SESSION['id'];
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
-                      <th>Action</th>
+                     
                       
                     </tr>
                   </thead>
@@ -224,20 +224,7 @@ $id = $_SESSION['id'];
                     <td>'.$row2["job_title"].'</td>
                     <td>'.$row2["job_category"].'</td>
                     <td>'.$row2["job_type"].'</td>
-                    <td>'.$row2["description"].'</td> 
-                    <td>
-                      <form action="charge.php?job_id='.$job_id.'" method="Post">
-                              <script
-                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                            data-key="pk_test_51GsPXxEEFt2aMR7A5JaAFPswqlawseUmNuUlVdNeTYnjEvasxfkfBcz67GdY9FbYLYKd4dEegADo0qCBUropcIcT00Fm78ojsz"
-                                            data-amount="<?php echo $price*100; ?>"
-                                            data-name="Job HousePayment"
-                                            data-description="Payment Form"
-                                            data-image=""
-                                            data-locale="auto">
-                                    </script>
-                                </form></td>                                           
-                      </tr> ';
+                    <td>'.$row2["description"].'</td>';
                         }
                       }
                         ?>

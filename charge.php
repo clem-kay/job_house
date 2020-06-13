@@ -16,7 +16,7 @@ if(isset($_GET['job_id'])){
         $jid = $row1['jobid'];
         if($jid === $job_id){
             $message = 'paid';
-         echo '<script>window.location="client_job_approved.php?message='.$message.'"</script>';
+         echo 'echo <div class="alert alert-danger">Job has already been paid</div>';
 
         } else{
          
@@ -24,9 +24,10 @@ if(isset($_GET['job_id'])){
     if($query){
          $row = mysqli_fetch_array($query);
          $pay_amount = $row['budget'];
-         $tax=($pay_amount * 0.25);
-         $pay_amount = $pay_amount + $tax;
+         $pay_amount = $pay_amount + ($pay_amount * 0.25);
+         echo $pay_amount;
          $stripe_pay_amount = $pay_amount*100;
+         echo $stripe_pay_amount;
     $save_transaction = mysqli_query($con,"INSERT INTO transaction(client_id,jobid,amount)VALUES('$id','$job_id','$pay_amount')");
       if($save_transaction){
         
@@ -56,7 +57,7 @@ $amount_charged = $amount_charged/100;
 
 $message = 'success';
 
-echo '<script>window.location="client_job_approved.php?message='.$message.'"</script>';
+echo '<div class="alert alert-success">Payment Sucessful</div>';
 
     } 
 }
