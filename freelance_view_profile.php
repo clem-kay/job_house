@@ -37,6 +37,19 @@ include('functions.php');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/selectCountry.min.css">
+    <Script type="text/javascript">
+    $(document).ready(function() {
+
+       $("#country_select").countrySelect();
+
+$("#country_selector").countrySelect({
+    defaultStyling: "inside"
+});
+    });
+    </Script>
+
+    
 
 
   <!-- Custom styles for this template-->
@@ -216,6 +229,12 @@ include('functions.php');
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="text-right">
+                    <button type="button" class="btn fl-btn-pm btn-sm " data-toggle="modal" data-target="#profileModal">
+                    <i class="fas fa-edit fap-w   "></i> Edit Profile
+                    </button>
+                    </div>
+                    
                                 <div style="margin-top:20px;" class="row">
                                     <div class="col-md-6">
                                         <label>User Name</label>
@@ -362,7 +381,98 @@ include('functions.php');
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
+  <!-- Edit profile modal -->
+  <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header row align-items-center">
+             <a class="nav-link  col-2 " href="#" id="userAvatar" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span> -->
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+              </a>
+              <div class="col-8 pl-4 modal-title">
+                <h4>Username</h4>
+                <small>Email</small>
+              </div>
+                 <!-- <h5 class="modal-title" id="profileModalLabel">Modal title</h5> -->
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true" hidden>&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+               
+               <form class ="me-form needs-validation"action="" method="post" novalidate>
+                
+                 <div class="md-form  col input-with-pre-icon active-success">
+                   <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
+                   <input type="text" id="userFirstName" name="firstname" class="form-control " required>
+                   <label for="userFirstName"  class="ml-3">First Name</label>
+                 </div> 
+               <div class="md-form col input-with-pre-icon ">
+                   <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
+                   <input type="text" id="userLastName" name="lastname" class="form-control" required>
+                   <label for="userLastName" class="ml-3">Last Name</label>
+               </div>  
+
+                 
+                 <div class="md-form col input-with-pre-icon">
+                   <i style="color: #388e3c;" class="fa fap fa-user-tag input-prefix " aria-hidden="true"></i>
+                   <input type="text" id="profession" name="profession" class="form-control" required>
+                   <label for="profession" class="ml-3">Professional Heading</label>
+               </div>
+
+               <!-- <div class="md-form country">
+                 
+                 <input class="form-control" type="text" name="country" id="country_selector">
+                 <input class="form-control" type="text"  id="country_selector" style="display: none;">
+                 <small id="countryHelp "  class="form-text text-muted">Select Country</small>
+              </div> -->
+
+                <div class="md-form input-with-pre-icon">
+                  <i style="color: #388e3c;" class="fa fap fa-city input-prefix" aria-hidden="true"></i>
+                  <input id ="userCity" class="form-control" type="text" name="city" id="userCity">
+                  <label for="userCity" class="ml-3">City</label>
+
+                  <!-- <small id="userCity " class="form-text text-muted">City</small> -->
+                </div>
+                
+                <div class="md-form col input-with-pre-icon">
+                   <i style="color: #388e3c;" class="fa fap fa-location-arrow pb-4 input-prefix " aria-hidden="true"></i>
+                   <input type="text" id="userAddress" name="address" class="form-control " required>
+                   <label for="userAddress" class="ml-3">Address</label>
+                   <small id="userAddress " class="form-text text-muted ml-3">Post address or location</small>
+               </div>
+               <div class="md-form col input-with-pre-icon">
+                   <i style="color: #388e3c;" class="fa fap fa-phone input-prefix " aria-hidden="true"></i>
+                   <input type="text" id="userContact" name="contact" class="form-control" required>
+                   <label for="userContact" class="ml-3">Contact</label>
+               </div>
+               <div class="md-form ">
+                    <!-- <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i> -->
+                    <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
+                    <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea"  rows="5"></textarea>
+                    <label for="textarea-char-counter">Profile Summary</label>
+                    <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
+                </div>
+
+               </form>
+                 
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn fl-btn-pm">Save changes</button>
+             </div>
+         </div>
+     </div>
+  </div>
+
+
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
@@ -383,18 +493,35 @@ include('functions.php');
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="admin/vendor/jquery/jquery.min.js"></script>
-  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <!-- <script src="admin/vendor/jquery/jquery.min.js"></script> -->
+  <!-- <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+   <!-- End your project here-->
+    <!-- jQuery -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js "></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js "></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js "></script>
+    <!-- Your custom scripts (optional) -->
+   
   <!-- Core plugin JavaScript-->
   <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="admin/js/sb-admin-2.min.js"></script>
-
+  <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Page level plugins -->
-  <script src="admin/vendor/chart.js/Chart.min.js"></script>
   <script type="text/javascript" src="admin/js/avatar.js"></script>
+    <script src="js/countrySelect.min.js" type="text/javascript"></script>
+    <script src="js/customscripts.js " type="text/javascript "></script>
+    <!-- <script src="admin/js/dashboardscripts.js " type="text/javascript "></script> -->
+
+
+
+
+
 </body>
 
 </html>

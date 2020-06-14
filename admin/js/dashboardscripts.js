@@ -8,6 +8,15 @@ $(document).ready(function() {
         // $('.viewMessage').toggle().hide();
 
 
+        $("#country_select").countrySelect();
+
+        $("#country_selector").countrySelect({
+            defaultStyling: "inside"
+        });
+
+        $('.sCountries').phonecode({
+            setClass: 'phone'
+        });
 
     });
 
