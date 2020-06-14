@@ -143,16 +143,50 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
           </button>
 
 
-        
+        <!-- Top bar search -->
+        <form class=" md-form form-inline ml-auto" method="post" action="search.php">
+      <div class=" my-0">
+        <input class="form-control active-green" type="text" placeholder="Search..." aria-label="Search">
+      </div>
+      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" type="submit">Search</button>
+    </form>
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+          <!-- <ul class="navbar-nav ml-auto"> -->
 
 
   
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
             <a>Find Freelancer</a>
+=======
+     
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn fl-btn-pm" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
 
+
+            <li>
+                <a href="" class="btn fl-btn-pm btn-sm  ml-4">Find Freelancers</a>
+>>>>>>> 6d56033d3b0e44467bb2dd34cc8a09d3b7e8a19f
+
+              </li>
             <!-- Nav Item - User Information -->
             <li class="nav-item avatar dropdown no-arrow mr-2">
               <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

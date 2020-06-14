@@ -179,8 +179,3 @@ $(document).ready(function() {
     new WOW().init();
 
 });
-
-$(document).ready(function() {
-    $('#dataTable').DataTable();
-    $('.dataTables_length').addClass('bs-select');
-});

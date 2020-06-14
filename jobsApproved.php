@@ -30,8 +30,10 @@ $fid = $_SESSION['id'];
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+     <!-- <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
 
 </head>
 
@@ -203,15 +205,15 @@ $fid = $_SESSION['id'];
 
             }
           ?>
-            <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Approved Job</h6>
+            <div class="card-header py-3 background-grey">
+              <h6 class="m-0 font-weight-bold">Your Approved Job</h6>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                  <thead class="text-success ">
+                    <tr class="">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
@@ -235,7 +237,7 @@ $fid = $_SESSION['id'];
                     <td>'.$jobrow["job_category"].'</td>
                     <td>'.$jobrow["job_type"].'</td>
                     <td>'.$jobrow["description"].'</td>
-                    <td> <a  href="jobsApproved.php?id='.$jobid.'" style="background-color:#207b41;border-color:#207b41;color:#fff" class="btn btn-primary"> Accept</a></td>                                            
+                    <td> <a  href="jobsApproved.php?id='.$jobid.'"  class="btn fl-btn-pm"> Accept</a></td>                                            
                       </tr> ';
                         }
                       }
@@ -260,7 +262,7 @@ $fid = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -325,15 +327,17 @@ $fid = $_SESSION['id'];
   <!-- Page level plugins -->
   <script src="admin/vendor/chart.js/Chart.min.js"></script>
 
-  <script src="admin/js/demo/datatables-demo.js"></script>
+  <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
   <script type="text/javascript" src="admin/js/avatar.js"></script>
 
    <!-- Page level plugins -->
   <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="addmin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+<!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
+<script type="text/javascript" src="admin/js/dashboardscripts.js"></script>
   <!-- Page level custom scripts -->
-  <script src="admin/js/demo/datatables-demo.js"></script>
+  <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
 
 </body>
 
