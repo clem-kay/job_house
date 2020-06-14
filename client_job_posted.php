@@ -144,43 +144,11 @@ $id = $_SESSION['id'];
             <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button style="background-color: #207b41; border-color: #207b41; "class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
+       
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button style="background-color: #207b41; border-color: #207b41; class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-
-            <!-- Nav Item - User Information -->
+     <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
@@ -210,26 +178,46 @@ $id = $_SESSION['id'];
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
+
+         <div class="card shadow mb-4">
+          <?php 
+            if(isset($_GET['id'])){
+              $jobid = $_GET['id'];
+              
+              $accepted_query = mysqli_query($con,"UPDATE appliedjob SET accepted = 1 WHERE jobid = '$jobid'");
+
+              $end_job_query = mysqli_query($con, "UPDATE job_posted SET closed = 1 WHERE id = '$jobid'");
+
+              if($accepted_query && $end_job_query){
+                 echo '<div class="alert alert-success">
+                    <p>You have sucessfuly accepted the job</p>
+                  </div>';
+                }else
+                 echo '<div class="alert alert-success">
+                    <p>Acceptance Failed</p>
+                  </div>';
+
+            }
+          ?>
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job</h6>
+              <h6 class="m-0 font-weight-bold">Your Posted Jobs</h6>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success font-weight-bold">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
+                    
                       
                     </tr>
                   </thead>
                   <tbody>
-                      <?php
+                       <?php
                         $sql = mysqli_query($con, "SELECT * From job_posted where user_id='$id'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
@@ -247,19 +235,15 @@ $id = $_SESSION['id'];
               </div>
             </div>
           
-        <!-- End of inbox-->
-         
+       
 
 
-          
-        
 
-           
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

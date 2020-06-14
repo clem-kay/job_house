@@ -43,7 +43,6 @@ if (isset($_POST['login'])) {
         }
          else echo "<div class='alert alert-danger' role='alert'>Incorrect Username or Password</div>";
     }
-    else echo "<div class='alert alert-danger' role='alert'>Incorrect Username or Password</div>";
 }
 ?>
 

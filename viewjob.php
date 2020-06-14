@@ -219,7 +219,7 @@ $username = $_SESSION['username'];
          <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="jobstb" width="100%" cellspacing="0">
                   <tbody>
 
             <?php
@@ -269,7 +269,7 @@ $username = $_SESSION['username'];
                           </div>
                          
                       </div>
-                  </div></td></tr>';
+                  </div></td><td hidden>'.$description.'</td></tr>';
               }
             } 
            ?>   
@@ -327,27 +327,18 @@ $username = $_SESSION['username'];
   <!-- View Freelancer Modal-->
 
 <!-- Modal -->
-<?php 
-$query = mysqli_query($con,"SELECT * FROM useraccount WHERE id = '$userid'");
-                        while($user_name_row = mysqli_fetch_array($query) ){ 
-                          $fullname = $user_name_row['firstname']." ".$user_name_row['lastname'];
-                          
-                        }
 
-$result = mysqli_query($con, "SELECT * From job_posted where user_id='$userid' ");
-$number = mysqli_num_rows($result);
-?>
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content pt-3 pb-3 pl-4  pr-4">
            <div class="fl-modal-head">
              <div class=" form-inline align-items-center mb-2">
-             <img class="rounded-circle z-depth-1 img-fluid " avatar="<?php echo $fullname?>">
-               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel"><?php echo $fullname?></h5>
+             <img class="rounded-circle z-depth-1 img-fluid " avatar="">
+               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel"></h5>
                <h6 class="pt-2 pl-3"></h6>
              </div>
              
-             <small class="text-muted green-text font-weight-bold" >Posted Job:<?php echo $number;?></small>
+             <small class="text-muted green-text font-weight-bold" >Posted Job:job number</small>
            </div>
            <br>
            <div class="fl-modal-body">
@@ -359,11 +350,11 @@ $number = mysqli_num_rows($result);
   <li class="nav-item">
   
     <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile"
-      aria-selected="false">Reviews <span class="badge badge-success"><?php echo $row; ?></span> </a>
+      aria-selected="false">Reviews <span class="badge badge-success">reviews come here</span> </a>
   </li>
   <li class="nav-item">
     <a class="nav-link text-muted" id="contact-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="contact"
-      aria-selected="false">Projects <span class="badge badge-success"><?php echo $number; ?></span> </a>
+      aria-selected="false">Projects <span class="badge badge-success">number comes here</span> </a>
   </li>
 </ul>
 <!--contents of tabs-->
@@ -372,7 +363,7 @@ $number = mysqli_num_rows($result);
  <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="home-tab">
  
   <div class="no-content align-items-center text-center mt-4">
-    <p><?php echo $description?></p>
+    <p id="jobdesc"></p>
     <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
                     
   </div>
@@ -442,9 +433,27 @@ $number = mysqli_num_rows($result);
   <!-- Page level plugins -->
   <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <script type="text/javascript">
+    $(document).ready(function(event){
+      
+
+      $('jobstb tbody').on('tr','click',function(){
+        let table = $('#jobstb').DataTable();
+        let data = table.data(this).row();
+        alert(data[1]);
+        $("#jobdesc").html(data[1]);
+
+        $("#basicExampleModal").modal('show');
+
+      });
+
+
+    });
+
+  </script>
 
   <!-- Page level custom scripts -->
-  <script src="admin/js/demo/datatables-demo.js"></script>
+  <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
   <script type="text/javascript" src="admin/js/avatar.js"></script>
 </body>
 

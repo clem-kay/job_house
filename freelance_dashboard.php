@@ -132,9 +132,6 @@ $fid = $_SESSION['id'];
       </li>
 
      
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -160,46 +157,20 @@ $fid = $_SESSION['id'];
             <i class="fa fap fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="search.php">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <input type="submit" name="search" class="btn btn-primary" value=">>"/>
-              </div>
-            </div>
-          </form> -->
+               
        <!-- Search form -->
        <form class=" md-form form-inline ml-auto" method="post" action="search.php">
       <div class=" my-0">
-        <input class="form-control active-green" type="text" placeholder="Search for jobs..." aria-label="Search">
+        <input class="form-control active-green" type="text" name="item" placeholder="Search for jobs..." aria-label="Search">
       </div>
-      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" type="submit">Search</button>
+      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" name="search" type="submit">Search</button>
+
     </form>
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="freelance_compose_message.php" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search" method="post" action="search.php">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" name="item" placeholder="Search for job by category..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <input type="submit" name="search" class="btn btn-sm fl-btn-sm" value="Search"/>
-                    
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-              <li>
+     
+              <li style="margin-top: 10px"class="nav-item no-arrow mr-2">
                 <a href="" class="btn fl-btn-pm btn-sm  ml-4">Find Clients</a>
-
               </li>
             <!-- Nav Item - Alerts -->
            

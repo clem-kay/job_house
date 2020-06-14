@@ -14,20 +14,21 @@ $fid = $_SESSION['id'];
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Search Result</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <title>Dashboard</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -37,11 +38,11 @@ $fid = $_SESSION['id'];
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul style="background-color: #207b41;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul  class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Job House</div>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
       </a>
 
       <!-- Divider -->
@@ -51,7 +52,7 @@ $fid = $_SESSION['id'];
       <li class="nav-item active">
         <a class="nav-link" href="freelance_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Search <?php ?></span></a>
+          <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
@@ -119,9 +120,6 @@ $fid = $_SESSION['id'];
       </li>
 
      
-    
-     
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -144,20 +142,27 @@ $fid = $_SESSION['id'];
 
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+            <i class="fa fap fa-bars"></i>
           </button>
 
+       <form method="post" action="search.php" class="form-inline ml-auto" >
+      <div class="md-form my-0">
+        <input class="form-control" type="text" placeholder="Search" name="item" aria-label="Search">
+      </div>
+      <input  class="btn btn-sm btn-outline-green" type="submit"name="search" value="Search">
+    </form>
+          <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-      
+
             <!-- Nav Item - Alerts -->
            
             <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
-                <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+            <li class="nav-item avatar dropdown no-arrow mr-2">
+              <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -176,6 +181,7 @@ $fid = $_SESSION['id'];
           </ul>
 
         </nav>
+        <!-- End of Topbar -->
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -202,7 +208,7 @@ $fid = $_SESSION['id'];
           $total_rows = mysqli_fetch_array($result)[0];
       $total_pages = ceil($total_rows / $no_of_records_per_page);
             
-            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 and job_category = '$searchq' LIMIT $offset, $no_of_records_per_page");
+            $sql = mysqli_query($con, "SELECT * From job_posted where job_category LIKE '%$searchq%' or job_title  like '%$searchq%' and closed = 0 LIMIT $offset, $no_of_records_per_page");
                      $row = mysqli_num_rows($sql);
 
                      while ($row = mysqli_fetch_array($sql)){
@@ -229,7 +235,7 @@ $fid = $_SESSION['id'];
                               
                           </div>
                           <div class="ml-3 col-md-1-12 pl-3 pr-3 poster-col">
-                           <a class="btn btn-primary" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
+                           <a class="btn btn-sm fl-btn-pm" style="background-color: #207b41; border-color: #207b41; position:relative;left:37rem;" href="applyJob.php?id='.$id.'">APPLY</a>
                           </div>
                           <div class="col-sm-1-12 mt-2 ml-3"  ">            
                           </div>
@@ -244,14 +250,14 @@ $fid = $_SESSION['id'];
                   
          <nav style="float: right;"aria-label="Page navigation example">
               <ul class="pagination">
-        <li><a class="btn" href="?pageno=1">First</a></li>
+        <li><a class="btn btn-sm btn-outline-green" href="?pageno=1">First</a></li>
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
         </li>
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a class="btn" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+            <a class="btn btn-sm btn-outline-green" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
         </li>
-        <li><a class="btn" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+        <li><a class="btn btn-sm btn-outline-green" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
          </ul>
               </nav>
             </div>

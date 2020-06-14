@@ -174,30 +174,31 @@ $id = $_SESSION['id'];
         </nav>
 
         <!-- Begin Page Content -->
+         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
-            <?include('controllers/approveJob.php')?>
+          <?include('controllers/approveJob.php')?>
+         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Posted Job Awaiting Approval</h6>
+              <h6 class="m-0 font-weight-bold">Your Posted Job Awaiting Approval</h6>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success font-weight-bold">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
                        <th>Freelancer Name</th>
                       <th>Description</th>
                       <th>Action</th>
+                    
                       
                     </tr>
                   </thead>
                   <tbody>
-                      <?php
+                     <?php
                         $id = $_SESSION['id'];
                        $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' and approved=0");
                         $applied=mysqli_num_rows($query);
@@ -235,19 +236,22 @@ $id = $_SESSION['id'];
                     }
                   }
                         ?>
+              
                  </tbody>
                 </table>
               </div>
             </div>
           
-        <!-- End of inbox-->
-           
+       
+
+
+
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
-
+      
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">

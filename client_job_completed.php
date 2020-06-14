@@ -172,29 +172,28 @@ $id = $_SESSION['id'];
           </ul>
 
         </nav>
-        <!-- Begin Page Content -->
+       
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
+         <div class="card shadow mb-4">
+          
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Completed Jobs</h6>
+              <h6 class="m-0 font-weight-bold">Your Completed Jobs</h6>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success font-weight-bold">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
                       <th>Action</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
-                      <?php
+                         <?php
                         $sql = mysqli_query($con, "SELECT * From appliedjob  where client_id='$id' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
@@ -217,23 +216,21 @@ $id = $_SESSION['id'];
 
 }
 }          ?>
-                  </tbody>
+                 </tbody>
                 </table>
               </div>
             </div>
           
-        <!-- End of inbox-->
-         
+       
 
 
-          
-        
 
-           
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
       </div>
+        
       <!-- End of Main Content -->
       <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -274,7 +271,6 @@ $id = $_SESSION['id'];
     
       <div class="modal-footer">
       <input style="border-color:#207b41 ;background-color:#207b41;color:#fff; " type = submit name="review" class="btn" value="Review"/>
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </form>
     </div>
     </div>

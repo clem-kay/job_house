@@ -239,8 +239,8 @@ $save_to_db_query = mysqli_query($con,"INSERT INTO appliedjob(comment,freelancer
 }?> 
                   
                     <div class="form-group">
-                 <textarea class="form-control" name="description" placeholder="Enter job description" readonly="readonly">
-                  <?php echo $description ?></textarea>
+                 <textarea row="5" class="form-control" name="description" placeholder="Enter job description" readonly="readonly">
+                  <?php echo checkValues($description) ?></textarea>
                 </div>
 
                     <div class="form-group row">
