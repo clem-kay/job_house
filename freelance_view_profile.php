@@ -484,13 +484,12 @@ $("#country_selector").countrySelect({
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
+          <button class="btn btn-sm btn-danger" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-sm fl-btn-pm" href="login.php">Logout</a>
         </div>
       </div>
     </div>
   </div>
-
    <!-- End your project here-->
     <!-- jQuery -->
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
