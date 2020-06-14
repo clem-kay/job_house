@@ -36,6 +36,7 @@ $id = $_SESSION['id'];
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/addons/datatables.min.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -132,9 +133,10 @@ $id = $_SESSION['id'];
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <a role="button" class="btn btn-md fl-btn-pm ml-4" placeholder="Compose" value="" data-toggle="modal" data-target="#composeModal">
-                        <i class="fa fap-w fa-plus-square fa-2x mr-2 " aria-hidden="true"></i>New Message
-                    </a>
+                    <button type="button" class="btn btn-md fl-btn-pm ml-4" placeholder="Compose" value="" data-toggle="modal" data-target="#composeModal">
+                        <span><i class="fa fap-w fa-plus-square fa-2x mr-2 " aria-hidden="true"></i></span>
+                        New Message
+                    </button>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fap fa-bars"></i>
@@ -177,17 +179,58 @@ $id = $_SESSION['id'];
                 <div class="container-fluid">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active btn flat" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
-                                <i class="fa  fap fa-inbox mr-2" aria-hidden="true"></i> Inbox</a>
-                            <a class="nav-item nav-link btn flat" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
+                            <a class="nav-item  nav-link active btn green-text" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true">
+                                <i class="fa fap fa-inbox mr-2" aria-hidden="true"></i> Inbox</a>
+                            <a class="nav-item nav-link btn green-text" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="nav-sent" aria-selected="false">
                                 <i class="fas fap fa-location-arrow  mr-2  "></i> Sent</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Drafts</a>
+                            <a class="nav-item nav-link btn green-text" id="nav-drafts-tab" data-toggle="tab" href="#nav-drafts" role="tab" aria-controls="nav-drafts" aria-selected="false">
+                                <i class="fas fap fa-file mr-2" aria-hidden="true"></i> Drafts</a>
+                            <a class="nav-item nav-link btn green-text" id="nav-archive-tab" data-toggle="tab" href="#nav-archive" role="tab" aria-controls="nav-archive" aria-selected="false">
+                                <i class="fas fap fa-archive mr-2" aria-hidden="true"></i> Archives</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+                        <!-- inbox contents -->
+                        <div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
+                            <div class="table-responsive">
+
+                                <table class="table table-hover" id="dataTable" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First</th>
+                                            <th>Last</th>
+                                            <th>Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="nav-sent" role="tabpanel" aria-labelledby="nav-sent-tab">...</div>
+                        <div class="tab-pane fade" id="nav-drafts" role="tabpanel" aria-labelledby="nav-drafts-tab">...</div>
+                        <div class="tab-pane fade" id="nav-archive" role="tabpanel" aria-labelledby="nav-archive-tab">...</div>
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -232,7 +275,14 @@ $id = $_SESSION['id'];
                    </button>
                     </div>
                     <div class="modal-body">
-                        Content
+                        Send to
+                        <br> Message
+                        <hr> attach file <i class="fa fa-file" aria-hidden="true"></i>
+
+
+
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close</button>
@@ -252,13 +302,13 @@ $id = $_SESSION['id'];
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true" hidden>×</span>
           </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="login.php">Logout</a>
+                    <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn fl-btn-pm" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -284,6 +334,8 @@ $id = $_SESSION['id'];
     <!-- Page level plugins -->
     <script src="admin/vendor/chart.js/Chart.min.js"></script>
     <script type="text/javascript" src="admin/js/avatar.js"></script>
+    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+    <script type="text/javascript" src="admin/js/dashboardscripts.js"></script>
 </body>
 
 </html>
