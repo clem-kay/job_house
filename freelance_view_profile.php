@@ -273,7 +273,7 @@ include('functions.php');
                                 $num_of_user = mysqli_num_rows($query);
                                   if($num_of_user > 0 ){
                                       //user exist so go ahead and activate account
-                                    $user_row = mysqli_fetch_array($query);
+                                    while($user_row = mysqli_fetch_array($query)){
                                     echo
                                     ' <div class="row">
                                     <div class="col-md-6">
@@ -307,17 +307,14 @@ include('functions.php');
                                         <img width="300px" src="'.$user_row["img_path"].'">
                                     </div>
                                 </div>';
-
-
-
-
                                   
                                    }
+                                 }
                                    else{
                                     echo '<p>No Portfolio To display</p>';
                                    }
                               }
-
+                            
                             ?>
                                 
                         <div class="row">

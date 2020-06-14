@@ -391,7 +391,9 @@ $id = $_SESSION['id'];
                           $stars = $row['stars'];
                           $clientid = $row['client_id'];
             
-            echo ' <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>'.$comment.'<i class="fa fa-quote-right ml-2" aria-hidden="true"></i></p>';
+            echo ' <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>'.$comment.'<i class="fa fa-quote-right ml-2" aria-hidden="true"></i>
+              
+            </p>';
           }
 
 }
