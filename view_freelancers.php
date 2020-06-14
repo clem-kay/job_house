@@ -11,7 +11,7 @@ include('functions.php');
 
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Dashboard</title>
     <!-- Font Awesome -->
@@ -26,7 +26,7 @@ include('functions.php');
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
-  <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
 </head>
@@ -34,14 +34,14 @@ include('functions.php');
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div  id="wrapper">
+  <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul  class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminIndex.php">
-        <div class="sidebar-brand-text mx-3">Administrator</div>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
       </a>
 
       <!-- Divider -->
@@ -49,52 +49,61 @@ include('functions.php');
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="adminIndex.php">
+        <a class="nav-link" href="client_dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Home</span></a>
+          <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-        <!-- Nav Item - Pages Collapse Menu -->
+
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-user"></i>
-          <span>Users</span>
+          <i class="fas fa-fw fa-envelope"></i>
+          <span>Messages</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">JobHouse Users</h6>
-            <a class="collapse-item" href="view_freelancers.php">Freelancers</a></a>
-            <a class="collapse-item" href="view_clients.php">Clients</a>
+            <h6 class="collapse-header">Message</h6>
+            <a class="collapse-item" href="client_message.php">Compose Message</a>
+            <a class="collapse-item" href="client_inbox.php">Inbox</a>
+            <a class="collapse-item" href="client_send_message.php">Sent Messages</a>
           </div>
         </div>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+      <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="view_messages.php">
-          <i class="fas fa-fw fa-envelope"></i>
-          <span>Messages</span></a>
+        <a class="nav-link collapsed" href="postjob.php">
+          <i class="fas fa-fw fa-briefcase"></i>
+          <span>Post Job</span>
+        </a>
       </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Finances
+        Profile
       </div>
 
-      <!-- Nav Item - Charts -->
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="transaction.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Transactions</span></a>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Profile</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Profiles</h6>
+            <a class="collapse-item" href="client_profile.php">View Profile</a>
+          <!--   <a class="collapse-item" href="profile_edit.php">Edit Profile</a> -->
+          </div>
+        </div>
       </li>
-
-    
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -113,29 +122,32 @@ include('functions.php');
       <div id="content">
 
         <!-- Topbar -->
-        <nav  class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i style="color: #207b41; border-color: #207b41;"class="fa fa-bars"></i>
+          </button>
+
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-    
-
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <div class="topbar-divider d-none d-sm-block"></div>
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
+                 <div class="topbar-divider d-none d-sm-block"></div>
+                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="client_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Add Administrator
+                  Profile
                 </a>
-              
+                
+               
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -147,57 +159,69 @@ include('functions.php');
           </ul>
 
         </nav>
+       
         <!-- End of Topbar -->
 
 
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">  
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
+         <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+         <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 style="color:black;" class="m-0 font-weight-bold">Freelancers on the platform</h6>
+              <h6 class="m-0 font-weight-bold">Freelancers on the Platform</h6>
             </div>
             <div class="card-body">
+              
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
-                      <th>Username</th>
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
-                      <th>Date Joined</th>
-                    </tr>
+                    
                   </thead>
                   <tbody>
-                  <?php
+                      <?php
                         $sql = mysqli_query($con, "SELECT * From useraccount where usertype ='freelancer'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
                          
                   
-                          echo 
-                          '<tr>
-                     <td>'.$row["username"].'</td>
-                     <td>'.$row["firstname"].'</td>
-                     <td>'.$row["lastname"].'</td>
-                     <td>'.$row["email"].'</td>
-                     <td>'.$row["date"].'</td>';
+                            echo'
+                  <tr>
+                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
+                          <div class="card-body row align-items-center">
+                            <div class="ml-3 col-md-10-12">
+                              <h5 class="card-title font-weight-bold">'.$row["username"].'</h5>
+                              <div class="row pl-3">'
+                                .$row["firstname"]. '&nbsp; | &nbsp;' .$row["lastname"]. '&nbsp;| &nbsp; <strong>'.$row["email"].'</strong>
+                               </div>
+                               <hr/>
+                          </div>
+                          <div class="ml-3 col-md-2-12 pl-3 pr-3" style="">
+                          <a class="btn btn-sm fl-btn-pm" data-id="" id="viewjobid" data-toggle="modal" data-target="#basicExampleModal" href="">View Job</a>
+                           <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id=">APPLY</a>
+                          </div>
+                         
+                      </div>';
+
+                         
                         } 
                     ?>   
-                  </tbody>
+                 </tbody>
                 </table>
               </div>
             </div>
-          </div>
+          
+       
 
+
+
+          <!-- End of row -->
         </div>
         <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

@@ -172,30 +172,31 @@ $id = $_SESSION['id'];
           </ul>
 
         </nav>
-
-        <!-- Begin Page Content -->
+ <!-- Begin Page Content -->
         <div class="container-fluid">
-        <!-- Inbox come here -->
-          <div class="card shadow mb-4">
+
+         <div class="card shadow mb-4">
+        
             <div class="card-header py-3">
-              <h6 style="color:#000;" class="m-0 font-weight-bold">Your Ongoing Jobs</h6>
+              <h6 class="m-0 font-weight-bold">Your Ongoing Jobs</h6>
               <a href="client_job_completed.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
             </div>
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    <tr>
+                    <tr class="text-success font-weight-bold">
                       <th>Job Title</th>
                       <th>Job Category</th>
                        <th>Job Type</th>
                       <th>Description</th>
-                     
+                    
                       
                     </tr>
                   </thead>
                   <tbody>
+                    
                       <?php
                         $sql = mysqli_query($con, "SELECT * From appliedjob  where client_id='$id' and approved = 1 and accepted = 1");
                         $row = mysqli_num_rows($sql);
@@ -237,15 +238,21 @@ $id = $_SESSION['id'];
     }
                         ?>
 
-
-
-                      
                  </tbody>
                 </table>
               </div>
             </div>
           
-        <!-- End of inbox-->
+       
+
+
+
+          <!-- End of row -->
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      </div>        <!-- End of inbox-->
          
         <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
