@@ -15,14 +15,18 @@ $save_to_db_query = mysqli_query($con,"INSERT INTO job_posted(job_title,job_cate
 if($save_to_db_query){
 
    	echo '<div class="alert alert-success" role="alert">
-                    <p>Successfully </p>
-                  </div>';
+			  Job Posted Successfully
+			</div>'
+                  ;
 	}
 
 	else{
-		echo '<div class="alert alert-danger" role="alert">
-                    <p>Not Posted </p>
-                  </div>';
+		echo '
+		<div class="alert alert-danger" role="alert">
+			 <p>Not Posted </p>
+				</div>
+                    
+                  ';
 	}
 }
 
