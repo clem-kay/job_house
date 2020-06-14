@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 include('config/dbconfig2.php');
 include('functions.php');
-session_start();
+
 
 $username = $_SESSION['username'];
 
@@ -365,10 +365,21 @@ $id = $_SESSION['id'];
                               $title = $row2['title'];
                               $link = $row2['links'];
                               $description = $row2['description']; 
+                              $img=$row2['img_path'];
 
-              echo'<div class="no-content align-items-center text-center mt-4">
-                               <p>No Portfolio yet.</p>
-                                <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+              echo'<div class="card w-50 m-sm">
+                          <div class="card-header font-weight-bold">'.$title.'</div>
+                                    <div class="card-body background-grey">
+                                        <div style="max-width:80px; " class=" text-muted">
+                                            <!-- <i class="fa fa-briefcase fa-8x" aria-hidden="true"></i> -->
+                                            <img class="card-img-top" src="'.$img.'" alt="Card image cap">
+                                        </div>
+                                        <div class="card-text">
+                                            <p class="font-weight-bold">Description :</p>'.$description.'</div>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <a href="#" class="">'.$link.'</a></div>
+                                </div><br>';
                         }
                       }
 
