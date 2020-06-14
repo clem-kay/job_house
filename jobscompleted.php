@@ -271,7 +271,7 @@ if(isset($_GET['id'])){
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -281,13 +281,13 @@ if(isset($_GET['id'])){
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a style="background-color: red; border-color: red; color:#fff" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
+          <button class="btn btn-sm btn-danger" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-sm fl-btn-pm" href="login.php">Logout</a>
         </div>
       </div>
     </div>
   </div>
-  <!-- Upload Picture Modal -->
+   <!-- Upload Picture Modal -->
   <div class="modal fade" id="#changePictureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

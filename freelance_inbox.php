@@ -249,7 +249,7 @@ $username = $_SESSION['username']
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
@@ -259,13 +259,12 @@ $username = $_SESSION['username']
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-outline-red" type="button" data-dismiss="modal">Cancel</button>
-          <a  class="btn fl-btn-pm" href="controllers/logoutUser.php">Logout</a>
+          <button class="btn btn-sm btn-danger" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-sm fl-btn-pm" href="login.php">Logout</a>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
   <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
