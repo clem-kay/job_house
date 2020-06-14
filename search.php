@@ -208,7 +208,7 @@ $fid = $_SESSION['id'];
           $total_rows = mysqli_fetch_array($result)[0];
       $total_pages = ceil($total_rows / $no_of_records_per_page);
             
-            $sql = mysqli_query($con, "SELECT * From job_posted where closed = 0 and job_category = '$searchq' LIMIT $offset, $no_of_records_per_page");
+            $sql = mysqli_query($con, "SELECT * From job_posted where job_category LIKE '%$searchq%' or job_title  like '%$searchq%' and closed = 0 LIMIT $offset, $no_of_records_per_page");
                      $row = mysqli_num_rows($sql);
 
                      while ($row = mysqli_fetch_array($sql)){

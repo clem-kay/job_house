@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('config/dbconfig2.php');
 include('functions.php');
 
@@ -41,7 +41,7 @@ include('functions.php');
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px">      </a>
+      <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px"></a>
       </a>
 
       <!-- Divider -->
@@ -178,34 +178,33 @@ include('functions.php');
               <div class="table-responsive">
                 <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-                    
+                    <tr class="text-success font-weight-bold">
+                      <th>Username</th>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Email</th>
+                      <th>View Profile</th>  
+
+                    </tr>
                   </thead>
                   <tbody>
                       <?php
                         $sql = mysqli_query($con, "SELECT * From useraccount where usertype ='freelancer'");
                         $row = mysqli_num_rows($sql);
                         while ($row = mysqli_fetch_array($sql)){
-                         
-                  
+                          $fid = $row['id'];
+                          $fullname = $row["firstname"]." ".$row['lastname'];
                             echo'
+                
                   <tr>
-                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" >
-                          <div class="card-body row align-items-center">
-                            <div class="ml-3 col-md-10-12">
-                              <h5 class="card-title font-weight-bold">'.$row["username"].'</h5>
-                              <div class="row pl-3">'
-                                .$row["firstname"]. '&nbsp; | &nbsp;' .$row["lastname"]. '&nbsp;| &nbsp; <strong>'.$row["email"].'</strong>
-                               </div>
-                               <hr/>
-                          </div>
-                          <div class="ml-3 col-md-2-12 pl-3 pr-3" style="">
-                          <a class="btn btn-sm fl-btn-pm" data-id="" id="viewjobid" data-toggle="modal" data-target="#basicExampleModal" href="">View Job</a>
-                           <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id=">APPLY</a>
-                          </div>
-                         
-                      </div>';
-
-                         
+                   <td hidden>'.$row['id'].'</td>
+                     <td>'.$row["username"].'</td>
+                     <td>'.$row["firstname"].'</td>
+                     <td>'.$row["lastname"].'</td>
+                     <td>'.$row["email"].'</td>
+                     <td><a class="btn fl-btn-pm btn-sm  ml-4" data-toggle="modal" data-target="#basicExampleModal" href=?id='.$row['id'].'">View Profile<a></td>
+                     '
+                     ;
                         } 
                     ?>   
                  </tbody>
@@ -222,6 +221,126 @@ include('functions.php');
         <!-- /.container-fluid -->
 
       </div>
+
+
+
+      <!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><?php   
+                        $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$fid'");
+                        while($user_name_row = mysqli_fetch_array($query) ){ 
+                          $headline = $user_name_row['headline'];
+                          
+                        }
+                           ?>
+   <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content pt-3 pb-3 pl-4  pr-4">
+           <div class="fl-modal-head">
+             <div class=" form-inline align-items-center mb-2">
+             <img class="rounded-circle z-depth-1 img-fluid " avatar="<?php echo $fullname ?>">
+               <h5 class="modal-title ml-4 font-weight-bold" id="exampleModalLabel"><?php echo $fullname . " "?>|</h5>
+               <h6 class="pt-2 pl-3"><?php echo $headline ?></h6>
+
+              <?php
+                        $sql = mysqli_query($con, "SELECT * From appliedjob where freelancer_id='$fid' and approved = 1 and accepted = 1");
+                        $row = mysqli_num_rows($sql);
+                        while ($row = mysqli_fetch_array($sql)){
+                          $jobid = $row['jobid'];
+                          $sql2 = mysqli_query($con, "SELECT * FROM job_posted WHERE id = '$jobid' and completed= 1");
+                          $row2 = mysqli_num_rows($sql2);
+                          }?>
+             </div>
+             
+             <small class="text-muted green-text font-weight-bold" >Completed Job: <?php echo $row2?></small>
+           </div>
+           <br>
+           <div class="fl-modal-body">
+           <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link text-muted active" id="home-tab" data-toggle="tab" href="#portfolio" role="tab" aria-controls="home"
+      aria-selected="true">Portfolio</a>
+  </li>
+  <li class="nav-item">
+    <?php
+                        $sql = mysqli_query($con, "SELECT * From freview where freelancer_id='$freelancer'");
+                        $row = mysqli_num_rows($sql);
+
+                        ?>
+    <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#review" role="tab" aria-controls="profile"
+      aria-selected="false">Reviews <span class="badge badge-success"><?php echo $row; ?></span> </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-muted" id="contact-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="contact"
+      aria-selected="false">Projects <span class="badge badge-success">0</span> </a>
+  </li>
+</ul>
+<!--contents of tabs-->
+<div class="tab-content pl-3 pr-3" id="myTabContent">
+ <!-- portfolio contents -->
+ <div class="tab-pane fade show active" id="portfolio" role="tabpanel" aria-labelledby="home-tab">
+ <?php 
+                    $sql2 = mysqli_query($con, "SELECT * From portfolio where user_id = '$freelancer'");
+                        $row2 = mysqli_num_rows($sql2);
+                        if($row2 == 0){
+                          echo'
+  <div class="no-content align-items-center text-center mt-4">
+    <p>No Portfolio yet.</p>
+    <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+                        }
+                        else{
+                          while($row2 = mysqli_fetch_array($sql2)){
+                              $title = $row2['title'];
+                              $link = $row2['links'];
+                              $description = $row2['description']; 
+
+              echo'<div class="no-content align-items-center text-center mt-4">
+                               <p>No Portfolio yet.</p>
+                                <i class="fas fa-briefcase fa-2x text-muted"></i></div>';
+                        }
+                      }
+
+ ?>
+
+  </div>
+  <!-- review contents -->
+  <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="profile-tab">
+   <div class = "">
+     <hr class="my-2">
+     <?php if($row == 0){
+      echo' <div class="no-content align-items-center text-center mt-4">
+    <p>No Reviews yet.</p>
+    <i class="fas fa-comment-dots fa-2x text-muted   "></i>
+
+  </div>';}
+  else {
+       while ($row = mysqli_fetch_array($sql)){
+                          $comment = $row['comment'];
+                          $stars = $row['stars'];
+                          $clientid = $row['client_id'];
+            
+            echo ' <p class="mt-2"><i class="fa fa-quote-left mr-2" aria-hidden="true"></i>'.$comment.'<i class="fa fa-quote-right ml-2" aria-hidden="true"></i></p>';
+          }
+
+}
+     ?>
+   </div>
+  </div>
+<!-- projects contents -->
+  <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="contact-tab">
+  <div class="no-content align-items-center text-center mt-4">
+    <p>No Projects yet.</p>
+    <i class="fas fa-toolbox fa-2x text-muted   "></i>
+
+  </div>
+</div>
+           </div>
+           <div class="modal-footer mt-2">
+               <button type="button" class="btn btn-outline-green" data-dismiss="modal">Close</button>
+               
+           </div>
+       </div>
+   </div>
+</div>
+
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -257,7 +376,7 @@ include('functions.php');
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a style="background-color: #ff0000;border-color:#ff0000;" class="btn btn-primary" href="controllers/logoutAdmin.php">Logout</a>
+              <a style="background-color: #ff0000;border-color:#ff0000;" class="btn btn-primary" href="controllers/logoutUser.php">Logout</a>
         </div>
       </div>
     </div>
@@ -279,6 +398,7 @@ include('functions.php');
 
   <!-- Page level custom scripts -->
   <script src="admin/js/demo/datatables-demo.js"></script>
+    <script src="admin/js/avatar.js"></script>
 
 </body>
 
