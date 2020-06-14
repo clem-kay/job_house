@@ -4,6 +4,8 @@ include('functions.php');
   session_start();
 
   $id=$_SESSION['id'];
+  $firstname =$_SESSION['firstname'];
+  $lastname = $_SESSION['lastname'];
 
   $query = mysqli_query($con,"SELECT * FROM profile WHERE userid = '$id'");
     if($query){
@@ -11,6 +13,14 @@ include('functions.php');
         if($num_of_user> 0 ){
             //user exist so go ahead and activate account
             $user_row = mysqli_fetch_array($query);
+            $headline = $user_row['headline'];
+            $country = $user_row['country'];
+            $city = $user_row['city'];
+            $phone = $user_row['phone'];
+            $summary =$user_row['summary'];
+            $address = $user_row['address'];
+
+
         }
     }
 
@@ -179,7 +189,7 @@ $("#country_selector").countrySelect({
               <a class="nav-link dropdown-toggle pt-3 " href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span>
                  <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+                 <img class="img-profile rounded-circle" avatar="<?php echo $firstname." ".$lastname;?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -256,7 +266,7 @@ $("#country_selector").countrySelect({
                                         <label>Country</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><?php echo $user_row['country']?></p>
+                                        <p><?php echo $country?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -264,7 +274,7 @@ $("#country_selector").countrySelect({
                                         <label>Phone</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><?php echo $user_row['phone']?></p>
+                                        <p><?php echo $phone?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -272,7 +282,7 @@ $("#country_selector").countrySelect({
                                         <label>Profession</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><?php echo $user_row['headline']?></p>
+                                        <p><?php echo $headline?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -280,7 +290,7 @@ $("#country_selector").countrySelect({
                                         <label>Personal Summary</label>
                                     </div>
                                     <div class="col-md-6">
-                                         <p><?php echo $user_row['summary'];?></p>
+                                         <p><?php echo $summary;?></p>
                                     </div>
                                 </div>
 
@@ -378,24 +388,22 @@ $("#country_selector").countrySelect({
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Edit profile modal -->
-  <!-- Button trigger modal -->
-  
+
   
   <!-- Modal -->
   <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
   
   <div class="modal-dialog" role="document">
+
          <div class="modal-content">
              <div class="modal-header row align-items-center">
              <a class="nav-link  col-2 " href="#" id="userAvatar" role="button" aria-haspopup="true" aria-expanded="false">
-                <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?>&nbsp | &nbsp</span> -->
-                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
+                <?php include('controllers/updateProfile.php')?>
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <div class="col-8 pl-4 modal-title">
-                <h4>Username</h4>
-                <small>Email</small>
+                <h4><?php echo $_SESSION['username']?></h4>
+                <small><?php echo $_SESSION['email']?></small>
               </div>
                  <!-- <h5 class="modal-title" id="profileModalLabel">Modal title</h5> -->
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -408,32 +416,25 @@ $("#country_selector").countrySelect({
                 
                  <div class="md-form  col input-with-pre-icon active-success">
                    <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userFirstName" name="firstname" class="form-control " required>
+                   <input type="text" id="userFirstName" name="firstname" class="form-control " value="<?php echo $firstname;?>" required>
                    <label for="userFirstName"  class="ml-3">First Name</label>
                  </div> 
                <div class="md-form col input-with-pre-icon ">
                    <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userLastName" name="lastname" class="form-control" required>
+                   <input type="text" id="userLastName" value="<?php echo $lastname ?>"name="lastname" class="form-control" required>
                    <label for="userLastName" class="ml-3">Last Name</label>
                </div>  
 
                  
                  <div class="md-form col input-with-pre-icon">
                    <i style="color: #388e3c;" class="fa fap fa-user-tag input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="profession" name="profession" class="form-control" required>
+                   <input type="text" id="profession" value="<?php echo $headline?>" name="headline" class="form-control" required>
                    <label for="profession" class="ml-3">Professional Heading</label>
                </div>
 
-               <!-- <div class="md-form country">
-                 
-                 <input class="form-control" type="text" name="country" id="country_selector">
-                 <input class="form-control" type="text"  id="country_selector" style="display: none;">
-                 <small id="countryHelp "  class="form-text text-muted">Select Country</small>
-              </div> -->
-
                 <div class="md-form input-with-pre-icon">
                   <i style="color: #388e3c;" class="fa fap fa-city input-prefix" aria-hidden="true"></i>
-                  <input id ="userCity" class="form-control" type="text" name="city" id="userCity">
+                  <input id ="userCity" value="<?php echo $city?>" class="form-control" type="text" name="city" id="userCity">
                   <label for="userCity" class="ml-3">City</label>
 
                   <!-- <small id="userCity " class="form-text text-muted">City</small> -->
@@ -441,29 +442,30 @@ $("#country_selector").countrySelect({
                 
                 <div class="md-form col input-with-pre-icon">
                    <i style="color: #388e3c;" class="fa fap fa-location-arrow pb-4 input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userAddress" name="address" class="form-control " required>
+                   <input type="text" value="<?php echo $address ?>"id="userAddress" name="address" class="form-control " required>
                    <label for="userAddress" class="ml-3">Address</label>
                    <small id="userAddress " class="form-text text-muted ml-3">Post address or location</small>
                </div>
                <div class="md-form col input-with-pre-icon">
                    <i style="color: #388e3c;" class="fa fap fa-phone input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userContact" name="contact" class="form-control" required>
+                   <input type="text" id="userContact"value="<?php echo $phone ?>"name="contact" class="form-control" required>
                    <label for="userContact" class="ml-3">Contact</label>
                </div>
                <div class="md-form ">
                     <!-- <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i> -->
                     <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
-                    <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea"  rows="5"></textarea>
+                    <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea"  rows="5"><?php echo $summary?> </textarea>
                     <label for="textarea-char-counter">Profile Summary</label>
                     <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
                 </div>
 
-               </form>
+               
                  
              </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                 <button type="submit" class="btn fl-btn-pm">Save changes</button>
+                 <button type="submit" class="btn fl-btn-pm" name="update">Save changes</button>
+               </form>
              </div>
          </div>
      </div>
@@ -489,9 +491,6 @@ $("#country_selector").countrySelect({
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <!-- <script src="admin/vendor/jquery/jquery.min.js"></script> -->
-  <!-- <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
    <!-- End your project here-->
     <!-- jQuery -->
     <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
