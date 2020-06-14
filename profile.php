@@ -32,7 +32,7 @@ include('controllers/profileCreation.php');
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -57,63 +57,67 @@ include('controllers/profileCreation.php');
                             <small class="text-muted"><?php echo $user_row['firstname'] ?></small> | <small class="text-muted"><?php echo $user_row['email'] ?></small>
                             <hr>
                             <div class="row">
-                                <div class="col">
+                                <div class="col pr-3">
                                     <div class="md-form ml-4">
-                                        <div class="md-form">
-                                            <i class="fa fap fa-user-tag prefix" aria-hidden="true"></i>
-                                            <input type="text" id="profHeadline" name="headline" class=" form-control" aria-describedby="profHeadlineHelp " required>
-                                            <label for="profHeadline ">Professional Headline</label>
-                                            <small id="profHeadlineHelp " class="form-text text-muted ">
-                                            What best describes the services you provide. E.g. Branding Agency, Software Developer, Graphic Designer...
+                                        <div class="md-form input-with-pre-icon">
+                                            <i style="color: #388e3c;" class="fa fap fa-user-tag input-prefix pb-4" aria-hidden="true"></i>
+                                            <input type="text" id="profHeadline" name="headline" class=" form-control" required>
+                                            <label for="profHeadline " class="ml-3">Professional Headline</label>
+                                          <div class="invalid-feedback">Enter a Professional Headline</div>
+                                          <small id="profHeadlineHelp " class="form-text text-muted ">
+                                            E.g. Branding Agency, Software Developer, Graphic Designer...
                                             </small>
-                                            <div class="invalid-feedback">Enter a Professional Headline</div>
                                         </div>
-
-                                        <div class="md-form country">
-                                            <!-- <i class="fa fap fa-2x fa-globe" aria-hidden="true"></i> -->
+                                      
+                                        <div class="md-form country input-with-pre-icon ml-3">
+                                            <i class="fa fap fa-globe mr-3" aria-hidden="true"></i>
 
                                             <input class="form-control" type="text" name="country" id="country_selector">
                                             <input class="form-control" type="text"  id="country_selectors" style="display: none;">
-                                            <small id="countryHelp " style="margin-left: 2.3rem;" class="form-text text-muted">Select Country</small>
+                                            <small id="countryHelp " class="form-text text-muted">Select Country</small>
                                         </div>
 
-                                        <div class="md-form">
-                                            <i class="fa fap fa-city prefix" aria-hidden="true"></i>
+                                        <div class="md-form input-with-pre-icon">
+                                            <i style="color: #388e3c;" class="fa fap fa-city input-prefix " aria-hidden="true"></i>
                                             <input type="text" id="userCity" name="city" class="form-control">
-                                            <label for="userCity">Enter City</label>
+                                            <label class = "ml-3" for="userCity">Enter City</label>
                                         </div>
-                                        <div class="md-form">
-                                            <i class="fas fap fa-mobile prefix   "></i>
+                                        <div class="md-form input-with-pre-icon">
+                                            <i style="color: #388e3c;" class="fas fap fa-phone input-prefix pb-4  "></i>
                                             <!-- <i class="fa fap fa-phone-square prefix" aria-hidden="true"></i> -->
-                                            <input type="number" id="userContact" name ="phone" class="form-control">
+                                            <input type="text" id="userContact" name ="phone" class="form-control">
                                             <input type="text" id="userContact2"  class="form-control" style="display: none;">
-                                            <label for="userContact">Enter Phone</label>
+                                            <label class = "ml-3" for="userContact">Enter Phone</label>
                                             <small id="contactHelp " class="form-text text-muted ">Ignore Country code</small>
 
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col pt-2">
-                                    <!--proifle summary-->
-                                    <div class="md-form ">
-                                        <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i>
-                                        <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
-                                        <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea" length="250" rows="4"></textarea>
-                                        <label for="textarea-char-counter">Profile Summary</label>
-                                        <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
-                                    </div>
-                                    <div class="md-form">
-                                        <i class="fa fap fa-location-arrow prefix" aria-hidden="true"></i>
+                                        <div class="md-form input-with-pre-icon">
+                                        <i style="color: #388e3c;"  class="fa fap fa-location-arrow input-prefix pb-4" aria-hidden="true"></i>
                                         <textarea id="userAddress" class="form-control md-textarea" name="address" length="50" rows="2"></textarea>
-                                        <label for="textarea-char-counter">Address</label>
+                                        <label class = "ml-3 pt-2" for="textarea-char-counter">Address</label>
                                         <small id="addressHelp" class="form-text text-muted ">Enter either location address or post address</small>
                                     </div>
-
-                                    <button style="float:right; width:200px;" class="btn fl-btn-pm btn-block my-4 mt-2" name="create_profile" type="submit">Save</button>
-
-
+                                    </div>
                                 </div>
+                                <div class="col pt-4">
+
+                                    <!--proifle summary-->
+
+                                    <div class="md-form pl-2 input-withpre-icon">
+
+                                        <!-- <i style="color: #388e3c;" class="fas fap fa-sticky-note  pb-4 input-prefix" aria-hidden="true"></i> -->
+                                        <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
+                                        <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea"  rows="14"></textarea>
+                                        <label  class = "ml-3 " for="textarea-char-counter">Profile Summary</label>
+                                        <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
+
+                                    </div>
+                                   
+
                             </div>
+                            </div>  
+                            <button style="float:right; width:200px;" class="btn fl-btn-pm btn-block my-4 mt-2" name="create_profile" type="submit">Save</button>
+
 
 
                         </div>
@@ -136,8 +140,8 @@ include('controllers/profileCreation.php');
     <!-- Your custom scripts (optional) -->
     <script src="js/customscripts.js " type="text/javascript "></script>
     <script src="js/countrySelect.min.js" type="text/javascript"></script>
-    <script src="js/addons/datatables-select.min.js" type="text/javascript"></script>
-    <script src="js/phonecode.js" type="text/javascript"></script>
+    <!-- <script src="js/addons/datatables-select.min.js" type="text/javascript"></script> -->
+    <!-- <script src="js/phonecode.js" type="text/javascript"></script> -->
 </body>
 
 </html>
