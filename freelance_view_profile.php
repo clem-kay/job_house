@@ -399,10 +399,10 @@ $("#country_selector").countrySelect({
              <div class="modal-header row align-items-center">
              <a class="nav-link  col-2 " href="#" id="userAvatar" role="button" aria-haspopup="true" aria-expanded="false">
                 <?php include('controllers/updateProfile.php')?>
-                 <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
+                 <img class="img-profile rounded-circle" avatar="<?php echo $firstname." ".$lastname;?>">
               </a>
               <div class="col-8 pl-4 modal-title">
-                <h4><?php echo $_SESSION['username']?></h4>
+                <h4><?php echo $firstname ?></h4>
                 <small><?php echo $_SESSION['email']?></small>
               </div>
                  <!-- <h5 class="modal-title" id="profileModalLabel">Modal title</h5> -->
@@ -416,12 +416,12 @@ $("#country_selector").countrySelect({
                 
                  <div class="md-form  col input-with-pre-icon active-success">
                    <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userFirstName" name="firstname" class="form-control " value="<?php echo $firstname;?>" required>
+                   <input type="text" id="userFirstName" name="fname" class="form-control " value="<?php echo $firstname;?>" required readonly>
                    <label for="userFirstName"  class="ml-3">First Name</label>
                  </div> 
                <div class="md-form col input-with-pre-icon ">
                    <i style="color: #388e3c;" class="fa fap fa-user input-prefix " aria-hidden="true"></i>
-                   <input type="text" id="userLastName" value="<?php echo $lastname ?>"name="lastname" class="form-control" required>
+                   <input type="text" id="userLastName" value="<?php echo $lastname ?>"name="lname" class="form-control" required readonly>
                    <label for="userLastName" class="ml-3">Last Name</label>
                </div>  
 
@@ -451,9 +451,7 @@ $("#country_selector").countrySelect({
                    <input type="text" id="userContact"value="<?php echo $phone ?>"name="contact" class="form-control" required>
                    <label for="userContact" class="ml-3">Contact</label>
                </div>
-               <div class="md-form ">
-                    <!-- <i class="fas fap fa-sticky-note  prefix" aria-hidden="true"></i> -->
-                    <!-- <i class="fa fap fa-list prefix" aria-hidden="true"></i> -->
+               <div class="md-form">
                     <textarea id="textarea-char-counter" name="summary" class="form-control md-textarea"  rows="5"><?php echo $summary?> </textarea>
                     <label for="textarea-char-counter">Profile Summary</label>
                     <small id="summaryHelp" class="form-text text-muted ">Add a professional summary of your potentials, skills, services or products</small>
