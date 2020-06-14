@@ -3,6 +3,7 @@
 include('config/dbconfig2.php');
 include('functions.php');
 
+
 if(isset($_GET['id'])){
   $jobid =$_GET['id'];
 

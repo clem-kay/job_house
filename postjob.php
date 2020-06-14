@@ -25,6 +25,7 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+ 
 
 </head>
 
@@ -169,10 +170,13 @@ session_start();
               <div class="text-center">
                
                 <h1 class="h4 text-gray-900 mb-4">Post Your job</h1>
-
+                <?php  include('controllers/postJob.php') ?>
+                <div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
               </div>
               <form class="md-form user needs-validation" action="" method="post" novalidate>
-              	 <?php  include('controllers/postJob.php') ?>
+              	 
                 <div class="form-group">
                 	<div class="form-group">
                 		<input type="text" name="jobtitle" class="form-control" placeholder="Enter Job Title" required>
