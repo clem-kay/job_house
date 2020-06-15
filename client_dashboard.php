@@ -144,11 +144,11 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
 
 
         <!-- Top bar search -->
-        <form class=" md-form form-inline ml-auto" method="post" action="search.php">
+        <form class=" md-form form-inline ml-4" method="post" action="search.php">
       <div class=" my-0">
-        <input class="form-control active-green" type="text" placeholder="Search..." aria-label="Search">
+        <input class="form-control active-green medium" type="text" placeholder="Search..." aria-label="Search">
       </div>
-      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" type="submit">Search</button>
+      <button class="btn fl-btn-pm btn-sm my-0 ml-sm-2" name ="search" type="submit"><i class="fa fap-w fa-search" aria-hidden="true"></i> </button>
     </form>
           <!-- Topbar Navbar -->
           <!-- <ul class="navbar-nav ml-auto"> -->

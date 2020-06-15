@@ -30,7 +30,7 @@ $username = $_SESSION['username'];
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
 
-  <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
 
 
 </head>
@@ -405,7 +405,7 @@ $username = $_SESSION['username'];
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true" hidden>×</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -415,10 +415,18 @@ $username = $_SESSION['username'];
         </div>
       </div>
     </div>
-  </div>
+      </div>
+  
   <!-- Bootstrap core JavaScript-->
-  <script src="admin/vendor/jquery/jquery.min.js"></script>
-  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+
+  <!-- <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
   <!-- Core plugin JavaScript-->
   <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -427,12 +435,14 @@ $username = $_SESSION['username'];
   <script src="admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="admin/vendor/chart.js/Chart.min.js"></script>
+  <!-- <script src="admin/vendor/chart.js/Chart.min.js"></script> -->
+
+  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script> -->
 
   <!-- Page level plugins -->
   <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-   <script type="text/javascript">
+  <!-- <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
+   <!-- <script type="text/javascript">
     $(document).ready(function(event){
       
 
@@ -449,7 +459,7 @@ $username = $_SESSION['username'];
 
     });
 
-  </script>
+  </script> -->
 
   <!-- Page level custom scripts -->
   <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->

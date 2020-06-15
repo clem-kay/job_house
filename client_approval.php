@@ -225,7 +225,7 @@ $id = $_SESSION['id'];
                     <td>'.$row["job_title"].'</td>
                     <td>'.$row["job_category"].'</td>
                     <td>'.$row["job_type"].'</td>
-                    <td><a data-toggle="modal" data-target="#basicExampleModal" href=?id='.$freelancer.'">'.$freelancer_name.'<a></td>
+                    <td ><a data-toggle="modal" data-target="#basicExampleModal" href=?id='.$freelancer.'">'.$freelancer_name.'<a></td>
                     <td>'.$row["description"].'</td> 
                     <td class="form-inline"><a href="invoice.php?id='.$applied_job_id.'" class="btn fl-btn-pm btn-sm mr-2">Invoice</a>
                       <a href="controllers/approveJob.php?id='.$applied_job_id.'" class="btn btn-outline-green"></i>Approve</a>
@@ -275,7 +275,7 @@ $id = $_SESSION['id'];
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog .modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
