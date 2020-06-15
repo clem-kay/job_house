@@ -90,7 +90,7 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="postjob.php">
-          <i class="fas fa-fw fa-briefcase"></i>
+          <i class="fas fa-fw fa-upload"></i>
           <span>Post Job</span>
         </a>
       </li>
@@ -272,7 +272,29 @@ $accept = mysqli_query($con,"SELECT * FROM appliedjob WHERE client_id = '$id' an
             
         </div>
         <!-- /.container-fluid -->
+        <hr class="my-2">
+        <div class="card-deck mt-4">
+        <div class="jumbotron w-75 ml-4 border-left-warning">
+          <h1 class="display-5">Welcome</h1>
+          <p class="lead">Looking for freelancers? Explore great talents and experts accross the world at <strong>JobHouse</strong> </p>
+          <hr class="my-2">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium nemo, at, unde deserunt dolores nam, amet laboriosam fugiat expedita facilis sapiente soluta! Voluptates odit praesentium illum voluptatem, aliquid ipsam neque.</p>
+          <p class="lead form-inline">
+            <a class="btn btn-outline-green " href="Jumbo action link" role="button">Post New Job</a>
+            <a class="btn fl-btn-pm " href="Jumbo action link" role="button">View Freelancers</a>
 
+          </p>
+        </div>
+          <div class="card w-25 mr-4">
+            <div class="card-header">Reviews</div>
+             <div class="card-body text-center">
+             <i class="fas fa-comment-dots   fa-4x "></i>
+             <p>No Reviews Yet</p>
+
+            </div>
+      </div>
+
+        
       </div>
       <!-- End of Main Content -->
 

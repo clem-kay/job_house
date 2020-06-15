@@ -76,7 +76,7 @@ $username = $_SESSION['username']
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="postjob.php">
-          <i class="fas fa-fw fa-briefcase"></i>
+          <i class="fas fa-fw fa-upload"></i>
           <span>Post Job</span>
         </a>
       </li>

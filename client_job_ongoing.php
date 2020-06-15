@@ -90,7 +90,7 @@ $id = $_SESSION['id'];
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="postjob.php">
-          <i class="fas fa-fw fa-briefcase"></i>
+          <i class="fas fa-fw fa-upload"></i>
           <span>Post Job</span>
         </a>
       </li>
@@ -149,8 +149,8 @@ $id = $_SESSION['id'];
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?> &nbsp &nbsp | &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -179,7 +179,7 @@ $id = $_SESSION['id'];
         
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold">Your Ongoing Jobs</h6>
-              <a href="client_job_completed.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
+              <a href="client_job_completed.php" style="float: right; margin-top: -30px;"class="d-none d-sm-inline-block btn btn-sm fl-btn-pm  shadow-sm"><i class="fas fa-complete fa-sm text-white-50"></i> Completed Jobs</a>
             </div>
             <div class="card-body">
               
