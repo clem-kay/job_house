@@ -7,6 +7,7 @@ include('functions.php');
 $username = $_SESSION['username'];
 $fid = $_SESSION['id'];
 
+
  $query = mysqli_query($con,"SELECT * FROM appliedjob WHERE freelancer_id = '$fid'");
   $applied=mysqli_num_rows($query);
 
@@ -53,8 +54,8 @@ $fid = $_SESSION['id'];
     <ul  class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-      <img class="sidebar-brand-text mx-3" src="img/job-house-logo.png" alt="jobhouse" width="120px">      </a>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="freelance_dashboard.php">
+       <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px"></a>
       </a>
 
       <!-- Divider -->
@@ -183,7 +184,7 @@ $fid = $_SESSION['id'];
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="freelance_view_profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -365,7 +366,7 @@ $fid = $_SESSION['id'];
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Amalitech Freelance</span>
+            <span>www.jobhouse.com</span>
           </div>
         </div>
       </footer>

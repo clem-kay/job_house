@@ -3,8 +3,8 @@
 if (isset($_POST['update'])){
 
 
-    $firstname = checkValues($_POST['firstname']);
-    $lastname = checkValues($_POST['lastname']);
+    $firstname = checkValues($_POST['fname']);
+    $lastname = checkValues($_POST['lname']);
     $headline = checkValues($_POST['headline']);
     $city = checkValues($_POST['city']);
     $phone = checkValues($_POST['contact']);
