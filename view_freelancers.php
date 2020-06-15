@@ -24,9 +24,10 @@ include('functions.php');
 
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <link href="css/addons/datatables.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
 
 
 </head>
@@ -136,8 +137,8 @@ include('functions.php');
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?></span>
-                 <div class="topbar-divider d-none d-sm-block"></div>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['firstname']?> &nbsp &nbsp | &nbsp &nbsp</span>
+                 <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
                  <img class="img-profile rounded-circle" avatar="<?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];?>">
               </a>
               <!-- Dropdown - User Information -->
@@ -176,7 +177,7 @@ include('functions.php');
             <div class="card-body">
               
               <div class="table-responsive">
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover " id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr class="text-success font-weight-bold">
                       <th>Username</th>
@@ -346,7 +347,7 @@ include('functions.php');
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Amalitech &copy; Freelance 2020</span>
+            <span>www,jobhouse.com</span>
           </div>
         </div>
       </footer>
@@ -392,12 +393,17 @@ include('functions.php');
   <script src="admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <!-- <script src="admin/vendor/datatables/jquery.dataTables.min.js"></script> -->
+  <!-- <script src="admin/vendor/datatables/dataTables.bootstrap4.min.js"></script> -->
 
   <!-- Page level custom scripts -->
-  <script src="admin/js/demo/datatables-demo.js"></script>
-    <script src="admin/js/avatar.js"></script>
+  <!-- <script src="admin/js/demo/datatables-demo.js"></script> -->
+    <script text = "text/javascript" src="admin/js/avatar.js"></script>
+    <script type="text/javascript" src="js/addons/datables.min.js"></script>
+    <script type="text/javascript" src="admin/js/dashboardscripts.js"></script>
+
+
+
 
 </body>
 
