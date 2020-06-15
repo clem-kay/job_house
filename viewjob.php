@@ -44,7 +44,7 @@ $username = $_SESSION['username'];
     <ul  class="navbar-nav sidebar fl-bk-pm sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="freelance_dashboard.php">
       <img class="sidebar-brand-text mx-3" src="img/job-house-logo .png" alt="jobhouse" width="120px"></a>
 
       <!-- Divider -->
