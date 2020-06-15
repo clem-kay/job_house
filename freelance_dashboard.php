@@ -306,24 +306,30 @@ $fid = $_SESSION['id'];
                           
                       echo' 
                     
-                        <div class="mx-auto card ml-3 mr-3 pl-3 pr-3 w-75" style="width: fit-content;">
+                        <div class=" card ml-3 mr-3" >
                           <div class="card-body row align-items-center">
-                            <div class="ml-3 col-8">
+                            <div class="ml-3 col">
                               <h5 class="card-title font-weight-bold">'.$row['job_title'].'</h5>
                               <div class="row pl-3">'
                                 .$row2['username']. "  ". '&nbsp|&nbsp'."  " .$date. '&nbsp; | &nbsp;' .$row['job_category']. '&nbsp&nbsp;| &nbsp; <strong>'." $ ".$row['budget'].'</strong>
                                </div>
+                               </div>
+                               </div>
                                <hr/>
-                                <p class="card-text job-desc">'
-                                 .$row['description'].'
-                              </p>
-                              
-                          </div>
-                          <div class="ml-3 col-4 pl-3 text-right" style="">
+                               <div class="row">
+                               <div class="col">
+                               <p class="card-text  job-desc">'
+                               .$row['description'].'
+                            </p>
+                               </div>
+                               
+                              <div class="ml-3 col pl-3 text-right" style="">
                           <a class="btn btn-sm fl-btn-pm" href="applyJob.php?id='.$id.'">APPLY</a>
                          </div>
-                      </div>
-                  </div>
+                              </div>
+                              
+                          </div>
+                  
                   <br/>
 
              
